@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dashboard;
 use App\Models\Menu;
 use App\Models\Version;
+use Auth;
 
 class DashboardController extends Controller
 {

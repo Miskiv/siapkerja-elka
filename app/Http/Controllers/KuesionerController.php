@@ -11,7 +11,7 @@ class KuesionerController extends Controller
      */
     public function index()
     {
-        //
+        return view('apps.kuesioner.index');
     }
 
     /**

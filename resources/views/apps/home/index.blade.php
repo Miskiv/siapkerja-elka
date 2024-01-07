@@ -14,7 +14,11 @@
         <!-- Illustrations -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Welcome Admin !</h6>
+                @if (Auth::user()->roles()->first()->name == 'Admin')
+                    <h6 class="m-0 font-weight-bold text-primary">Welcome Admin !</h6> 
+                @else
+                    <h6 class="m-0 font-weight-bold text-primary">Welcome {{ head(explode(' ', Auth::user()->name)) }} !</h6>
+                @endif
             </div>
             <div class="card-body">
                 <div class="text-center">
