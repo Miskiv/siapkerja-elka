@@ -17,6 +17,7 @@
                         <tr>
                             <th>No</th>
                             <th>Pertanyaan</th>
+                            <th>Tipe Kriteria</th>
                             <th>Dibuat</th>
                             <th>Action</th>
                         </tr>
@@ -26,6 +27,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->soal }}</td>
+                                <td>{{ $row->TipeKriteria->tipe_kriteria }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td><button class="btn btn-info btn-sm">Aksi</button></td>
                             </tr>
@@ -44,10 +46,11 @@
                 order: [
                     [0, 'asc']
                 ],
-                pageLength: 7,
+                pageLength: 4,
                 dom: '<"toolbar">frtip'
             });
             document.querySelector('div.toolbar').innerHTML = '<button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Tambah</button>';
         });
+
     </script>
 @endpush

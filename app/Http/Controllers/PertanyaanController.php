@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pertanyaan;
+use App\Models\TipeKriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PertanyaanController extends Controller
@@ -13,7 +15,8 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $data['pertanyaan'] = Pertanyaan::orderBy('created_at', 'asc')->get();
+        $data['pertanyaan'] = Pertanyaan::with('TipeKriteria')->orderBy('created_at', 'asc')->get();
+        $data['tipe_kriteria'] = TipeKriteria::orderBy('id')->get();
         $title = 'Pertanyaan';
 
         return view('apps.pertanyaan.index', compact('data', 'title'));
@@ -34,9 +37,12 @@ class PertanyaanController extends Controller
     {
         $data['pertanyaan'] = Pertanyaan::create([
             'soal' => $request->soal,
+            'tipe_kriteria' => $request->tipe_kriteria
         ]);
+
+        activity()->log(''.Auth::user()->name.' Menambahkan pertanyaan dengan id = '.$data['pertanyaan']->id.' ');
         
-        return back();
+        return back()->with('success', 'Pertanyaan Berhasil ditambahkan');
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pertanyaan')
+@section('title', $title)
 @section('content')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tabel Pertanyaan</h1>
@@ -22,20 +22,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data['pertanyaan'] as $row)
+                        {{-- @foreach ($data['pertanyaan'] as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->soal }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td><button class="btn btn-info btn-sm">Aksi</button></td>
                             </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    @include('apps.pertanyaan.components.modal-add')
+    @include('apps.hasil-analisis.components.modal-add')
 @stop
 @push('js')
     <script>

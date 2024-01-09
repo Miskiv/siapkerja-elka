@@ -42,11 +42,11 @@
             <i class="fas fa-fw fa-question"></i>
             <span>Pertanyaan</span></a>
     </li>
-    <li class="nav-item @if(isset($title) && $title === 'Jawaban') active @endif">
+    {{-- <li class="nav-item @if(isset($title) && $title === 'Jawaban') active @endif">
         <a class="nav-link" href="{{ route('jawaban.index') }}">
             <i class="fas fa-fw fa-comment"></i>
             <span>Jawaban</span></a>
-    </li>
+    </li> --}}
     <li class="nav-item @if(isset($title) && $title === 'Analisis Mahasiswa') active @endif">
         <a class="nav-link" href="{{ route('analisis-mahasiswa.index') }}">
             <i class="fas fa-fw fa-chart-line"></i>

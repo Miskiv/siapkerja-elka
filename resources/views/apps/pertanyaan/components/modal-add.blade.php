@@ -14,6 +14,15 @@
                     <label class="form-label">Pertanyaan</label>
                     <input type="text" name="soal" class="form-control" placeholder="Masukkan Pertanyaan" required>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label" >Tipe Kriteria</label>
+                    <select class="form-control" id="tipe_kriteria" name="tipe_kriteria" required="required">
+                        <option disabled selected>Pilih Tipe Kriteria</option>
+                        @foreach ($data['tipe_kriteria'] as $row)
+                            <option value="{{ $row->id }}">{{ $row->nama_kriteria }} - {{ $row->tipe_kriteria }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="modal-footer">
                 <div class="hstack gap-2 justify-content-end">

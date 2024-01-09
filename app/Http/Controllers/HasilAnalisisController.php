@@ -11,7 +11,8 @@ class HasilAnalisisController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Hasil Analisis';
+        return view('apps.hasil-analisis.index', compact('title'));
     }
 
     /**

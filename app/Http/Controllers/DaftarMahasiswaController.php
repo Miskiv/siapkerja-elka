@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DaftarMahasiswaController extends Controller
@@ -11,7 +12,9 @@ class DaftarMahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        $data['mahasiswa'] = User::role('User')->with('roles')->get();
+        $title = 'Daftar Mahasiswa';
+        return view('apps.daftar-mahasiswa.index', compact('title', 'data'));
     }
 
     /**

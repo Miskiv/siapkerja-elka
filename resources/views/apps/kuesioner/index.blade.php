@@ -1,62 +1,84 @@
 @extends('layouts.app')
 @section('title', 'Pertanyaan')
 @section('content')
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Kuesioner</h1>
-    <p class="mb-4">Tabel ini berisi tentang pertanyaan untuk ditampilkan di dalam kuesioner mahasiswa.</p>
+    @if ($data['exist'] == false)
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Kuesioner</h1>
 
-    <div class="row justify-content-lg-center">
-        <div class="col-md-8">
-            <form method="post" action="">
-                @csrf
-                @php
-                    $questionNumbers = range(1, 5); // Array berisi nomor soal dari 1 hingga 5
-                    shuffle($questionNumbers); // Mengacak urutan nomor soal
-                @endphp
-                @foreach($questionNumbers as $key => $questionNumber)
-                    <div class="card">
-                        <div class="card-body">
-                            <h4>Soal {{ $key+1 }}</h4>
-                            <p><b>{{ App\Enums\QuizEnum::MAP_VALUE['question'.$questionNumber]['question'] }}</b></p>
-                            @foreach (App\Enums\QuizEnum::MAP_VALUE['question'.$questionNumber]['options'] as $optionKey => $optionValue)
-                                <div class="form-check form-radio-outline form-radio-success mb-2">
-                                    <input type="radio" name="question{{ $questionNumber }}" class="form-check-input" value="{{ $optionKey }}" required>
-                                    <label class="form-check-label" for="a1">{{ $optionValue }}</label>
-                                </div>
-                            @endforeach
+        <div class="row justify-content-lg-center">
+            <div class="col-md-8">
+                <form method="post" action="{{ route('isi-kuesioner.store') }}">
+                    @csrf
+                    {{-- @php
+                        $questionNumbers = range(1, 5); // Array berisi nomor soal dari 1 hingga 5
+                        shuffle($questionNumbers); // Mengacak urutan nomor soal
+                    @endphp --}}
+                    {{-- @foreach($questionNumbers as $key => $questionNumber) --}}
+                    @foreach ($data['pertanyaan'] as $key => $pertanyaan)
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Accordion -->
+                        <a href="#collapseCard{{ $key }}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCard">
+                            <h6 class="m-0 font-weight-bold text-primary">Fase {{ $key }}</h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse" id="collapseCard{{ $key }}">
+                            <div class="card-body">
+                                @foreach ($pertanyaan as $idx)
+                                    <p><b>{{ $idx->soal }}</b></p>
+                                    
+                                    <div class="form-check form-radio-outline form-radio-success mb-2">
+                                        <input type="radio" name="jawaban[{{ $key }}][{{ $idx->id }}]" class="form-check-input" value="1" required>
+                                        <label class="form-check-label">Setuju</label>
+                                    </div>
+
+                                    <div class="form-check form-radio-outline form-radio-success mb-2">
+                                        <input type="radio" name="jawaban[{{ $key }}][{{ $idx->id }}]" class="form-check-input" value="0" required>
+                                        <label class="form-check-label">Tidak Setuju</label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                @endforeach
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Quiz Pedoman Standar Perilaku (Code of Conduct)</h5>
-                        <p class="card-text">Diatas adalah sebuah quiz yang terkait dengan Pedoman Standar Perilaku PT.
-                            Kimia Farma Tbk. Sebelumnya, terdapat sebuah ringkasan yang berisi beberapa poin penting
-                            yang harus diikuti oleh seluruh karyawan dan pihak terkait dalam menjalankan tugas dan
-                            tanggung jawab mereka.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary float-md-first"><i class="ri ri-arrow-go-back-line align-bottom"></i> Kembali</a>
-                        <button  type="submit" class="btn btn-primary float-md-end"><i class="ri ri-book-read-line align-bottom"></i> Submit Jawaban</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+                        {{-- <div class="card mb-2">
+                            <div class="card-body">
+                                <h4>Kuesioner Fase {{ $key }}</h4>
+                                
+                                @foreach ($pertanyaan as $idx)
+                                    <p><b>{{ $idx->soal }}</b></p>
+                                    
+                                    <div class="form-check form-radio-outline form-radio-success mb-2">
+                                        <input type="radio" name="jawaban[{{ $key }}][{{ $idx->id }}]" class="form-check-input" value="1" required>
+                                        <label class="form-check-label">Setuju</label>
+                                    </div>
 
-    @include('apps.pertanyaan.components.modal-add')
+                                    <div class="form-check form-radio-outline form-radio-success mb-2">
+                                        <input type="radio" name="jawaban[{{ $key }}][{{ $idx->id }}]" class="form-check-input" value="0" required>
+                                        <label class="form-check-label">Tidak Setuju</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div> --}}
+                    @endforeach
+
+                
+                    {{-- @endforeach --}}
+                    <div class="card mb-2">
+                        <div class="card-footer">
+                            <a href="{{ url()->previous() }}" class="btn btn-primary float-md-first"><i class="ri ri-arrow-go-back-line align-bottom"></i> Kembali</a>
+                            <button  type="submit" class="btn btn-primary float-md-end"><i class="ri ri-book-read-line align-bottom"></i> Submit Jawaban</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    @else
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Kuesioner</h1>
+
+        <div class="row justify-content-lg-center mt-5">
+            <div class="col-md-8">
+                <h3>Kuesioner telah dikerjakan silahkan lihat hasilnya <a href="{{ url('hasil-analisis') }}">disini !!</a></h3>
+            </div>
+        </div> 
+    @endif
 @stop
-@push('js')
-    <script>
-        $(document).ready(function () {
-            $('#datatable-v').DataTable({
-                order: [
-                    [0, 'asc']
-                ],
-                pageLength: 7,
-                dom: '<"toolbar">frtip'
-            });
-            document.querySelector('div.toolbar').innerHTML = '<button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Tambah</button>';
-        });
-    </script>
-@endpush
