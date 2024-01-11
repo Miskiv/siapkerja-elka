@@ -27,7 +27,7 @@
                             @foreach ($barisLabels as $barisLabel)
                                 <tr>
                                     <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($matriksData[$barisLabel] as $nilai)
+                                    @foreach ($p[$barisLabel] as $nilai)
                                         <td class="text-center">{{ $nilai }}</td>
                                     @endforeach
                                 </tr>
@@ -56,7 +56,7 @@
                             @foreach ($barisLabels as $barisLabel)
                                 <tr>
                                     <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($matriksData[$barisLabel] as $nilai)
+                                    @foreach ($eigenVektor1[$barisLabel] as $nilai)
                                         <td class="text-center">{{ $nilai }}</td>
                                     @endforeach
                                 </tr>
@@ -80,7 +80,7 @@
                             @foreach ($barisLabels as $barisLabel)
                                 <tr>
                                     <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($matriksData[$barisLabel] as $nilai)
+                                    @foreach ($eigenVektor2[$barisLabel] as $nilai)
                                         <td class="text-center">{{ $nilai }}</td>
                                     @endforeach
                                 </tr>
@@ -104,7 +104,7 @@
                             @foreach ($barisLabels as $barisLabel)
                                 <tr>
                                     <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($matriksData[$barisLabel] as $nilai)
+                                    @foreach ($eigenVektor3[$barisLabel] as $nilai)
                                         <td class="text-center">{{ $nilai }}</td>
                                     @endforeach
                                 </tr>
@@ -133,7 +133,7 @@
                             @foreach ($barisLabels as $barisLabel)
                                 <tr>
                                     <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($matriksData[$barisLabel] as $nilai)
+                                    @foreach ($p[$barisLabel] as $nilai)
                                         <td class="text-center">{{ $nilai }}</td>
                                     @endforeach
                                 </tr>
@@ -158,7 +158,7 @@
                             @foreach ($barisLabels as $barisLabel)
                                 <tr>
                                     <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($matriksData[$barisLabel] as $nilai)
+                                    @foreach ($p[$barisLabel] as $nilai)
                                         <td class="text-center">{{ $nilai }}</td>
                                     @endforeach
                                 </tr>
