@@ -2,189 +2,59 @@
 @section('title', $title)
 @section('content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Analisis Mahasiswa</h1>
-    <p class="mb-4">Halaman ini berisi tentang analisis mahasiswa menggunakan perbandingan ahp.</p>
+    <h1 class="h3 mb-2 text-gray-800">Tabel Analisis Mahasiswa</h1>
+    <p class="mb-4">Tabel ini berisi tentang analisis terhadap mahasiswa yang sudah mengisi kuesioner.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Luther Y Worabay</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Analisis Mahasiswa</h6>
         </div>
         <div class="card-body">
-            <div class="table-container">
-                <div class="table-block" style="margin: 0 auto;">
-                    <p>Pairwise Comparisons</p>
-                    <table border="1">
-                        <thead>
+            <div class="table-responsive">
+                    <table id="datatable-v" class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Dibuat</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data['analisis'] as $row)
                             <tr>
-                                <th class="text-center">Kriteria</th>
-                                @foreach ($kolomLabels as $kolomLabel)
-                                    <th style="width: 20%" class="text-center">{{ $kolomLabel }}</th>
-                                @endforeach
+                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ $row->User->name }}</td>
+                                <td>{{ $row->created_at->diffForHumans() }}</td>
+                                <td>
+                                    <div class="dropdown mb-4">
+                                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Aksi
+                                        </button>
+                                        <div class="dropdown-menu animated--fade-in"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{ route('analisis-mahasiswa.show', $row->id) }}"><span class="fas fa-eye"> Show</span></a>
+                                            <form method="POST" action="{{ route('analisis-mahasiswa.destroy', $row->id_user) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="dropdown-item"><span class="fas fa-trash"> Delete</span></button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barisLabels as $barisLabel)
-                                <tr>
-                                    <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($p[$barisLabel] as $nilai)
-                                        <td class="text-center">{{ $nilai }}</td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-        
-        <div class="card-body">
-            <p class="text-center">Pencarian Eigen Vektor Normalisasi</p>
-            <div class="table-container">
-                <div class="table-block">
-                    
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Kriteria</th>
-                                @foreach ($kolomLabels as $kolomLabel)
-                                    <th style="width: 20%" class="text-center">{{ $kolomLabel }}</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barisLabels as $barisLabel)
-                                <tr>
-                                    <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($eigenVektor1[$barisLabel] as $nilai)
-                                        <td class="text-center">{{ $nilai }}</td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <p class="text-center">Baris ke 1</p>
-                </div>
-        
-                <div class="table-block">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Kriteria</th>
-                                @foreach ($kolomLabels as $kolomLabel)
-                                    <th style="width: 20%" class="text-center">{{ $kolomLabel }}</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barisLabels as $barisLabel)
-                                <tr>
-                                    <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($eigenVektor2[$barisLabel] as $nilai)
-                                        <td class="text-center">{{ $nilai }}</td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <p class="text-center">Baris ke 2</p>
-                </div>
-        
-                <div class="table-block">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Kriteria</th>
-                                @foreach ($kolomLabels as $kolomLabel)
-                                    <th style="width: 20%" class="text-center">{{ $kolomLabel }}</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barisLabels as $barisLabel)
-                                <tr>
-                                    <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($eigenVektor3[$barisLabel] as $nilai)
-                                        <td class="text-center">{{ $nilai }}</td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <p class="text-center">Baris ke 3</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-body mb-5">
-            <div class="table-container">
-                <div class="table-block" style="margin: 0 auto;">
-                    <p>EVN : Eigen Vektor Normalisasi</p>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Kriteria</th>
-                                @foreach ($kolomLabels as $kolomLabel)
-                                    <th style="width: 20%" class="text-center">{{ $kolomLabel }}</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barisLabels as $barisLabel)
-                                <tr>
-                                    <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($p[$barisLabel] as $nilai)
-                                        <td class="text-center">{{ $nilai }}</td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-        
-                <div class="table-block" style="margin: 0 auto;">
-                <p>Rasio Konsistensi</p>
-
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Kriteria</th>
-                                @foreach ($kolomLabels as $kolomLabel)
-                                    <th style="width: 20%" class="text-center">{{ $kolomLabel }}</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barisLabels as $barisLabel)
-                                <tr>
-                                    <th style="width: 20%" class="text-center">{{ $barisLabel }}</th>
-                                    @foreach ($p[$barisLabel] as $nilai)
-                                        <td class="text-center">{{ $nilai }}</td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
-    @include('apps.analisis-mahasiswa.components.modal-add')
+    {{-- @include('apps.daftar-mahasiswa.components.modal-add') --}}
 @stop
-@push('css')
-    <style>
-        .table-container {
-            display: flex;
-            justify-content: space-between; /* Jarak antar tabel */
-        }
-
-        .table-block {
-            width: 30%; /* Atur lebar masing-masing blok sesuai kebutuhan */
-        }
-    </style>
-@endpush
 @push('js')
     <script>
         $(document).ready(function () {
@@ -195,7 +65,7 @@
                 pageLength: 7,
                 dom: '<"toolbar">frtip'
             });
-            document.querySelector('div.toolbar').innerHTML = '<button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Tambah</button>';
+           // document.querySelector('div.toolbar').innerHTML = '<button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Tambah</button>';
         });
     </script>
 @endpush

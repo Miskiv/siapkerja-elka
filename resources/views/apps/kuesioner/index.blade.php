@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pertanyaan')
+@section('title', $title)
 @section('content')
     @if ($data['exist'] == false)
         <!-- Page Heading -->

@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Entitas::class, 'kode_entitas', 'kode_entitas')->withDefault('-');
     }
+
+    /**
+     * Get the analisis.
+     */
+    public function Analisis()
+    {
+        return $this->belongsTo(Analisis::class, 'id', 'id_user')->withDefault('-');
+    }
 }

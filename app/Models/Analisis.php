@@ -15,4 +15,8 @@ class Analisis extends Model
     {
         return $this->belongsTo(Jawaban::class, 'id_jawaban', 'id')->withDefault('-');
     }
+
+    public function User(){
+        return $this->belongsTo(User::class, 'id_user', 'id')->withDefault('-');
+    }
 }

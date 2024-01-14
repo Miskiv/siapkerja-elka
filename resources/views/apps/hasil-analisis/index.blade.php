@@ -2,16 +2,17 @@
 @section('title', $title)
 @section('content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tabel Pertanyaan</h1>
-    <p class="mb-4">Tabel ini berisi tentang pertanyaan untuk ditampilkan di dalam kuesioner mahasiswa.</p>
+    <h1 class="h3 mb-2 text-gray-800">Hasil Analisis Sistem</h1>
+    <p class="mb-4">Halaman ini berisi tentang analisis sistem terhadap hasil kuesioner yang telah dijawab oleh mahasiswa.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tabel Pertanyaan</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <h6 class="text-center">Hasil Analisis belum ditampilkan.</h6>
+            {{-- <div class="table-responsive">
                     <table id="datatable-v" class="table table-nowrap">
                     <thead>
                         <tr>
@@ -22,17 +23,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($data['pertanyaan'] as $row)
+                        @foreach ($data['pertanyaan'] as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->soal }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td><button class="btn btn-info btn-sm">Aksi</button></td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
         </div>
     </div>
     @include('apps.hasil-analisis.components.modal-add')

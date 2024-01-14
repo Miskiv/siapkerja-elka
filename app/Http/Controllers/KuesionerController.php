@@ -15,10 +15,11 @@ class KuesionerController extends Controller
      */
     public function index()
     {
+        $title = 'Kuesioner';
         $data['pertanyaan'] = Pertanyaan::orderBy('tipe_kriteria')->get()->groupBy('tipe_kriteria');
         $data['exist'] = Jawaban::where('id_user', auth()->user()->id)->exists();
         // dd($pertanyaan);
-        return view('apps.kuesioner.index', compact('data'));
+        return view('apps.kuesioner.index', compact('data', 'title'));
     }
 
     /**
@@ -34,32 +35,34 @@ class KuesionerController extends Controller
      */
     public function store(Request $request)
     {
-        
         foreach ($request->jawaban as $tipe_kriteria => $jawabanFase) {
             foreach ($jawabanFase as $id_pertanyaan => $jawaban) {
+                // Menghitung sum jawaban
                 Jawaban::create([
                     'id_user' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
                     'tipe_kriteria' => $tipe_kriteria,
-                    'id_pertanyaan' => $id_pertanyaan,
                     'jawaban' => $jawaban,
                 ]);
             }
         }
         $jawaban = Jawaban::where('id_user', Auth::user()->id)->groupBy('tipe_kriteria')->selectRaw('*, sum(jawaban) as skor')->get();
         foreach($jawaban as $row){
-            if($row->skor == 1){
-                $skala = 1;
-            }elseif($row->skor == 2){
-                $skala = 3;
-            }elseif($row->skor == 3){
-                $skala = 5;
-            }elseif($row->skor == 4){
-                $skala = 7;
-            }
+             // Mapping skala
+            $skalaMapping = [
+                1 => 1,
+                2 => 3,
+                3 => 5,
+                4 => 7,
+            ];
+
+            // Mendapatkan skala berdasarkan skor
+            $skala = $skalaMapping[$row->skor];
+
+            // Membuat record di tabel Analisis
             Analisis::create([
-                'id_jawaban' => $row->tipe_kriteria,
-                'id_user' => $row->id_user,
-                'skala' => $skala
+                'id_kriteria' => $row->tipe_kriteria,
+                'id_user' => Auth::user()->id,
+                'skala' => $skala,
             ]);
         }
         return back();
