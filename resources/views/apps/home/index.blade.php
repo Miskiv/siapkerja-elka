@@ -15,20 +15,20 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 @if (Auth::user()->roles()->first()->name == 'Admin')
-                    <h6 class="m-0 font-weight-bold text-primary">Welcome Admin !</h6> 
+                    <h6 class="m-0 font-weight-bold text-primary">Hallo Admin ! 👋</h6> 
                 @else
-                    <h6 class="m-0 font-weight-bold text-primary">Welcome {{ head(explode(' ', Auth::user()->name)) }} !</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Hallo {{ head(explode(' ', Auth::user()->name)) }} ! 👋</h6>
                 @endif
             </div>
             <div class="card-body">
                 <div class="text-center">
                     <img class="img-fluid px-3 px-sm-4 mt-2 mb-4" style="width: 20rem;"
-                        src="{{ asset('assets/bootstrap/img/undraw_posting_photo.svg') }}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your project courtesy of, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-                <a target="_blank" rel="nofollow" href="https://instagram.com/danialicahyadi">Browse for more &rarr;</a>
+                        src="{{ asset('assets/bootstrap/img/logo univ.png') }}" alt="...">
+                    </div>
+                    <p style="width: 50rem;" class="text-center px-3 px-sm-4 mb-5">Selamat Datang di Sistem Analis Kesiapan Kerja Mahasiswa Tingkat Akhir Departemen Teknik Elektronika FT UNP Menggunakan Metode AHP</p>
+                @role('User')
+                <a rel="nofollow" href="{{ route('isi-kuesioner.index') }}">Browse for more &rarr;</a>
+                @endrole
             </div>
         </div>
 

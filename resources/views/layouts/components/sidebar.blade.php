@@ -16,23 +16,23 @@
     @role('User')
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
-    </li>
+    </li> --}}
     @endrole
 
     <!-- Heading -->
     <div class="sidebar-heading">Navigasi Utama</div>
     <!-- Akses Admin -->
     @role('Admin')
-    <li class="nav-item @if(isset($title) && $title === 'Jurusan') active @endif">
+    {{-- <li class="nav-item @if(isset($title) && $title === 'Jurusan') active @endif">
         <a class="nav-link" href="{{ route('jurusan.index') }}">
             <i class="fas fa-fw fa-landmark"></i>
             <span>Jurusan</span></a>
-    </li>
-    <li class="nav-item">
+    </li> --}}
+    <li class="nav-item @if(isset($title) && $title === 'Daftar Mahasiswa') active @endif">
         <a class="nav-link" href="{{ route('daftar-mahasiswa.index') }}">
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>Daftar Mahasiswa</span></a>

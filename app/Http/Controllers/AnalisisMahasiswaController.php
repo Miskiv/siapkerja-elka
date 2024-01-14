@@ -137,8 +137,8 @@ class AnalisisMahasiswaController extends Controller
         }
         $data['barisRasio'] = [
             'Emaks' => array_sum($eMaks),
-            'CI' => (array_sum($eMaks)-$n)/$n-1,
-            'CR' => ((array_sum($eMaks)-$n)/$n-1)/$randomIndexConsistency,
+            'CI' => (array_sum($eMaks)-$n)/($n-1),
+            'CR' => ((array_sum($eMaks)-$n)/($n-1))/$randomIndexConsistency,
         ];
 
         ///////////////////////  Batas Rasio Konsistensi  /////////////////////////////

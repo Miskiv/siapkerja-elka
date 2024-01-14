@@ -17,11 +17,11 @@
                     @foreach ($data['pertanyaan'] as $key => $pertanyaan)
                     <div class="card shadow mb-4">
                         <!-- Card Header - Accordion -->
-                        <a href="#collapseCard{{ $key }}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCard">
-                            <h6 class="m-0 font-weight-bold text-primary">Fase {{ $key }}</h6>
+                        <a href="#collapseCard{{ $key }}" class="d-block card-header py-3 @if ($key == 1) collapsed @endif" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCard">
+                            <h6 class="m-0 font-weight-bold text-primary">{{ $pertanyaan[0]->TipeKriteria->nama_kriteria }}</h6>
                         </a>
                         <!-- Card Content - Collapse -->
-                        <div class="collapse" id="collapseCard{{ $key }}">
+                        <div class="collapse @if ($key == 1) show @endif" id="collapseCard{{ $key }}">
                             <div class="card-body">
                                 @foreach ($pertanyaan as $idx)
                                     <p><b>{{ $idx->soal }}</b></p>
@@ -39,33 +39,12 @@
                             </div>
                         </div>
                     </div>
-                        {{-- <div class="card mb-2">
-                            <div class="card-body">
-                                <h4>Kuesioner Fase {{ $key }}</h4>
-                                
-                                @foreach ($pertanyaan as $idx)
-                                    <p><b>{{ $idx->soal }}</b></p>
-                                    
-                                    <div class="form-check form-radio-outline form-radio-success mb-2">
-                                        <input type="radio" name="jawaban[{{ $key }}][{{ $idx->id }}]" class="form-check-input" value="1" required>
-                                        <label class="form-check-label">Setuju</label>
-                                    </div>
-
-                                    <div class="form-check form-radio-outline form-radio-success mb-2">
-                                        <input type="radio" name="jawaban[{{ $key }}][{{ $idx->id }}]" class="form-check-input" value="0" required>
-                                        <label class="form-check-label">Tidak Setuju</label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div> --}}
                     @endforeach
 
-                
-                    {{-- @endforeach --}}
                     <div class="card mb-2">
                         <div class="card-footer">
-                            <a href="{{ url()->previous() }}" class="btn btn-primary float-md-first"><i class="ri ri-arrow-go-back-line align-bottom"></i> Kembali</a>
-                            <button  type="submit" class="btn btn-primary float-md-end"><i class="ri ri-book-read-line align-bottom"></i> Submit Jawaban</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning float-md-first"><i class="fas fa-arrow-left"></i> Kembali</a>
+                            <button  type="submit" class="btn btn-success float-md-end"><i class="fas fa-check"></i> Submit Jawaban</button>
                         </div>
                     </div>
                 </form>

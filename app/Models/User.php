@@ -53,4 +53,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Analisis::class, 'id', 'id_user')->withDefault('-');
     }
+
+    /**
+     * Get the analisis.
+     */
+    public function Hasil()
+    {
+        return $this->belongsTo(Hasil::class, 'id', 'id_user')->withDefault('-');
+    }
 }

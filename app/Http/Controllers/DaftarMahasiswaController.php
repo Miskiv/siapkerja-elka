@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DaftarMahasiswaController extends Controller
 {
@@ -54,7 +56,22 @@ class DaftarMahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $user->update([
+            'name' => strtoupper($request->name),
+            'email' => $request->email,
+            'nim' => $request->nim,
+        ]);
+
+        if (! empty($request->password)) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        activity()->log('Mengedit User '.$request->name);
+        Alert::success('Berhasil', 'Data berhasil diubah');
+        return back();
     }
 
     /**

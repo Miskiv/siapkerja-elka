@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Analisis;
+use App\Models\Hasil;
+use App\Models\TipeKriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HasilAnalisisController extends Controller
 {
@@ -12,7 +16,9 @@ class HasilAnalisisController extends Controller
     public function index()
     {
         $title = 'Hasil Analisis';
-        return view('apps.hasil-analisis.index', compact('title'));
+        $data['hasil'] = Hasil::where('id_user', Auth::user()->id)->first();
+
+        return view('apps.hasil-analisis.index', compact('title', 'data'));
     }
 
     /**

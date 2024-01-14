@@ -17,6 +17,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
+                            <th>Keunggulan</th>
                             <th>Dibuat</th>
                             <th>Action</th>
                         </tr>
@@ -26,6 +27,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->User->name }}</td>
+                                <td>{{ $row->User->Hasil->kesimpulan }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td>
                                     <div class="dropdown mb-4">
