@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kriteria;
-use App\Models\KriteriaSub;
-use App\Models\KriteriaSub2;
 use App\Models\Pertanyaan;
+use App\Models\TipeKriteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,13 +15,11 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $data['kriteria'] = Kriteria::orderBy('id')->get();
-        $data['kriteria_sub'] = KriteriaSub::with('Kriteria')->orderBy('id')->get();
-        $data['kriteria_sub2'] = KriteriaSub2::with('KriteriaSub')->orderBy('id')->get();
-        $data['pertanyaan'] = Pertanyaan::get();
+        $data['pertanyaan'] = Pertanyaan::with('TipeKriteria')->orderBy('created_at', 'asc')->get();
+        $data['tipe_kriteria'] = TipeKriteria::orderBy('id')->get();
         $title = 'Pertanyaan';
 
-        return view('apps.pertanyaan.index', compact('data','title'));
+        return view('apps.pertanyaan.index', compact('data', 'title'));
     }
 
     /**
@@ -79,31 +75,5 @@ class PertanyaanController extends Controller
     public function destroy(Pertanyaan $pertanyaan)
     {
         //
-    }
-
-    public function generateComparisons($id) {
-        $data['kriteria_sub'] = KriteriaSub::with('kriteriaSub2')->where('kriteria_id', $id)->get();
-        
-        $criteria = $data['kriteria_sub'];
-        $n = count($criteria);
-        $comparisons = [];
-        
-        for ($i = 0; $i < $n; $i++) {
-            for ($j = $i + 1; $j < $n; $j++) {
-                // $comparisons[] = $criteria[$i]['nama'] . ' : ' . $criteria[$j]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][0]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][0]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][1]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][1]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][2]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][2]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][3]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][3]['nama'];
-            }
-        }
-        foreach($comparisons as $comparison){
-            $data['pertanyaan'] = Pertanyaan::create([
-                'soal' => $comparison,
-                'kriteria_id' => $id,
-            ]);
-        }
-
-        return back();
     }
 }
