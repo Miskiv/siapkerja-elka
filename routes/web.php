@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HasilAnalisisController;
 use App\Http\Controllers\JawabanController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\PertanyaanController;
 use App\Http\Controllers\UserController;
@@ -37,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('jurusan', JurusanController::class);
         Route::resource('daftar-mahasiswa', DaftarMahasiswaController::class);
         Route::resource('analisis-mahasiswa', AnalisisMahasiswaController::class);
+        Route::get('comparison/{criteria}', [PertanyaanController::class, 'generateComparisons']);
+        Route::resource('kriteria', KriteriaController::class);
 
     });
     Route::group(['middleware' => ['role:User']], function () {

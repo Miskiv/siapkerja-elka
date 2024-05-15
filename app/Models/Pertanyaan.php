@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pertanyaan extends Model
 {
     use HasFactory;
-    protected $table = 'pertanyaan';
+    protected $table = 'master_pertanyaan';
     protected $guarded = [];
 
     public function TipeKriteria()
     {
-        return $this->belongsTo(TipeKriteria::class, 'tipe_kriteria', 'id')->withDefault('-');
+        return $this->belongsTo(TipeKriteria::class, 'kriteria_id', 'id')->withDefault('-');
     }
 }
