@@ -44,7 +44,7 @@ class AnalisisMahasiswaController extends Controller
     {
         $data['analisis'] = Analisis::with('User')->find($id);
         $title = 'Analisis Mahasiswa';
-        $data['skalaValues'] = $data['analisis']->pluck('skala')->unique()->values()->all();
+        $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
         $data['kolomLabels'] = ['C1', 'C2', 'C3'];
         $data['barisLabels'] = ['C1', 'C2', 'C3'];
         /////////////////////////////     Pairwise Comparisons    /////////////////////////////

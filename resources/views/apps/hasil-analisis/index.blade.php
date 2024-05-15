@@ -11,7 +11,11 @@
             <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis</h6>
         </div>
         <div class="card-body">
-            <h1 class="text-center">Selamat anda {{ $data['hasil']->kesimpulan }} !!!</h1>
+            @if ($data['hasil'] == null)
+                <h1 class="text-center"><a href="{{ url('/isi-kuesioner') }}">Silahkan Lakukan Tes Terlebih Dahulu!</a></h1>
+            @else
+                <h1 class="text-center">Selamat anda {{ $data['hasil']->kesimpulan }} !!!</h1>
+            @endif
             {{-- <div class="table-responsive">
                     <table id="datatable-v" class="table table-nowrap">
                     <thead>

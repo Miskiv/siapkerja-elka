@@ -21,7 +21,6 @@ class KuesionerController extends Controller
         $title = 'Kuesioner';
         $data['pertanyaan'] = Pertanyaan::orderBy('tipe_kriteria')->get()->groupBy('tipe_kriteria');
         $data['exist'] = Jawaban::where('id_user', auth()->user()->id)->exists();
-        // dd($pertanyaan);
         return view('apps.kuesioner.index', compact('data', 'title'));
     }
 
@@ -69,7 +68,7 @@ class KuesionerController extends Controller
             ]);
         }
         $data['analisis'] = Analisis::with('User')->where('id_user', Auth::user()->id)->get();
-        $data['skalaValues'] = $data['analisis']->pluck('skala')->unique()->values()->all();
+        $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
         $data['kolomLabels'] = ['C1', 'C2', 'C3'];
         $data['barisLabels'] = ['C1', 'C2', 'C3'];
         /////////////////////////////     Pairwise Comparisons    /////////////////////////////
