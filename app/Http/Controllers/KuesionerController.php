@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Analisis;
 use App\Models\Hasil;
 use App\Models\Jawaban;
+use App\Models\Kriteria;
 use App\Models\Pertanyaan;
 use App\Models\TipeKriteria;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class KuesionerController extends Controller
 {
@@ -19,7 +21,8 @@ class KuesionerController extends Controller
     public function index()
     {
         $title = 'Kuesioner';
-        $data['pertanyaan'] = Pertanyaan::orderBy('tipe_kriteria')->get()->groupBy('tipe_kriteria');
+        // $data['pertanyaan'] = Pertanyaan::orderBy('tipe_kriteria')->get()->groupBy('tipe_kriteria');
+        $data['kriteria'] = Kriteria::orderBy('id')->get();
         $data['exist'] = Jawaban::where('id_user', auth()->user()->id)->exists();
         return view('apps.kuesioner.index', compact('data', 'title'));
     }
@@ -199,7 +202,10 @@ class KuesionerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $title = 'Kuesioner';
+        $data['kriteria'] = Kriteria::find(Crypt::decryptString($id));
+        $data['pertanyaan'] = Pertanyaan::where('kriteria_id', Crypt::decryptString($id))->paginate(10);
+        return view('apps.kuesioner.show', compact('title', 'data'));
     }
 
     /**

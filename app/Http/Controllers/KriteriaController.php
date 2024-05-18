@@ -16,7 +16,7 @@ class KriteriaController extends Controller
     public function index()
     {
         $title = 'Master Kriteria';
-        $data['kriteria'] = Kriteria::orderBy('id')->get(); 
+        $data['kriteria'] = Kriteria::orderBy('id')->get();
         return view('apps.kriteria.index', compact('title', 'data'));
     }
 
@@ -25,7 +25,8 @@ class KriteriaController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Master Kriteria';
+        return view('apps.kriteria.create', compact('title'));
     }
 
     /**
@@ -33,7 +34,7 @@ class KriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

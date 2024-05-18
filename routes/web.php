@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
     //role admin
     Route::group(['middleware' => ['role:Super Admin|Admin']], function () {
         Route::resource('users', UserController::class);
+
+        Route::get('getPerbandinganKriteria/{param}', [PertanyaanController::class, 'getperbandingan']);
         Route::resource('pertanyaan', PertanyaanController::class);
         Route::resource('jawaban', JawabanController::class);
         Route::resource('jurusan', JurusanController::class);
@@ -40,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('analisis-mahasiswa', AnalisisMahasiswaController::class);
         Route::get('comparison/{criteria}', [PertanyaanController::class, 'generateComparisons']);
         Route::resource('kriteria', KriteriaController::class);
+
+
 
     });
     Route::group(['middleware' => ['role:User']], function () {

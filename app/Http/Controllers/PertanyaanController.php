@@ -39,10 +39,10 @@ class PertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        $data['pertanyaan'] = Pertanyaan::create([
-            'soal' => $request->soal,
-            'tipe_kriteria' => $request->tipe_kriteria
-        ]);
+        $data['pertanyaan'] = Pertanyaan::find($request->perbandingan_sub);
+        $data['pertanyaan']->update([
+            'soal' => $request->soal
+        ]); 
 
         activity()->log(''.Auth::user()->name.' Menambahkan pertanyaan dengan id = '.$data['pertanyaan']->id.' ');
         
@@ -90,20 +90,41 @@ class PertanyaanController extends Controller
         
         for ($i = 0; $i < $n; $i++) {
             for ($j = $i + 1; $j < $n; $j++) {
-                // $comparisons[] = $criteria[$i]['nama'] . ' : ' . $criteria[$j]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][0]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][0]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][1]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][1]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][2]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][2]['nama'];
-                $comparisons[] = $criteria[$i]['kriteriaSub2'][3]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][3]['nama'];
+                // $comparisons[] = $criteria[$i]['kriteriaSub2'][0]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][0]['nama'];
+                // $comparisons[] = $criteria[$i]['kriteriaSub2'][1]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][1]['nama'];
+                // $comparisons[] = $criteria[$i]['kriteriaSub2'][2]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][2]['nama'];
+                // $comparisons[] = $criteria[$i]['kriteriaSub2'][3]['nama'] . ' > ' . $criteria[$j]['kriteriaSub2'][3]['nama'];
+                $comparisons[] = [
+                    'perbandingan_name' => $criteria[$i]['kriteriaSub2'][0]['nama'] . ' : ' . $criteria[$j]['kriteriaSub2'][0]['nama'],
+                    'perbandingan_kriteria_sub' => $criteria[$i]['id'] . ' : ' . $criteria[$j]['id'],
+                ];
+                $comparisons[] = [
+                    'perbandingan_name' => $criteria[$i]['kriteriaSub2'][1]['nama'] . ' : ' . $criteria[$j]['kriteriaSub2'][1]['nama'],
+                    'perbandingan_kriteria_sub' => $criteria[$i]['id'] . ' : ' . $criteria[$j]['id'],
+                ];
+                $comparisons[] = [
+                    'perbandingan_name' => $criteria[$i]['kriteriaSub2'][2]['nama'] . ' : ' . $criteria[$j]['kriteriaSub2'][2]['nama'],
+                    'perbandingan_kriteria_sub' => $criteria[$i]['id'] . ' : ' . $criteria[$j]['id'],
+                ];
+                $comparisons[] = [
+                    'perbandingan_name' => $criteria[$i]['kriteriaSub2'][3]['nama'] . ' : ' . $criteria[$j]['kriteriaSub2'][3]['nama'],
+                    'perbandingan_kriteria_sub' => $criteria[$i]['id'] . ' : ' . $criteria[$j]['id'],
+                ];
             }
         }
         foreach($comparisons as $comparison){
             $data['pertanyaan'] = Pertanyaan::create([
-                'soal' => $comparison,
+                'perbandingan_name' => $comparison['perbandingan_name'],
                 'kriteria_id' => $id,
+                'perbandingan_kriteria_sub' => $comparison['perbandingan_kriteria_sub']
             ]);
         }
 
         return back();
+    }
+
+    public function getperbandingan($param){
+        $data['pertanyaan'] = Pertanyaan::where('kriteria_id', $param)->where('soal', null)->get();
+        return response()->json($data['pertanyaan']);
     }
 }

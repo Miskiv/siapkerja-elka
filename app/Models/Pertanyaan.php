@@ -11,8 +11,8 @@ class Pertanyaan extends Model
     protected $table = 'master_pertanyaan';
     protected $guarded = [];
 
-    public function TipeKriteria()
+    public function Kriteria()
     {
-        return $this->belongsTo(TipeKriteria::class, 'kriteria_id', 'id')->withDefault('-');
+        return $this->belongsTo(Kriteria::class, 'kriteria_id', 'id')->withDefault('-');
     }
 }

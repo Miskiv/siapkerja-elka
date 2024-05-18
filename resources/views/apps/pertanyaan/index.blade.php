@@ -8,11 +8,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header">
-            @foreach ($data['kriteria'] as $row)
-                @if ($data['pertanyaan']->where('kriteria_id', $row->id)->count() == null)
-                    <button class="btn btn-sm btn-info">{{ $row->kriteria_name }}</button>
-                @endif
-            @endforeach
+            <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#addModal">Tambah</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -27,11 +23,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data['pertanyaan'] as $row)
+                        @foreach ($data['pertanyaan']->where('soal', '!=', null) as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->soal }}</td>
-                                <td>{{ $row->kriteria_id }}</td>
+                                <td>{{ $row->Kriteria->kriteria_name }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td><button class="btn btn-info btn-sm">Aksi</button></td>
                             </tr>
@@ -51,6 +47,47 @@
                     [0, 'asc']
                 ],
                 responsive: true,
+            });
+            $('#tipe_kriteria').change(function() {
+                let kriteriaId = $(this).val();
+                if (kriteriaId) {
+                    $.ajax({
+                        url: '/getPerbandinganKriteria/' + kriteriaId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            let dataCount = Object.keys(data).length;
+                            if(dataCount !== 0){
+                                $('#show_all_done').addClass('d-none');
+                                $('#show_perbandingan').removeClass('d-none');
+                                $('#perbandingan_kriteria').empty();
+                                $('#perbandingan_kriteria').append('<option disabled selected>Pilih Perbandingan Kriteria</option>');
+                                perbandinganData = {}; // Clear previous data
+                                $.each(data, function(key, value) {
+                                    perbandinganData[value.id] = value.perbandingan_name;
+                                    $('#perbandingan_kriteria').append('<option value="' + value.id + '">' + value.perbandingan_name + '</option>');
+                                });
+                            }else{
+                                $('#show_all_done').removeClass('d-none');
+                            }
+                        }
+                    });
+                } else {
+                    $('#show_perbandingan').addClass('d-none');
+                    $('#perbandingan_kriteria').empty();
+                    $('#perbandingan_kriteria').append('<option disabled selected>Pilih Perbandingan Kriteria</option>');
+                }
+            });
+
+            $('#perbandingan_kriteria').change(function() {
+                let perbandinganId = $(this).val();
+                if (perbandinganId) {
+                    $('#show_pertanyaan').removeClass('d-none');
+                    $('#soal').val(perbandinganData[perbandinganId]); // Set textarea value from the stored data
+                } else {
+                    $('#show_pertanyaan').addClass('d-none');
+                    $('#soal').val('');
+                }
             });
         });
 

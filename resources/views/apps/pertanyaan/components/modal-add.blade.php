@@ -3,7 +3,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
         </div>
@@ -19,15 +19,18 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none" id="show_perbandingan">
                     <label class="form-label" >Perbandingan Kriteria</label>
-                    <select class="form-control" id="tipe_kriteria" name="tipe_kriteria" required="required">
+                    <select class="form-control" id="perbandingan_kriteria" name="perbandingan_sub" required="required">
                         <option disabled selected>Pilih Perbandingan Kriteria</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none" id="show_all_done">
+                    <p style="color: red">*Sudah Semua diberikan Pertanyaan</p>
+                </div>
+                <div class="mb-3 d-none" id="show_pertanyaan">
                     <label class="form-label">Pertanyaan</label>
-                    <input type="text" name="soal" class="form-control" placeholder="Masukkan Pertanyaan" required>
+                    <textarea class="form-control" name="soal" id="soal" cols="10" rows="10"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
