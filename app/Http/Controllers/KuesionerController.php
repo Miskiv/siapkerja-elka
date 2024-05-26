@@ -23,7 +23,7 @@ class KuesionerController extends Controller
         $title = 'Kuesioner';
         // $data['pertanyaan'] = Pertanyaan::orderBy('tipe_kriteria')->get()->groupBy('tipe_kriteria');
         $data['kriteria'] = Kriteria::orderBy('id')->get();
-        $data['exist'] = Jawaban::where('id_user', auth()->user()->id)->exists();
+        $data['exist'] = Jawaban::where('user_id', auth()->user()->id)->exists();
         return view('apps.kuesioner.index', compact('data', 'title'));
     }
 
@@ -40,17 +40,19 @@ class KuesionerController extends Controller
      */
     public function store(Request $request)
     {
-        foreach ($request->jawaban as $tipe_kriteria => $jawabanFase) {
-            foreach ($jawabanFase as $id_pertanyaan => $jawaban) {
+        foreach ($request->jawaban as $perbandingan => $jawabanFase) {
+            foreach ($jawabanFase as $pertanyaan_id => $jawaban) {
                 // Menghitung sum jawaban
                 Jawaban::create([
-                    'id_user' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
-                    'tipe_kriteria' => $tipe_kriteria,
+                    'user_id' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
+                    'kriteria_id' => $request->kriteria_id,
+                    'pertanyaan_id' => $pertanyaan_id,
+                    'perbandingan_code' => $perbandingan,
                     'jawaban' => $jawaban,
                 ]);
             }
         }
-        $jawaban = Jawaban::where('id_user', Auth::user()->id)->groupBy('tipe_kriteria')->selectRaw('*, sum(jawaban) as skor')->get();
+        $jawaban = Jawaban::where('user_id', Auth::user()->id)->groupBy('perbandingan_code')->selectRaw('*, sum(jawaban) as skor')->get();
         foreach($jawaban as $row){
              // Mapping skala
             $skalaMapping = [
@@ -65,15 +67,16 @@ class KuesionerController extends Controller
 
             // Membuat record di tabel Analisis
             Analisis::create([
-                'id_kriteria' => $row->tipe_kriteria,
-                'id_user' => Auth::user()->id,
+                'kriteria_id' => $row->kriteria_id,
+                'perbandingan_code' => $row->perbandingan_code,
+                'user_id' => $row->user_id,
                 'skala' => $skala,
             ]);
         }
-        $data['analisis'] = Analisis::with('User')->where('id_user', Auth::user()->id)->get();
+        $data['analisis'] = Analisis::with('User')->where('user_id', Auth::user()->id)->get();
         $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
-        $data['kolomLabels'] = ['C1', 'C2', 'C3'];
-        $data['barisLabels'] = ['C1', 'C2', 'C3'];
+        $data['kolomLabels'] = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'];
+        $data['barisLabels'] = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'];
         /////////////////////////////     Pairwise Comparisons    /////////////////////////////
         $data['pairwise'] = [
             'C1' => [1, $data['skalaValues'][0], $data['skalaValues'][1]],
@@ -204,7 +207,9 @@ class KuesionerController extends Controller
     {
         $title = 'Kuesioner';
         $data['kriteria'] = Kriteria::find(Crypt::decryptString($id));
-        $data['pertanyaan'] = Pertanyaan::where('kriteria_id', Crypt::decryptString($id))->paginate(10);
+        // $data['pertanyaan'] = Pertanyaan::orderBy('tipe_kriteria')->get()->groupBy('perbandingan_kriteria_sub');
+        $data['pertanyaan'] = Pertanyaan::where('kriteria_id', Crypt::decryptString($id))->get();
+        // dd($data['pertanyaan']);
         return view('apps.kuesioner.show', compact('title', 'data'));
     }
 

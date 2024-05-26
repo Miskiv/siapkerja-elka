@@ -15,10 +15,20 @@
                     <div class="description">
                         <p>{{Str::limit($row->description, 100)}}</p>
                     </div>
-                    <a rel="nofollow" href="{{ route('isi-kuesioner.show', Crypt::encryptString($row->id)) }}">Mulai Tes →</a>
+                    <button class="btn btn-primary perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Mulai Tes →</button>
+                    @include('apps.kuesioner.components.modal-perhatian')
                 </div>
             </div>
         </div>
     @endforeach
 </div>
 @stop
+@push('js')
+<script>
+    $(document).ready(function() {
+        $('.perhatian').on('click', function (event) {
+            var modalId = $(this).data('id');
+        });
+    });
+</script>
+@endpush

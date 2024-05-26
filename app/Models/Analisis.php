@@ -13,10 +13,10 @@ class Analisis extends Model
 
     public function Jawaban()
     {
-        return $this->belongsTo(Jawaban::class, 'id_jawaban', 'id')->withDefault('-');
+        return $this->belongsTo(Jawaban::class, 'jawaban_id', 'id')->withDefault('-');
     }
 
     public function User(){
-        return $this->belongsTo(User::class, 'id_user', 'id')->withDefault('-');
+        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault('-');
     }
 }
