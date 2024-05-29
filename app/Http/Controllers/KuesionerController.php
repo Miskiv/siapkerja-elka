@@ -6,6 +6,7 @@ use App\Models\Analisis;
 use App\Models\Hasil;
 use App\Models\Jawaban;
 use App\Models\Kriteria;
+use App\Models\KriteriaSub;
 use App\Models\Pertanyaan;
 use App\Models\TipeKriteria;
 use App\Models\User;
@@ -40,164 +41,197 @@ class KuesionerController extends Controller
      */
     public function store(Request $request)
     {
-        foreach ($request->jawaban as $perbandingan => $jawabanFase) {
-            foreach ($jawabanFase as $pertanyaan_id => $jawaban) {
-                // Menghitung sum jawaban
-                Jawaban::create([
-                    'user_id' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
-                    'kriteria_id' => $request->kriteria_id,
-                    'pertanyaan_id' => $pertanyaan_id,
-                    'perbandingan_code' => $perbandingan,
-                    'jawaban' => $jawaban,
-                ]);
-            }
-        }
-        $jawaban = Jawaban::where('user_id', Auth::user()->id)->groupBy('perbandingan_code')->selectRaw('*, sum(jawaban) as skor')->get();
-        foreach($jawaban as $row){
-             // Mapping skala
-            $skalaMapping = [
-                1 => 1,
-                2 => 3,
-                3 => 5,
-                4 => 7,
+        // foreach ($request->jawaban as $perbandingan => $jawabanFase) {
+        //     foreach ($jawabanFase as $pertanyaan_id => $jawaban) {
+        //         // Menghitung sum jawaban
+        //         Jawaban::create([
+        //             'user_id' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
+        //             'kriteria_id' => $request->kriteria_id,
+        //             'pertanyaan_id' => $pertanyaan_id,
+        //             'perbandingan_code' => $perbandingan,
+        //             'jawaban' => $jawaban,
+        //         ]);
+        //     }
+        // }
+        // $jawaban = Jawaban::where('user_id', Auth::user()->id)->groupBy('perbandingan_code')->selectRaw('*, sum(jawaban) as skor')->get();
+        // foreach($jawaban as $row){
+        //      // Mapping skala
+        //     $skalaMapping = [
+        //         0 => 0.14,
+        //         1 => 1,
+        //         2 => 3,
+        //         3 => 5,
+        //         4 => 7,
+        //     ];
+
+        //     // Mendapatkan skala berdasarkan skor
+        //     $skala = $skalaMapping[$row->skor];
+
+        //     // Membuat record di tabel Analisis
+        //     Analisis::create([
+        //         'kriteria_id' => $row->kriteria_id,
+        //         'perbandingan_code' => $row->perbandingan_code,
+        //         'user_id' => $row->user_id,
+        //         'skala' => $skala,
+        //     ]);
+        // }
+        $data['analisis'] = Analisis::with('User')->where('user_id', Auth::user()->id)->get();
+        if($data['analisis']['0']->kriteria_id == 3){
+            $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
+            $data['kolomLabels'] = ['C1', 'C2', 'C3', 'C4'];
+            $data['barisLabels'] = ['C1', 'C2', 'C3', 'C4'];
+            /////////////////////////////     Pairwise Comparisons    /////////////////////////////
+            $data['pairwise'] = [
+                'C1' => [1, $data['skalaValues'][0], $data['skalaValues'][1], $data['skalaValues'][2]],
+                'C2' => [round(1/$data['skalaValues'][0], 2), 1, $data['skalaValues'][3], $data['skalaValues'][4]],
+                'C3' => [round(1/$data['skalaValues'][1], 2), round(1/$data['skalaValues'][3], 2), 1, $data['skalaValues'][5]],
+                'C4' => [round(1/$data['skalaValues'][2], 2), round(1/$data['skalaValues'][4], 2), round(1/$data['skalaValues'][5], 2), 1],
+            ];
+            $data['pairwise_total'] = [
+                'C1' => $data['pairwise']['C1'][0]+$data['pairwise']['C2'][0]+$data['pairwise']['C3'][0]+$data['pairwise']['C4'][0],
+                'C2' => $data['pairwise']['C1'][1]+$data['pairwise']['C2'][1]+$data['pairwise']['C3'][1]+$data['pairwise']['C4'][1],
+                'C3' => $data['pairwise']['C1'][2]+$data['pairwise']['C2'][2]+$data['pairwise']['C3'][2]+$data['pairwise']['C4'][2],
+                'C4' => $data['pairwise']['C1'][3]+$data['pairwise']['C2'][3]+$data['pairwise']['C3'][3]+$data['pairwise']['C4'][3],
+            ];
+            ////////////////////////////  Batas Pairwise Comparisons    ///////////////////////////
+
+            ///////////////////////////  Pencarian Eigen Vektor Normalisasi    ////////////////////
+            $e1 = [
+                'a1' => [$data['pairwise']['C1'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C1'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C1'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C1'][3]*$data['pairwise']['C4'][0]],
+                'a2' => [$data['pairwise']['C1'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C1'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C1'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C1'][3]*$data['pairwise']['C4'][1]],
+                'a3' => [$data['pairwise']['C1'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C1'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C1'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C1'][3]*$data['pairwise']['C4'][2]],
+                'a4' => [$data['pairwise']['C1'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C1'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C1'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C1'][3]*$data['pairwise']['C4'][3]],
+            ];
+            $data['baris-1'] = [
+                'C1' => [$e1['a1'][0], $e1['a1'][1], $e1['a1'][2], $e1['a1'][3]],
+                'C2' => [$e1['a2'][0], $e1['a2'][1], $e1['a2'][2], $e1['a2'][3]],
+                'C3' => [$e1['a3'][0], $e1['a3'][1], $e1['a3'][2], $e1['a3'][3]],
+                'C4' => [$e1['a4'][0], $e1['a4'][1], $e1['a4'][2], $e1['a4'][3]],
+            ];
+    
+            $e2 = [
+                'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0]],
+                'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1]],
+                'a3' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][2]],
+                'a4' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][3]],
+            ];
+            $data['baris-2'] = [
+                'C1' => [$e2['a1'][0], $e2['a1'][1], $e2['a1'][2], $e2['a1'][3]],
+                'C2' => [$e2['a2'][0], $e2['a2'][1], $e2['a2'][2], $e2['a2'][3]],
+                'C3' => [$e2['a3'][0], $e2['a3'][1], $e2['a3'][2], $e2['a3'][3]],
+                'C4' => [$e2['a4'][0], $e2['a4'][1], $e2['a4'][2], $e2['a4'][3]],
+            ];
+    
+            $e3 = [
+                'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0]],
+                'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1]],
+                'a3' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][2]],
+                'a4' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][3]],
+            ];
+            $data['baris-3'] = [
+                'C1' => [$e3['a1'][0], $e3['a1'][1], $e3['a1'][2], $e3['a1'][3]],
+                'C2' => [$e3['a2'][0], $e3['a2'][1], $e3['a2'][2], $e3['a2'][3]],
+                'C3' => [$e3['a3'][0], $e3['a3'][1], $e3['a3'][2], $e3['a3'][3]],
+                'C4' => [$e3['a4'][0], $e3['a4'][1], $e3['a4'][2], $e3['a4'][3]],
             ];
 
-            // Mendapatkan skala berdasarkan skor
-            $skala = $skalaMapping[$row->skor];
+            $e4 = [
+                'a1' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][0]],
+                'a2' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][1]],
+                'a3' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][2]],
+                'a4' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][3]],
+            ];
+            $data['baris-4'] = [
+                'C1' => [$e4['a1'][0], $e4['a1'][1], $e4['a1'][2], $e4['a1'][3]],
+                'C2' => [$e4['a2'][0], $e4['a2'][1], $e4['a2'][2], $e4['a2'][3]],
+                'C3' => [$e4['a3'][0], $e4['a3'][1], $e4['a3'][2], $e4['a3'][3]],
+                'C4' => [$e4['a4'][0], $e4['a4'][1], $e4['a4'][2], $e4['a4'][3]],
+            ];
+            /////////////////////    Batas Perncarian Eigen Vektor Normalisasi   ///////////////////
+            // dd($data);
+            ////////////////////////    Eigen Vektor Normalisasi   ////////////////////////////////
 
-            // Membuat record di tabel Analisis
-            Analisis::create([
-                'kriteria_id' => $row->kriteria_id,
-                'perbandingan_code' => $row->perbandingan_code,
-                'user_id' => $row->user_id,
-                'skala' => $skala,
+            $data['evn'] = [
+                'C1' => [array_sum($data['baris-1']['C1']), array_sum($data['baris-1']['C2']), array_sum($data['baris-1']['C3']), array_sum($data['baris-1']['C4'])],
+                'C2' => [array_sum($data['baris-2']['C1']), array_sum($data['baris-2']['C2']), array_sum($data['baris-2']['C3']), array_sum($data['baris-2']['C4'])],
+                'C3' => [array_sum($data['baris-3']['C1']), array_sum($data['baris-3']['C2']), array_sum($data['baris-3']['C3']), array_sum($data['baris-3']['C4'])],
+                'C4' => [array_sum($data['baris-4']['C1']), array_sum($data['baris-4']['C2']), array_sum($data['baris-4']['C3']), array_sum($data['baris-4']['C4'])],
+            ];
+            $sumEvn = (array_sum($data['evn']['C1'])+array_sum($data['evn']['C2'])+array_sum($data['evn']['C3'])+array_sum($data['evn']['C4']));
+            $data['evnTotal'] = [
+                'C1'=> [array_sum($data['evn']['C1']), array_sum($data['evn']['C1'])/$sumEvn],
+                'C2'=> [array_sum($data['evn']['C2']), array_sum($data['evn']['C2'])/$sumEvn],
+                'C3'=> [array_sum($data['evn']['C3']), array_sum($data['evn']['C3'])/$sumEvn],
+                'C4'=> [array_sum($data['evn']['C4']), array_sum($data['evn']['C4'])/$sumEvn],
+            ];
+            ///////////////////////  Batas Eigen Vektor Normalisasi  /////////////////////////////
+
+            ////////////////////////    Rasio Konsistensi   ////////////////////////////////
+
+            $data['kolomRasio'] = ['Emaks', 'CI', 'CR'];
+            $eMaks = [
+                'C1' => $data['pairwise_total']['C1']*$data['evnTotal']['C1'][1],
+                'C2' => $data['pairwise_total']['C2']*$data['evnTotal']['C2'][1],
+                'C3' => $data['pairwise_total']['C3']*$data['evnTotal']['C3'][1],
+                'C4' => $data['pairwise_total']['C4']*$data['evnTotal']['C4'][1],
+            ];
+            $n = KriteriaSub::where('kriteria_id', $request->kriteria_id)->count();
+
+            $randomIndexConsistency = '';
+            if($n == 3){
+                $randomIndexConsistency = 0.58;
+            }elseif($n == 4){
+                $randomIndexConsistency = 0.90;
+            }elseif($n == 5){
+                $randomIndexConsistency = 1.12;
+            }elseif($n == 6){
+                $randomIndexConsistency = 1.24;
+            }elseif($n == 7){
+                $randomIndexConsistency = 1.32;
+            }elseif($n == 8){
+                $randomIndexConsistency = 1.41;
+            }
+            $data['barisRasio'] = [
+                'Emaks' => array_sum($eMaks),
+                'CI' => (array_sum($eMaks)-$n)/($n-1),
+                'CR' => ((array_sum($eMaks)-$n)/($n-1))/$randomIndexConsistency,
+            ];
+
+            ///////////////////////  Batas Rasio Konsistensi  /////////////////////////////
+
+            $c1 = $data['evnTotal']['C1'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C4'][1];
+            $c2 = $data['evnTotal']['C2'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C4'][1];
+            $c3 = $data['evnTotal']['C3'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C4'][1];
+            $c4 = $data['evnTotal']['C4'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C3'][1];
+
+
+            $nilaiTertinggi = '';
+            if ($c1) {
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Menguasai Konsep')->first();
+                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+            } elseif ($c2) {
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Menjelaskan Informasi')->first();
+                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+            } elseif ($c3) {
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Menyampaikan Fakta')->first();
+                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+            } elseif ($c4){
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengutarakan Ide dan Gagasan')->first();
+                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+            }
+
+            $data['detail-analisis'] = Hasil::create([
+                'user_id' => Auth::user()->id,
+                'kriteria_id' => $request->kriteria_id,
+                'nim' => Auth::user()->nim,
+                'kesimpulan' => $nilaiTertinggi,
             ]);
         }
-        $data['analisis'] = Analisis::with('User')->where('user_id', Auth::user()->id)->get();
-        $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
-        $data['kolomLabels'] = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'];
-        $data['barisLabels'] = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'];
-        /////////////////////////////     Pairwise Comparisons    /////////////////////////////
-        $data['pairwise'] = [
-            'C1' => [1, $data['skalaValues'][0], $data['skalaValues'][1]],
-            'C2' => [round(1/$data['skalaValues'][0], 2), 1, $data['skalaValues'][2]],
-            'C3' => [1/$data['skalaValues'][1], round(1/$data['skalaValues'][2], 2), 1],
-        ];
-        $data['pairwise_total'] = [
-            'C1' => $data['pairwise']['C1'][0]+$data['pairwise']['C2'][0]+$data['pairwise']['C3'][0],
-            'C2' => $data['pairwise']['C1'][1]+$data['pairwise']['C2'][1]+$data['pairwise']['C3'][1],
-            'C3' => $data['pairwise']['C1'][2]+$data['pairwise']['C2'][2]+$data['pairwise']['C3'][2]
-        ];
-        ////////////////////////////  Batas Pairwise Comparisons    ///////////////////////////
 
-        ///////////////////////////  Pencarian Eigen Vektor Normalisasi    ////////////////////
-        $e1 = [
-            'a1' => [$data['pairwise']['C1'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][0]*$data['pairwise']['C1'][2]],
-            'a2' => [$data['pairwise']['C1'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C1'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C1'][2]],
-            'a3' => [$data['pairwise']['C1'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C1'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C1'][2]*$data['pairwise']['C3'][2]],
-        ];
-        $data['baris-1'] = [
-            'C1' => [$e1['a1'][0], $e1['a1'][1], $e1['a1'][2]],
-            'C2' => [$e1['a2'][0], $e1['a2'][1], $e1['a2'][2]],
-            'C3' => [$e1['a3'][0], $e1['a3'][1], $e1['a3'][2]],
-        ];
 
-        $e2 = [
-            'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0]],
-            'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][2]],
-            'a3' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][2]],
-        ];
-        $data['baris-2'] = [
-            'C1' => [$e2['a1'][0], $e2['a1'][1], $e2['a1'][2]],
-            'C2' => [$e2['a2'][0], $e2['a2'][1], $e2['a2'][2]],
-            'C3' => [$e2['a3'][0], $e2['a3'][1], $e2['a3'][2]],
-        ];
-
-        $e3 = [
-            'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0]],
-            'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C3'][2]],
-            'a3' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][2]],
-        ];
-        $data['baris-3'] = [
-            'C1' => [$e3['a1'][0], $e3['a1'][1], $e3['a1'][2]],
-            'C2' => [$e3['a2'][0], $e3['a2'][1], $e3['a2'][2]],
-            'C3' => [$e3['a3'][0], $e3['a3'][1], $e3['a3'][2]],
-        ];
-        /////////////////////    Batas Perncarian Eigen Vektor Normalisasi   ///////////////////
-
-        ////////////////////////    Eigen Vektor Normalisasi   ////////////////////////////////
-
-        $data['evn'] = [
-            'C1' => [array_sum($data['baris-1']['C1']), array_sum($data['baris-1']['C2']), array_sum($data['baris-1']['C3'])],
-            'C2' => [array_sum($data['baris-2']['C1']), array_sum($data['baris-2']['C2']), array_sum($data['baris-2']['C3'])],
-            'C3' => [array_sum($data['baris-3']['C1']), array_sum($data['baris-3']['C2']), array_sum($data['baris-3']['C3'])],
-        ];
-        $sumEvn = (array_sum($data['evn']['C1'])+array_sum($data['evn']['C2'])+array_sum($data['evn']['C3']));
-
-        $data['evnTotal'] = [
-            'C1'=> [array_sum($data['evn']['C1']), array_sum($data['evn']['C1'])/$sumEvn],
-            'C2'=> [array_sum($data['evn']['C2']), array_sum($data['evn']['C2'])/$sumEvn],
-            'C3'=> [array_sum($data['evn']['C3']), array_sum($data['evn']['C3'])/$sumEvn],
-        ];
-
-        ///////////////////////  Batas Eigen Vektor Normalisasi  /////////////////////////////
-
-        ////////////////////////    Rasio Konsistensi   ////////////////////////////////
-
-        $data['kolomRasio'] = ['Emaks', 'CI', 'CR'];
-        $eMaks = [
-            'C1' => $data['pairwise_total']['C1']*$data['evnTotal']['C1'][1],
-            'C2' => $data['pairwise_total']['C2']*$data['evnTotal']['C2'][1],
-            'C3' => $data['pairwise_total']['C3']*$data['evnTotal']['C3'][1],
-        ];
-        $n = TipeKriteria::count();
-        $randomIndexConsistency = '';
-        if($n == 3){
-            $randomIndexConsistency = 0.58;
-        }elseif($n == 4){
-            $randomIndexConsistency = 0.90;
-        }elseif($n == 5){
-            $randomIndexConsistency = 1.12;
-        }elseif($n == 6){
-            $randomIndexConsistency = 1.24;
-        }elseif($n == 7){
-            $randomIndexConsistency = 1.32;
-        }elseif($n == 8){
-            $randomIndexConsistency = 1.41;
-        }
-        $data['barisRasio'] = [
-            'Emaks' => array_sum($eMaks),
-            'CI' => (array_sum($eMaks)-$n)/($n-1),
-            'CR' => ((array_sum($eMaks)-$n)/($n-1))/$randomIndexConsistency,
-        ];
-
-        ///////////////////////  Batas Rasio Konsistensi  /////////////////////////////
-
-        $c1 = $data['evnTotal']['C1'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C3'][1];
-        $c2 = $data['evnTotal']['C2'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C3'][1];
-        $c3 = $data['evnTotal']['C3'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C2'][1];
-
-        $nilaiTertinggi = '';
         
-        if ($c1) {
-            $tipekriteria = TipeKriteria::where('tipe_kriteria', 'C1')->first();
-            $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama_kriteria;
-        } elseif ($c2) {
-            $tipekriteria = TipeKriteria::where('tipe_kriteria', 'C2')->first();
-            $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama_kriteria;
-        } elseif ($c3) {
-            $tipekriteria = TipeKriteria::where('tipe_kriteria', 'C3')->first();
-            $nilaiTertinggi = 'Unggul di '. $tipekriteria->nama_kriteria;
-        }
 
-        $data['detail-analisis'] = Hasil::create([
-            'id_user' => Auth::user()->id,
-            'nim' => Auth::user()->nim,
-            'prodi' => Auth::user()->prodi,
-            'kesimpulan' => $nilaiTertinggi,
-        ]);
-
-        return back();
+        return redirect(route('isi-kuesioner.index'));
     }
 
     /**

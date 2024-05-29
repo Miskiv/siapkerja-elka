@@ -16,7 +16,7 @@ class HasilAnalisisController extends Controller
     public function index()
     {
         $title = 'Hasil Analisis';
-        $data['hasil'] = Hasil::where('id_user', Auth::user()->id)->first();
+        $data['hasil'] = Hasil::where('user_id', Auth::user()->id)->first();
 
         return view('apps.hasil-analisis.index', compact('title', 'data'));
     }

@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 15/05/2024 08:45:11
+ Date: 29/05/2024 08:44:18
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `activity_log`  (
   `batch_uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `activity_log_log_name_index`(`log_name` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 130 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 177 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of activity_log
@@ -169,6 +169,53 @@ INSERT INTO `activity_log` VALUES (126, 'default', 'Melakukan Logout Aplikasi', 
 INSERT INTO `activity_log` VALUES (127, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-10 20:51:59', '2024-05-10 20:51:59', NULL);
 INSERT INTO `activity_log` VALUES (128, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-11 10:02:55', '2024-05-11 10:02:55', NULL);
 INSERT INTO `activity_log` VALUES (129, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-15 08:44:12', '2024-05-15 08:44:12', NULL);
+INSERT INTO `activity_log` VALUES (130, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-15 15:27:01', '2024-05-15 15:27:01', NULL);
+INSERT INTO `activity_log` VALUES (131, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 00:30:43', '2024-05-18 00:30:43', NULL);
+INSERT INTO `activity_log` VALUES (132, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 07:40:13', '2024-05-18 07:40:13', NULL);
+INSERT INTO `activity_log` VALUES (133, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 14:54:17', '2024-05-18 14:54:17', NULL);
+INSERT INTO `activity_log` VALUES (134, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 1 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:02:07', '2024-05-18 15:02:07', NULL);
+INSERT INTO `activity_log` VALUES (135, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 2 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:03:46', '2024-05-18 15:03:46', NULL);
+INSERT INTO `activity_log` VALUES (136, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 3 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:03:53', '2024-05-18 15:03:53', NULL);
+INSERT INTO `activity_log` VALUES (137, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 4 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:02', '2024-05-18 15:04:02', NULL);
+INSERT INTO `activity_log` VALUES (138, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 5 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:11', '2024-05-18 15:04:11', NULL);
+INSERT INTO `activity_log` VALUES (139, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 6 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:17', '2024-05-18 15:04:17', NULL);
+INSERT INTO `activity_log` VALUES (140, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 7 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:26', '2024-05-18 15:04:26', NULL);
+INSERT INTO `activity_log` VALUES (141, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 8 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:05:11', '2024-05-18 15:05:11', NULL);
+INSERT INTO `activity_log` VALUES (142, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 9 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:05:18', '2024-05-18 15:05:18', NULL);
+INSERT INTO `activity_log` VALUES (143, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 124 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:42:56', '2024-05-18 15:42:56', NULL);
+INSERT INTO `activity_log` VALUES (144, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 124 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:44:10', '2024-05-18 15:44:10', NULL);
+INSERT INTO `activity_log` VALUES (145, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:56:52', '2024-05-18 15:56:52', NULL);
+INSERT INTO `activity_log` VALUES (146, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-18 15:56:57', '2024-05-18 15:56:57', NULL);
+INSERT INTO `activity_log` VALUES (147, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-24 16:53:05', '2024-05-24 16:53:05', NULL);
+INSERT INTO `activity_log` VALUES (148, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-24 16:54:12', '2024-05-24 16:54:12', NULL);
+INSERT INTO `activity_log` VALUES (149, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-24 16:54:19', '2024-05-24 16:54:19', NULL);
+INSERT INTO `activity_log` VALUES (150, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-25 12:52:52', '2024-05-25 12:52:52', NULL);
+INSERT INTO `activity_log` VALUES (151, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-25 12:53:44', '2024-05-25 12:53:44', NULL);
+INSERT INTO `activity_log` VALUES (152, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-25 12:57:17', '2024-05-25 12:57:17', NULL);
+INSERT INTO `activity_log` VALUES (153, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-25 12:57:24', '2024-05-25 12:57:24', NULL);
+INSERT INTO `activity_log` VALUES (154, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:19:01', '2024-05-27 14:19:01', NULL);
+INSERT INTO `activity_log` VALUES (155, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:19:11', '2024-05-27 14:19:11', NULL);
+INSERT INTO `activity_log` VALUES (156, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:30:36', '2024-05-27 14:30:36', NULL);
+INSERT INTO `activity_log` VALUES (157, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:45:31', '2024-05-27 14:45:31', NULL);
+INSERT INTO `activity_log` VALUES (158, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:45:41', '2024-05-27 14:45:41', NULL);
+INSERT INTO `activity_log` VALUES (159, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 102 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:31:04', '2024-05-27 15:31:04', NULL);
+INSERT INTO `activity_log` VALUES (160, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 1 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:09', '2024-05-27 15:33:09', NULL);
+INSERT INTO `activity_log` VALUES (161, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 101 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:23', '2024-05-27 15:33:23', NULL);
+INSERT INTO `activity_log` VALUES (162, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 103 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:29', '2024-05-27 15:33:29', NULL);
+INSERT INTO `activity_log` VALUES (163, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 104 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:36', '2024-05-27 15:33:36', NULL);
+INSERT INTO `activity_log` VALUES (164, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 105 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:44', '2024-05-27 15:33:44', NULL);
+INSERT INTO `activity_log` VALUES (165, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 124 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:34:31', '2024-05-27 15:34:31', NULL);
+INSERT INTO `activity_log` VALUES (166, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:51:55', '2024-05-27 15:51:55', NULL);
+INSERT INTO `activity_log` VALUES (167, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 15:52:03', '2024-05-27 15:52:03', NULL);
+INSERT INTO `activity_log` VALUES (168, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 16:14:30', '2024-05-27 16:14:30', NULL);
+INSERT INTO `activity_log` VALUES (169, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 16:14:35', '2024-05-27 16:14:35', NULL);
+INSERT INTO `activity_log` VALUES (170, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 16:20:10', '2024-05-27 16:20:10', NULL);
+INSERT INTO `activity_log` VALUES (171, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 16:20:17', '2024-05-27 16:20:17', NULL);
+INSERT INTO `activity_log` VALUES (172, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 21:33:24', '2024-05-27 21:33:24', NULL);
+INSERT INTO `activity_log` VALUES (173, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 21:33:37', '2024-05-27 21:33:37', NULL);
+INSERT INTO `activity_log` VALUES (174, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 21:33:59', '2024-05-27 21:33:59', NULL);
+INSERT INTO `activity_log` VALUES (175, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-28 19:20:59', '2024-05-28 19:20:59', NULL);
+INSERT INTO `activity_log` VALUES (176, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-28 22:12:41', '2024-05-28 22:12:41', NULL);
 
 -- ----------------------------
 -- Table structure for analisis
@@ -176,18 +223,25 @@ INSERT INTO `activity_log` VALUES (129, 'default', 'Melakukan Login Aplikasi', N
 DROP TABLE IF EXISTS `analisis`;
 CREATE TABLE `analisis`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_kriteria` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `id_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `kriteria_id` int NULL DEFAULT NULL,
+  `user_id` int NULL DEFAULT NULL,
+  `perbandingan_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `skala` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `kesimpulan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of analisis
 -- ----------------------------
+INSERT INTO `analisis` VALUES (1, 3, 2, 'p1', '0.14', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `analisis` VALUES (2, 3, 2, 'p2', '1', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `analisis` VALUES (3, 3, 2, 'p3', '3', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `analisis` VALUES (4, 3, 2, 'p4', '7', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `analisis` VALUES (5, 3, 2, 'p5', '7', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `analisis` VALUES (6, 3, 2, 'p6', '7', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
 
 -- ----------------------------
 -- Table structure for detail
@@ -213,18 +267,19 @@ CREATE TABLE `detail`  (
 DROP TABLE IF EXISTS `hasil`;
 CREATE TABLE `hasil`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `user_id` int NULL DEFAULT NULL,
+  `kriteria_id` int NULL DEFAULT NULL,
   `nim` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `prodi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `kesimpulan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of hasil
 -- ----------------------------
+INSERT INTO `hasil` VALUES (1, 2, 3, '12345678', 'Unggul di Kemampuan Menjelaskan Informasi', '2024-05-28 22:22:11', '2024-05-28 22:22:11');
 
 -- ----------------------------
 -- Table structure for jawaban
@@ -232,29 +287,43 @@ CREATE TABLE `hasil`  (
 DROP TABLE IF EXISTS `jawaban`;
 CREATE TABLE `jawaban`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `tipe_kriteria` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `user_id` int NULL DEFAULT NULL,
+  `kriteria_id` int NULL DEFAULT NULL,
+  `pertanyaan_id` int NULL DEFAULT NULL,
+  `perbandingan_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `jawaban` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jawaban
 -- ----------------------------
-INSERT INTO `jawaban` VALUES (1, '2', '1', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (2, '2', '1', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (3, '2', '1', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (4, '2', '1', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (5, '2', '2', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (6, '2', '2', '0', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (7, '2', '2', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (8, '2', '2', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (9, '2', '3', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (10, '2', '3', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (11, '2', '3', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
-INSERT INTO `jawaban` VALUES (12, '2', '3', '1', '2024-05-05 14:28:39', '2024-05-05 14:28:39');
+INSERT INTO `jawaban` VALUES (1, 2, 3, 101, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (2, 2, 3, 102, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (3, 2, 3, 103, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (4, 2, 3, 104, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (5, 2, 3, 105, 'p2', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (6, 2, 3, 106, 'p2', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (7, 2, 3, 107, 'p2', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (8, 2, 3, 108, 'p2', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (9, 2, 3, 109, 'p3', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (10, 2, 3, 110, 'p3', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (11, 2, 3, 111, 'p3', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (12, 2, 3, 112, 'p3', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (13, 2, 3, 113, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (14, 2, 3, 114, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (15, 2, 3, 115, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (16, 2, 3, 116, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (17, 2, 3, 117, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (18, 2, 3, 118, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (19, 2, 3, 119, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (20, 2, 3, 120, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (21, 2, 3, 121, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (22, 2, 3, 122, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (23, 2, 3, 123, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
+INSERT INTO `jawaban` VALUES (24, 2, 3, 124, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
 
 -- ----------------------------
 -- Table structure for jurusan
@@ -326,21 +395,21 @@ CREATE TABLE `master_kriteria_sub`  (
 -- ----------------------------
 -- Records of master_kriteria_sub
 -- ----------------------------
-INSERT INTO `master_kriteria_sub` VALUES (1, '1', 'Kemampuan Belajar dan Adaptasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (2, '1', 'Kemampuan Berkomunikasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (3, '1', 'Kemampuan Pemecahan Masalah', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (4, '1', 'Keterampilan Teknologi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (5, '1', 'Keterampilan Berpikir Kreatif', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (6, '1', 'Kemampuan bekerja dalam tim', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (7, '2', 'Kemampuan Mendefinisikan Informasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (8, '2', 'Kemampuan Mengakses Informasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (9, '2', 'Kemampuan Mengelola Informasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (10, '2', 'Kemampuan Mengintegrasikan Informasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (11, '2', 'Kemampuan Mengkomunikasikan Informasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (12, '3', 'Kemampuan Menguasai Konsep', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (13, '3', 'Kemampuan Menjelaskan Informasi', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (14, '3', 'Kemampuan Menyampaikan Fakta', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
-INSERT INTO `master_kriteria_sub` VALUES (15, '3', 'Kemampuan Mengutarakan Ide dan Gagasan', '2024-05-10 21:07:42', '2024-05-10 21:07:42');
+INSERT INTO `master_kriteria_sub` VALUES (1, '1', 'Kemampuan Belajar dan Adaptasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (2, '1', 'Kemampuan Berkomunikasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (3, '1', 'Kemampuan Pemecahan Masalah', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (4, '1', 'Keterampilan Teknologi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (5, '1', 'Keterampilan Berpikir Kreatif', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (6, '1', 'Kemampuan bekerja dalam tim', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (7, '2', 'Kemampuan Mendefinisikan Informasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (8, '2', 'Kemampuan Mengakses Informasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (9, '2', 'Kemampuan Mengelola Informasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (10, '2', 'Kemampuan Mengintegrasikan Informasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (11, '2', 'Kemampuan Mengkomunikasikan Informasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (12, '3', 'Kemampuan Menguasai Konsep', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (13, '3', 'Kemampuan Menjelaskan Informasi', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (14, '3', 'Kemampuan Menyampaikan Fakta', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
+INSERT INTO `master_kriteria_sub` VALUES (15, '3', 'Kemampuan Mengutarakan Ide dan Gagasan', '2024-05-28 22:25:32', '2024-05-28 22:25:32');
 
 -- ----------------------------
 -- Table structure for master_kriteria_sub_sub
@@ -443,16 +512,142 @@ DROP TABLE IF EXISTS `master_pertanyaan`;
 CREATE TABLE `master_pertanyaan`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `soal` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `perbandingan_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `kriteria_id` int NULL DEFAULT NULL,
-  `tipe_kriteria` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `perbandingan_kriteria_sub` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `perbandingan_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 125 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of master_pertanyaan
 -- ----------------------------
+INSERT INTO `master_pertanyaan` VALUES (1, 'Rasa ingin tahu : Kemampuan menyampaikan ide secara jelas', 'Rasa ingin tahu : Kemampuan menyampaikan ide secara jelas', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-27 15:33:09');
+INSERT INTO `master_pertanyaan` VALUES (2, 'Kemampuan penyesuaian : Nyaman berbicara di depan umum', 'Kemampuan penyesuaian : Nyaman berbicara di depan umum', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-18 15:03:46');
+INSERT INTO `master_pertanyaan` VALUES (3, 'Daya tahan : Kemampuan berkomunikasi dalam tim', 'Daya tahan : Kemampuan berkomunikasi dalam tim', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-18 15:03:53');
+INSERT INTO `master_pertanyaan` VALUES (4, 'Evaluasi terus menerus : Dapat membaca dan merespon emosi orang lain', 'Evaluasi terus menerus : Dapat membaca dan merespon emosi orang lain', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-18 15:04:02');
+INSERT INTO `master_pertanyaan` VALUES (5, 'Rasa ingin tahu : Analisis Masalah', 'Rasa ingin tahu : Analisis Masalah', 1, '1 : 3', 'p2', '2024-05-18 01:07:44', '2024-05-18 15:04:10');
+INSERT INTO `master_pertanyaan` VALUES (6, 'Kemampuan penyesuaian : Kreativitas', 'Kemampuan penyesuaian : Kreativitas', 1, '1 : 3', 'p2', '2024-05-18 01:07:44', '2024-05-18 15:04:17');
+INSERT INTO `master_pertanyaan` VALUES (7, 'Daya tahan : Implementasi solusi', 'Daya tahan : Implementasi solusi', 1, '1 : 3', 'p2', '2024-05-18 01:07:44', '2024-05-18 15:04:26');
+INSERT INTO `master_pertanyaan` VALUES (8, 'Evaluasi terus menerus : Keberanian mengambil risiko', 'Evaluasi terus menerus : Keberanian mengambil risiko', 1, '1 : 3', 'p2', '2024-05-18 01:07:44', '2024-05-18 15:05:11');
+INSERT INTO `master_pertanyaan` VALUES (9, 'Rasa ingin tahu : Penguasaan alat dan perangkat lunak', 'Rasa ingin tahu : Penguasaan alat dan perangkat lunak', 1, '1 : 4', 'p3', '2024-05-18 01:07:44', '2024-05-18 15:05:18');
+INSERT INTO `master_pertanyaan` VALUES (10, 'Kemampuan penyesuaian : Kemampuan penyesuaian perkembangan teknologi', 'Kemampuan penyesuaian : Kemampuan penyesuaian perkembangan teknologi', 1, '1 : 4', 'p3', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (11, 'Daya tahan : Literasi data', 'Daya tahan : Literasi data', 1, '1 : 4', 'p3', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (12, 'Evaluasi terus menerus : Penggunaan media sosial profesional', 'Evaluasi terus menerus : Penggunaan media sosial profesional', 1, '1 : 4', 'p3', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (13, 'Rasa ingin tahu : Kefasihan pikiran', 'Rasa ingin tahu : Kefasihan pikiran', 1, '1 : 5', 'p4', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (14, 'Kemampuan penyesuaian : Keluwesan pikiran', 'Kemampuan penyesuaian : Keluwesan pikiran', 1, '1 : 5', 'p4', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (15, 'Daya tahan : Keaslian pikiran', 'Daya tahan : Keaslian pikiran', 1, '1 : 5', 'p4', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (16, 'Evaluasi terus menerus : Keterincian pikiran', 'Evaluasi terus menerus : Keterincian pikiran', 1, '1 : 5', 'p4', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (17, 'Rasa ingin tahu : Kemampuan kolaborasi', 'Rasa ingin tahu : Kemampuan kolaborasi', 1, '1 : 6', 'p5', '2024-05-18 01:07:44', '2024-05-18 01:07:44');
+INSERT INTO `master_pertanyaan` VALUES (18, 'Kemampuan penyesuaian : Kepemimpinan dalam tim', 'Kemampuan penyesuaian : Kepemimpinan dalam tim', 1, '1 : 6', 'p5', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (19, 'Daya tahan : Keterbukaan terhadap ide lain', 'Daya tahan : Keterbukaan terhadap ide lain', 1, '1 : 6', 'p5', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (20, 'Evaluasi terus menerus : Pembagian tugas', 'Evaluasi terus menerus : Pembagian tugas', 1, '1 : 6', 'p5', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (21, 'Kemampuan menyampaikan ide secara jelas : Analisis Masalah', 'Kemampuan menyampaikan ide secara jelas : Analisis Masalah', 1, '2 : 3', 'p6', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (22, 'Nyaman berbicara di depan umum : Kreativitas', 'Nyaman berbicara di depan umum : Kreativitas', 1, '2 : 3', 'p6', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (23, 'Kemampuan berkomunikasi dalam tim : Implementasi solusi', 'Kemampuan berkomunikasi dalam tim : Implementasi solusi', 1, '2 : 3', 'p6', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (24, 'Dapat membaca dan merespon emosi orang lain : Keberanian mengambil risiko', 'Dapat membaca dan merespon emosi orang lain : Keberanian mengambil risiko', 1, '2 : 3', 'p6', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (25, 'Kemampuan menyampaikan ide secara jelas : Penguasaan alat dan perangkat lunak', 'Kemampuan menyampaikan ide secara jelas : Penguasaan alat dan perangkat lunak', 1, '2 : 4', 'p7', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (26, 'Nyaman berbicara di depan umum : Kemampuan penyesuaian perkembangan teknologi', 'Nyaman berbicara di depan umum : Kemampuan penyesuaian perkembangan teknologi', 1, '2 : 4', 'p7', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (27, 'Kemampuan berkomunikasi dalam tim : Literasi data', 'Kemampuan berkomunikasi dalam tim : Literasi data', 1, '2 : 4', 'p7', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (28, 'Dapat membaca dan merespon emosi orang lain : Penggunaan media sosial profesional', 'Dapat membaca dan merespon emosi orang lain : Penggunaan media sosial profesional', 1, '2 : 4', 'p7', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (29, 'Kemampuan menyampaikan ide secara jelas : Kefasihan pikiran', 'Kemampuan menyampaikan ide secara jelas : Kefasihan pikiran', 1, '2 : 5', 'p8', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (30, 'Nyaman berbicara di depan umum : Keluwesan pikiran', 'Nyaman berbicara di depan umum : Keluwesan pikiran', 1, '2 : 5', 'p8', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (31, 'Kemampuan berkomunikasi dalam tim : Keaslian pikiran', 'Kemampuan berkomunikasi dalam tim : Keaslian pikiran', 1, '2 : 5', 'p8', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (32, 'Dapat membaca dan merespon emosi orang lain : Keterincian pikiran', 'Dapat membaca dan merespon emosi orang lain : Keterincian pikiran', 1, '2 : 5', 'p8', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (33, 'Kemampuan menyampaikan ide secara jelas : Kemampuan kolaborasi', 'Kemampuan menyampaikan ide secara jelas : Kemampuan kolaborasi', 1, '2 : 6', 'p9', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (34, 'Nyaman berbicara di depan umum : Kepemimpinan dalam tim', 'Nyaman berbicara di depan umum : Kepemimpinan dalam tim', 1, '2 : 6', 'p9', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (35, 'Kemampuan berkomunikasi dalam tim : Keterbukaan terhadap ide lain', 'Kemampuan berkomunikasi dalam tim : Keterbukaan terhadap ide lain', 1, '2 : 6', 'p9', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (36, 'Dapat membaca dan merespon emosi orang lain : Pembagian tugas', 'Dapat membaca dan merespon emosi orang lain : Pembagian tugas', 1, '2 : 6', 'p9', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (37, 'Analisis Masalah : Penguasaan alat dan perangkat lunak', 'Analisis Masalah : Penguasaan alat dan perangkat lunak', 1, '3 : 4', 'p10', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (38, 'Kreativitas : Kemampuan penyesuaian perkembangan teknologi', 'Kreativitas : Kemampuan penyesuaian perkembangan teknologi', 1, '3 : 4', 'p10', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (39, 'Implementasi solusi : Literasi data', 'Implementasi solusi : Literasi data', 1, '3 : 4', 'p10', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (40, 'Keberanian mengambil risiko : Penggunaan media sosial profesional', 'Keberanian mengambil risiko : Penggunaan media sosial profesional', 1, '3 : 4', 'p10', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (41, 'Analisis Masalah : Kefasihan pikiran', 'Analisis Masalah : Kefasihan pikiran', 1, '3 : 5', 'p11', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (42, 'Kreativitas : Keluwesan pikiran', 'Kreativitas : Keluwesan pikiran', 1, '3 : 5', 'p11', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (43, 'Implementasi solusi : Keaslian pikiran', 'Implementasi solusi : Keaslian pikiran', 1, '3 : 5', 'p11', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (44, 'Keberanian mengambil risiko : Keterincian pikiran', 'Keberanian mengambil risiko : Keterincian pikiran', 1, '3 : 5', 'p11', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (45, 'Analisis Masalah : Kemampuan kolaborasi', 'Analisis Masalah : Kemampuan kolaborasi', 1, '3 : 6', 'p12', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (46, 'Kreativitas : Kepemimpinan dalam tim', 'Kreativitas : Kepemimpinan dalam tim', 1, '3 : 6', 'p12', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (47, 'Implementasi solusi : Keterbukaan terhadap ide lain', 'Implementasi solusi : Keterbukaan terhadap ide lain', 1, '3 : 6', 'p12', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (48, 'Keberanian mengambil risiko : Pembagian tugas', 'Keberanian mengambil risiko : Pembagian tugas', 1, '3 : 6', 'p12', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (49, 'Penguasaan alat dan perangkat lunak : Kefasihan pikiran', 'Penguasaan alat dan perangkat lunak : Kefasihan pikiran', 1, '4 : 5', 'p13', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (50, 'Kemampuan penyesuaian perkembangan teknologi : Keluwesan pikiran', 'Kemampuan penyesuaian perkembangan teknologi : Keluwesan pikiran', 1, '4 : 5', 'p13', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (51, 'Literasi data : Keaslian pikiran', 'Literasi data : Keaslian pikiran', 1, '4 : 5', 'p13', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (52, 'Penggunaan media sosial profesional : Keterincian pikiran', 'Penggunaan media sosial profesional : Keterincian pikiran', 1, '4 : 5', 'p13', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (53, 'Penguasaan alat dan perangkat lunak : Kemampuan kolaborasi', 'Penguasaan alat dan perangkat lunak : Kemampuan kolaborasi', 1, '4 : 6', 'p14', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (54, 'Kemampuan penyesuaian perkembangan teknologi : Kepemimpinan dalam tim', 'Kemampuan penyesuaian perkembangan teknologi : Kepemimpinan dalam tim', 1, '4 : 6', 'p14', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (55, 'Literasi data : Keterbukaan terhadap ide lain', 'Literasi data : Keterbukaan terhadap ide lain', 1, '4 : 6', 'p14', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (56, 'Penggunaan media sosial profesional : Pembagian tugas', 'Penggunaan media sosial profesional : Pembagian tugas', 1, '4 : 6', 'p14', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (57, 'Kefasihan pikiran : Kemampuan kolaborasi', 'Kefasihan pikiran : Kemampuan kolaborasi', 1, '5 : 6', 'p15', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (58, 'Keluwesan pikiran : Kepemimpinan dalam tim', 'Keluwesan pikiran : Kepemimpinan dalam tim', 1, '5 : 6', 'p15', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (59, 'Keaslian pikiran : Keterbukaan terhadap ide lain', 'Keaslian pikiran : Keterbukaan terhadap ide lain', 1, '5 : 6', 'p15', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (60, 'Keterincian pikiran : Pembagian tugas', 'Keterincian pikiran : Pembagian tugas', 1, '5 : 6', 'p15', '2024-05-18 01:07:45', '2024-05-18 01:07:45');
+INSERT INTO `master_pertanyaan` VALUES (61, 'Memahami konsep data, informasi, dan pengetahuan : Menggunakan berbagai alat pencarian informasi secara efisien', 'Memahami konsep data, informasi, dan pengetahuan : Menggunakan berbagai alat pencarian informasi secara efisien', 2, '7 : 8', 'p1', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (62, 'Mampu mengidentifikasi sumber informasi yang berbeda : Evaluasi kredibilitas dan keandalan sumber informasi', 'Mampu mengidentifikasi sumber informasi yang berbeda : Evaluasi kredibilitas dan keandalan sumber informasi', 2, '7 : 8', 'p1', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (63, 'Memahami struktur informasi dan cara itu disusun : Memahami hak cipta dan etika dalam penggunaan informasi', 'Memahami struktur informasi dan cara itu disusun : Memahami hak cipta dan etika dalam penggunaan informasi', 2, '7 : 8', 'p1', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (64, 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi', 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi', 2, '7 : 8', 'p1', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (65, 'Memahami konsep data, informasi, dan pengetahuan : Mampu menyusun dan mengelola informasi dengan sistematis', 'Memahami konsep data, informasi, dan pengetahuan : Mampu menyusun dan mengelola informasi dengan sistematis', 2, '7 : 9', 'p2', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (66, 'Mampu mengidentifikasi sumber informasi yang berbeda : Menggunakan alat dan teknologi untuk mengatur informasi', 'Mampu mengidentifikasi sumber informasi yang berbeda : Menggunakan alat dan teknologi untuk mengatur informasi', 2, '7 : 9', 'p2', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (67, 'Memahami struktur informasi dan cara itu disusun : Memahami konsep metadata dan cara mengelolanya', 'Memahami struktur informasi dan cara itu disusun : Memahami konsep metadata dan cara mengelolanya', 2, '7 : 9', 'p2', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (68, 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi', 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi', 2, '7 : 9', 'p2', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (69, 'Memahami konsep data, informasi, dan pengetahuan : Mampu menarik kesimpulan dari informasi yang berbeda', 'Memahami konsep data, informasi, dan pengetahuan : Mampu menarik kesimpulan dari informasi yang berbeda', 2, '7 : 10', 'p3', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (70, 'Mampu mengidentifikasi sumber informasi yang berbeda : Mengidentifikasi pola dan hubungan antara informasi yang berbeda', 'Mampu mengidentifikasi sumber informasi yang berbeda : Mengidentifikasi pola dan hubungan antara informasi yang berbeda', 2, '7 : 10', 'p3', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (71, 'Memahami struktur informasi dan cara itu disusun : Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif', 'Memahami struktur informasi dan cara itu disusun : Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif', 2, '7 : 10', 'p3', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (72, 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Mampu menggunakan alat analisis untuk mendukung integrasi informasi', 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Mampu menggunakan alat analisis untuk mendukung integrasi informasi', 2, '7 : 10', 'p3', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (73, 'Memahami konsep data, informasi, dan pengetahuan : Menyusun pesan yang jelas dan mudah dipahami', 'Memahami konsep data, informasi, dan pengetahuan : Menyusun pesan yang jelas dan mudah dipahami', 2, '7 : 11', 'p4', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (74, 'Mampu mengidentifikasi sumber informasi yang berbeda : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 'Mampu mengidentifikasi sumber informasi yang berbeda : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 2, '7 : 11', 'p4', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (75, 'Memahami struktur informasi dan cara itu disusun : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 'Memahami struktur informasi dan cara itu disusun : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 2, '7 : 11', 'p4', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (76, 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 'Mampu merumuskan pertanyaan yang relevan untuk memperoleh informasi yang diperlukan : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 2, '7 : 11', 'p4', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (77, 'Menggunakan berbagai alat pencarian informasi secara efisien : Mampu menyusun dan mengelola informasi dengan sistematis', 'Menggunakan berbagai alat pencarian informasi secara efisien : Mampu menyusun dan mengelola informasi dengan sistematis', 2, '8 : 9', 'p5', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (78, 'Evaluasi kredibilitas dan keandalan sumber informasi : Menggunakan alat dan teknologi untuk mengatur informasi', 'Evaluasi kredibilitas dan keandalan sumber informasi : Menggunakan alat dan teknologi untuk mengatur informasi', 2, '8 : 9', 'p5', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (79, 'Memahami hak cipta dan etika dalam penggunaan informasi : Memahami konsep metadata dan cara mengelolanya', 'Memahami hak cipta dan etika dalam penggunaan informasi : Memahami konsep metadata dan cara mengelolanya', 2, '8 : 9', 'p5', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (80, 'Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi : Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi', 'Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi : Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi', 2, '8 : 9', 'p5', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (81, 'Menggunakan berbagai alat pencarian informasi secara efisien : Mampu menarik kesimpulan dari informasi yang berbeda', 'Menggunakan berbagai alat pencarian informasi secara efisien : Mampu menarik kesimpulan dari informasi yang berbeda', 2, '8 : 10', 'p6', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (82, 'Evaluasi kredibilitas dan keandalan sumber informasi : Mengidentifikasi pola dan hubungan antara informasi yang berbeda', 'Evaluasi kredibilitas dan keandalan sumber informasi : Mengidentifikasi pola dan hubungan antara informasi yang berbeda', 2, '8 : 10', 'p6', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (83, 'Memahami hak cipta dan etika dalam penggunaan informasi : Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif', 'Memahami hak cipta dan etika dalam penggunaan informasi : Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif', 2, '8 : 10', 'p6', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (84, 'Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi : Mampu menggunakan alat analisis untuk mendukung integrasi informasi', 'Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi : Mampu menggunakan alat analisis untuk mendukung integrasi informasi', 2, '8 : 10', 'p6', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (85, 'Menggunakan berbagai alat pencarian informasi secara efisien : Menyusun pesan yang jelas dan mudah dipahami', 'Menggunakan berbagai alat pencarian informasi secara efisien : Menyusun pesan yang jelas dan mudah dipahami', 2, '8 : 11', 'p7', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (86, 'Evaluasi kredibilitas dan keandalan sumber informasi : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 'Evaluasi kredibilitas dan keandalan sumber informasi : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 2, '8 : 11', 'p7', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (87, 'Memahami hak cipta dan etika dalam penggunaan informasi : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 'Memahami hak cipta dan etika dalam penggunaan informasi : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 2, '8 : 11', 'p7', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (88, 'Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 'Memahami teknik untuk menavigasi dan menggunakan berbagai platform informasi : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 2, '8 : 11', 'p7', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (89, 'Mampu menyusun dan mengelola informasi dengan sistematis : Mampu menarik kesimpulan dari informasi yang berbeda', 'Mampu menyusun dan mengelola informasi dengan sistematis : Mampu menarik kesimpulan dari informasi yang berbeda', 2, '9 : 10', 'p8', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (90, 'Menggunakan alat dan teknologi untuk mengatur informasi : Mengidentifikasi pola dan hubungan antara informasi yang berbeda', 'Menggunakan alat dan teknologi untuk mengatur informasi : Mengidentifikasi pola dan hubungan antara informasi yang berbeda', 2, '9 : 10', 'p8', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (91, 'Memahami konsep metadata dan cara mengelolanya : Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif', 'Memahami konsep metadata dan cara mengelolanya : Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif', 2, '9 : 10', 'p8', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (92, 'Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi : Mampu menggunakan alat analisis untuk mendukung integrasi informasi', 'Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi : Mampu menggunakan alat analisis untuk mendukung integrasi informasi', 2, '9 : 10', 'p8', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (93, 'Mampu menyusun dan mengelola informasi dengan sistematis : Menyusun pesan yang jelas dan mudah dipahami', 'Mampu menyusun dan mengelola informasi dengan sistematis : Menyusun pesan yang jelas dan mudah dipahami', 2, '9 : 11', 'p9', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (94, 'Menggunakan alat dan teknologi untuk mengatur informasi : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 'Menggunakan alat dan teknologi untuk mengatur informasi : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 2, '9 : 11', 'p9', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (95, 'Memahami konsep metadata dan cara mengelolanya : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 'Memahami konsep metadata dan cara mengelolanya : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 2, '9 : 11', 'p9', '2024-05-18 01:07:49', '2024-05-18 01:07:49');
+INSERT INTO `master_pertanyaan` VALUES (96, 'Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 'Mampu membuat dan mengatur backup data untuk menjaga keamanan informasi : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 2, '9 : 11', 'p9', '2024-05-18 01:07:50', '2024-05-18 01:07:50');
+INSERT INTO `master_pertanyaan` VALUES (97, 'Mampu menarik kesimpulan dari informasi yang berbeda : Menyusun pesan yang jelas dan mudah dipahami', 'Mampu menarik kesimpulan dari informasi yang berbeda : Menyusun pesan yang jelas dan mudah dipahami', 2, '10 : 11', 'p10', '2024-05-18 01:07:50', '2024-05-18 01:07:50');
+INSERT INTO `master_pertanyaan` VALUES (98, 'Mengidentifikasi pola dan hubungan antara informasi yang berbeda : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 'Mengidentifikasi pola dan hubungan antara informasi yang berbeda : Memilih media komunikasi yang tepat sesuai dengan konteks dan audiens', 2, '10 : 11', 'p10', '2024-05-18 01:07:50', '2024-05-18 01:07:50');
+INSERT INTO `master_pertanyaan` VALUES (99, 'Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 'Menggabungkan informasi dari berbagai sumber untuk memperoleh pemahaman yang komprehensif : Mampu menggambarkan informasi secara visual menggunakan grafik atau diagram', 2, '10 : 11', 'p10', '2024-05-18 01:07:50', '2024-05-18 01:07:50');
+INSERT INTO `master_pertanyaan` VALUES (100, 'Mampu menggunakan alat analisis untuk mendukung integrasi informasi : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 'Mampu menggunakan alat analisis untuk mendukung integrasi informasi : Mampu mengadaptasi gaya komunikasi sesuai dengan kebutuhan dan preferensi audiens', 2, '10 : 11', 'p10', '2024-05-18 01:07:50', '2024-05-18 01:07:50');
+INSERT INTO `master_pertanyaan` VALUES (101, 'Pemahaman Tata Bahasa : Kemampuan Merangkum', 'Pemahaman Tata Bahasa : Kemampuan Merangkum', 3, '12 : 13', 'p1', '2024-05-18 01:11:25', '2024-05-27 15:33:23');
+INSERT INTO `master_pertanyaan` VALUES (102, 'Penguasaan Kosakata : Kemampuan Memberikan Contoh', 'Penguasaan Kosakata : Kemampuan Memberikan Contoh', 3, '12 : 13', 'p1', '2024-05-18 01:11:25', '2024-05-27 15:31:04');
+INSERT INTO `master_pertanyaan` VALUES (103, 'Pengetahuan Tentang Sintaksis : Kemampuan Menggunakan Ilustrasi', 'Pengetahuan Tentang Sintaksis : Kemampuan Menggunakan Ilustrasi', 3, '12 : 13', 'p1', '2024-05-18 01:11:25', '2024-05-27 15:33:29');
+INSERT INTO `master_pertanyaan` VALUES (104, 'Pemahaman Terhadap Pengucapan : Kemampuan Menggunakan Analogi', 'Pemahaman Terhadap Pengucapan : Kemampuan Menggunakan Analogi', 3, '12 : 13', 'p1', '2024-05-18 01:11:25', '2024-05-27 15:33:36');
+INSERT INTO `master_pertanyaan` VALUES (105, 'Pemahaman Tata Bahasa : Kemampuan Mengorganisir Informasi', 'Pemahaman Tata Bahasa : Kemampuan Mengorganisir Informasi', 3, '12 : 14', 'p2', '2024-05-18 01:11:25', '2024-05-27 15:33:44');
+INSERT INTO `master_pertanyaan` VALUES (106, 'Penguasaan Kosakata : Kemampuan Menyajikan Data', 'Penguasaan Kosakata : Kemampuan Menyajikan Data', 3, '12 : 14', 'p2', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (107, 'Pengetahuan Tentang Sintaksis : Kemampuan Mengutip Sumber', 'Pengetahuan Tentang Sintaksis : Kemampuan Mengutip Sumber', 3, '12 : 14', 'p2', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (108, 'Pemahaman Terhadap Pengucapan : Kemampuan Memilih Informasi Relevan', 'Pemahaman Terhadap Pengucapan : Kemampuan Memilih Informasi Relevan', 3, '12 : 14', 'p2', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (109, 'Pemahaman Tata Bahasa : Kemampuan Berargumen', 'Pemahaman Tata Bahasa : Kemampuan Berargumen', 3, '12 : 15', 'p3', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (110, 'Penguasaan Kosakata : Kemampuan Berkreasi', 'Penguasaan Kosakata : Kemampuan Berkreasi', 3, '12 : 15', 'p3', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (111, 'Pengetahuan Tentang Sintaksis : Kemampuan Membangun Narasi', 'Pengetahuan Tentang Sintaksis : Kemampuan Membangun Narasi', 3, '12 : 15', 'p3', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (112, 'Pemahaman Terhadap Pengucapan : Kemampuan Memotivasi dan Menginspirasi', 'Pemahaman Terhadap Pengucapan : Kemampuan Memotivasi dan Menginspirasi', 3, '12 : 15', 'p3', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (113, 'Kemampuan Merangkum : Kemampuan Mengorganisir Informasi', 'Kemampuan Merangkum : Kemampuan Mengorganisir Informasi', 3, '13 : 14', 'p4', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (114, 'Kemampuan Memberikan Contoh : Kemampuan Menyajikan Data', 'Kemampuan Memberikan Contoh : Kemampuan Menyajikan Data', 3, '13 : 14', 'p4', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (115, 'Kemampuan Menggunakan Ilustrasi : Kemampuan Mengutip Sumber', 'Kemampuan Menggunakan Ilustrasi : Kemampuan Mengutip Sumber', 3, '13 : 14', 'p4', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (116, 'Kemampuan Menggunakan Analogi : Kemampuan Memilih Informasi Relevan', 'Kemampuan Menggunakan Analogi : Kemampuan Memilih Informasi Relevan', 3, '13 : 14', 'p4', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (117, 'Kemampuan Merangkum : Kemampuan Berargumen', 'Kemampuan Merangkum : Kemampuan Berargumen', 3, '13 : 15', 'p5', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (118, 'Kemampuan Memberikan Contoh : Kemampuan Berkreasi', 'Kemampuan Memberikan Contoh : Kemampuan Berkreasi', 3, '13 : 15', 'p5', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (119, 'Kemampuan Menggunakan Ilustrasi : Kemampuan Membangun Narasi', 'Kemampuan Menggunakan Ilustrasi : Kemampuan Membangun Narasi', 3, '13 : 15', 'p5', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (120, 'Kemampuan Menggunakan Analogi : Kemampuan Memotivasi dan Menginspirasi', 'Kemampuan Menggunakan Analogi : Kemampuan Memotivasi dan Menginspirasi', 3, '13 : 15', 'p5', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (121, 'Kemampuan Mengorganisir Informasi : Kemampuan Berargumen', 'Kemampuan Mengorganisir Informasi : Kemampuan Berargumen', 3, '14 : 15', 'p6', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (122, 'Kemampuan Menyajikan Data : Kemampuan Berkreasi', 'Kemampuan Menyajikan Data : Kemampuan Berkreasi', 3, '14 : 15', 'p6', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (123, 'Kemampuan Mengutip Sumber : Kemampuan Membangun Narasi', 'Kemampuan Mengutip Sumber : Kemampuan Membangun Narasi', 3, '14 : 15', 'p6', '2024-05-18 01:11:25', '2024-05-18 01:11:25');
+INSERT INTO `master_pertanyaan` VALUES (124, 'Kemampuan Memilih Informasi Relevan : Kemampuan Memotivasi dan Menginspirasi', 'Kemampuan Memilih Informasi Relevan : Kemampuan Memotivasi dan Menginspirasi', 3, '14 : 15', 'p6', '2024-05-18 01:11:25', '2024-05-27 15:34:31');
 
 -- ----------------------------
 -- Table structure for migrations
