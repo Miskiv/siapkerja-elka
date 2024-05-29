@@ -15,7 +15,12 @@
                     <div class="description">
                         <p>{{Str::limit($row->description, 100)}}</p>
                     </div>
-                    <button class="btn btn-primary perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Mulai Tes →</button>
+                    @if (!($data['exist']->where('kriteria_id', $row->id)->first()))
+                        <button class="btn btn-primary perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Mulai Tes →</button>
+                    @else
+                    <button class="btn btn-warning perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Lihat Hasil Tes →</button>
+                    <button class="btn btn-info perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Tes Ulang →</button>
+                    @endif
                     @include('apps.kuesioner.components.modal-perhatian')
                 </div>
             </div>
