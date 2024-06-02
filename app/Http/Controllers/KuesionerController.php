@@ -41,40 +41,40 @@ class KuesionerController extends Controller
      */
     public function store(Request $request)
     {
-        // foreach ($request->jawaban as $perbandingan => $jawabanFase) {
-        //     foreach ($jawabanFase as $pertanyaan_id => $jawaban) {
-        //         // Menghitung sum jawaban
-        //         Jawaban::create([
-        //             'user_id' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
-        //             'kriteria_id' => $request->kriteria_id,
-        //             'pertanyaan_id' => $pertanyaan_id,
-        //             'perbandingan_code' => $perbandingan,
-        //             'jawaban' => $jawaban,
-        //         ]);
-        //     }
-        // }
-        // $jawaban = Jawaban::where('user_id', Auth::user()->id)->where('kriteria_id', $request->kriteria_id)->groupBy('perbandingan_code')->selectRaw('*, sum(jawaban) as skor')->get();
-        // foreach($jawaban as $row){
-        //      // Mapping skala
-        //     $skalaMapping = [
-        //         0 => 0.14,
-        //         1 => 1,
-        //         2 => 3,
-        //         3 => 5,
-        //         4 => 7,
-        //     ];
+        foreach ($request->jawaban as $perbandingan => $jawabanFase) {
+            foreach ($jawabanFase as $pertanyaan_id => $jawaban) {
+                // Menghitung sum jawaban
+                Jawaban::create([
+                    'user_id' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
+                    'kriteria_id' => $request->kriteria_id,
+                    'pertanyaan_id' => $pertanyaan_id,
+                    'perbandingan_code' => $perbandingan,
+                    'jawaban' => $jawaban,
+                ]);
+            }
+        }
+        $jawaban = Jawaban::where('user_id', Auth::user()->id)->where('kriteria_id', $request->kriteria_id)->groupBy('perbandingan_code')->selectRaw('*, sum(jawaban) as skor')->get();
+        foreach($jawaban as $row){
+             // Mapping skala
+            $skalaMapping = [
+                0 => 0.14,
+                1 => 1,
+                2 => 3,
+                3 => 5,
+                4 => 7,
+            ];
 
-        //     // Mendapatkan skala berdasarkan skor
-        //     $skala = $skalaMapping[$row->skor];
+            // Mendapatkan skala berdasarkan skor
+            $skala = $skalaMapping[$row->skor];
 
-        //     // Membuat record di tabel Analisis
-        //     Analisis::create([
-        //         'kriteria_id' => $row->kriteria_id,
-        //         'perbandingan_code' => $row->perbandingan_code,
-        //         'user_id' => $row->user_id,
-        //         'skala' => $skala,
-        //     ]);
-        // }
+            // Membuat record di tabel Analisis
+            Analisis::create([
+                'kriteria_id' => $row->kriteria_id,
+                'perbandingan_code' => $row->perbandingan_code,
+                'user_id' => $row->user_id,
+                'skala' => $skala,
+            ]);
+        }
         $data['analisis'] = Analisis::with('User')->where('user_id', Auth::user()->id)->where('kriteria_id', $request->kriteria_id  )->get();
         if($request->kriteria_id == 3){
             $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
@@ -279,11 +279,11 @@ class KuesionerController extends Controller
             ];
     
             $e3 = [
-                'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][0]],
-                'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][1]],
-                'a3' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][2]],
-                'a4' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][3]],
-                'a5' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][4]],
+                'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][0]],
+                'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][1]],
+                'a3' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][2]],
+                'a4' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][3]],
+                'a5' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][4]],
             ];
             $data['baris-3'] = [
                 'C1' => [$e3['a1'][0], $e3['a1'][1], $e3['a1'][2], $e3['a1'][3], $e3['a1'][4]],
@@ -308,18 +308,18 @@ class KuesionerController extends Controller
             ];
 
             $e5 = [
-                'a1' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][0]],
-                'a2' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][1]],
-                'a3' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][2]],
-                'a4' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][3]],
-                'a5' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][4]],
+                'a1' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][0]],
+                'a2' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][1]],
+                'a3' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][2]],
+                'a4' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][3]],
+                'a5' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][4]],
             ];
             $data['baris-5'] = [
-                'C1' => [$e4['a1'][0], $e4['a1'][1], $e4['a1'][2], $e4['a1'][3], $e4['a1'][4]],
-                'C2' => [$e4['a2'][0], $e4['a2'][1], $e4['a2'][2], $e4['a2'][3], $e4['a2'][4]],
-                'C3' => [$e4['a3'][0], $e4['a3'][1], $e4['a3'][2], $e4['a3'][3], $e4['a3'][4]],
-                'C4' => [$e4['a4'][0], $e4['a4'][1], $e4['a4'][2], $e4['a4'][3], $e4['a4'][4]],
-                'C5' => [$e4['a5'][0], $e4['a5'][1], $e4['a5'][2], $e4['a5'][3], $e4['a5'][4]],
+                'C1' => [$e5['a1'][0], $e5['a1'][1], $e5['a1'][2], $e5['a1'][3], $e5['a1'][4]],
+                'C2' => [$e5['a2'][0], $e5['a2'][1], $e5['a2'][2], $e5['a2'][3], $e5['a2'][4]],
+                'C3' => [$e5['a3'][0], $e5['a3'][1], $e5['a3'][2], $e5['a3'][3], $e5['a3'][4]],
+                'C4' => [$e5['a4'][0], $e5['a4'][1], $e5['a4'][2], $e5['a4'][3], $e5['a4'][4]],
+                'C5' => [$e5['a5'][0], $e5['a5'][1], $e5['a5'][2], $e5['a5'][3], $e5['a5'][4]],
             ];
             /////////////////////    Batas Perncarian Eigen Vektor Normalisasi   ///////////////////
 
@@ -448,12 +448,12 @@ class KuesionerController extends Controller
             ];
     
             $e2 = [
-                'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][0], $data['pairwise']['C2'][4]*$data['pairwise']['C6'][0]],
-                'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][1], $data['pairwise']['C2'][4]*$data['pairwise']['C6'][1]],
-                'a3' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][2], $data['pairwise']['C2'][4]*$data['pairwise']['C6'][2]],
-                'a4' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][3], $data['pairwise']['C2'][4]*$data['pairwise']['C6'][3]],
-                'a5' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][4], $data['pairwise']['C2'][4]*$data['pairwise']['C6'][4]],
-                'a6' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][5], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][5], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][5], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][5], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][5], $data['pairwise']['C2'][4]*$data['pairwise']['C6'][5]],
+                'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][0], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][0]],
+                'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][1], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][1]],
+                'a3' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][2], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][2]],
+                'a4' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][3], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][3]],
+                'a5' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][4], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][4]],
+                'a6' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][5], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][5], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][5], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][5], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][5], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][5]],
             ];
             $data['baris-2'] = [
                 'C1' => [$e2['a1'][0], $e2['a1'][1], $e2['a1'][2], $e2['a1'][3], $e2['a1'][4], $e2['a1'][5]],
@@ -463,68 +463,92 @@ class KuesionerController extends Controller
                 'C5' => [$e2['a5'][0], $e2['a5'][1], $e2['a5'][2], $e2['a5'][3], $e2['a5'][4], $e2['a5'][5]],
                 'C6' => [$e2['a6'][0], $e2['a6'][1], $e2['a6'][2], $e2['a6'][3], $e2['a6'][4], $e2['a6'][5]],
             ];
-            dd($e2, $data['baris-2']);
             $e3 = [
-                'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][0]],
-                'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][1]],
-                'a3' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][2]],
-                'a4' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][3]],
-                'a5' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C3'][3]*$data['pairwise']['C5'][4]],
+                'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][0], $data['pairwise']['C3'][5]*$data['pairwise']['C6'][0]],
+                'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][1], $data['pairwise']['C3'][5]*$data['pairwise']['C6'][1]],
+                'a3' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][2], $data['pairwise']['C3'][5]*$data['pairwise']['C6'][2]],
+                'a4' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][3], $data['pairwise']['C3'][5]*$data['pairwise']['C6'][3]],
+                'a5' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][4], $data['pairwise']['C3'][5]*$data['pairwise']['C6'][4]],
+                'a6' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][5], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][5], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][5], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][5], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][5], $data['pairwise']['C3'][5]*$data['pairwise']['C6'][5]],
             ];
             $data['baris-3'] = [
-                'C1' => [$e3['a1'][0], $e3['a1'][1], $e3['a1'][2], $e3['a1'][3], $e3['a1'][4]],
-                'C2' => [$e3['a2'][0], $e3['a2'][1], $e3['a2'][2], $e3['a2'][3], $e3['a2'][4]],
-                'C3' => [$e3['a3'][0], $e3['a3'][1], $e3['a3'][2], $e3['a3'][3], $e3['a3'][4]],
-                'C4' => [$e3['a4'][0], $e3['a4'][1], $e3['a4'][2], $e3['a4'][3], $e3['a4'][4]],
-                'C5' => [$e3['a5'][0], $e3['a5'][1], $e3['a5'][2], $e3['a5'][3], $e3['a5'][4]],
+                'C1' => [$e3['a1'][0], $e3['a1'][1], $e3['a1'][2], $e3['a1'][3], $e3['a1'][4], $e3['a1'][5]],
+                'C2' => [$e3['a2'][0], $e3['a2'][1], $e3['a2'][2], $e3['a2'][3], $e3['a2'][4], $e3['a2'][5]],
+                'C3' => [$e3['a3'][0], $e3['a3'][1], $e3['a3'][2], $e3['a3'][3], $e3['a3'][4], $e3['a3'][5]],
+                'C4' => [$e3['a4'][0], $e3['a4'][1], $e3['a4'][2], $e3['a4'][3], $e3['a4'][4], $e3['a4'][5]],
+                'C5' => [$e3['a5'][0], $e3['a5'][1], $e3['a5'][2], $e3['a5'][3], $e3['a5'][4], $e3['a5'][5]],
+                'C6' => [$e3['a6'][0], $e3['a6'][1], $e3['a6'][2], $e3['a6'][3], $e3['a6'][4], $e3['a6'][5]],
             ];
             $e4 = [
-                'a1' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][0]],
-                'a2' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][1]],
-                'a3' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][2]],
-                'a4' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][3]],
-                'a5' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][4]],
+                'a1' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][0], $data['pairwise']['C4'][5]*$data['pairwise']['C6'][0]],
+                'a2' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][1], $data['pairwise']['C4'][5]*$data['pairwise']['C6'][1]],
+                'a3' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][2], $data['pairwise']['C4'][5]*$data['pairwise']['C6'][2]],
+                'a4' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][3], $data['pairwise']['C4'][5]*$data['pairwise']['C6'][3]],
+                'a5' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][4], $data['pairwise']['C4'][5]*$data['pairwise']['C6'][4]],
+                'a6' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][5], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][5], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][5], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][5], $data['pairwise']['C4'][4]*$data['pairwise']['C5'][5], $data['pairwise']['C4'][5]*$data['pairwise']['C6'][5]],
             ];
             $data['baris-4'] = [
-                'C1' => [$e4['a1'][0], $e4['a1'][1], $e4['a1'][2], $e4['a1'][3], $e4['a1'][4]],
-                'C2' => [$e4['a2'][0], $e4['a2'][1], $e4['a2'][2], $e4['a2'][3], $e4['a2'][4]],
-                'C3' => [$e4['a3'][0], $e4['a3'][1], $e4['a3'][2], $e4['a3'][3], $e4['a3'][4]],
-                'C4' => [$e4['a4'][0], $e4['a4'][1], $e4['a4'][2], $e4['a4'][3], $e4['a4'][4]],
-                'C5' => [$e4['a5'][0], $e4['a5'][1], $e4['a5'][2], $e4['a5'][3], $e4['a5'][4]],
+                'C1' => [$e4['a1'][0], $e4['a1'][1], $e4['a1'][2], $e4['a1'][3], $e4['a1'][4], $e4['a1'][5]],
+                'C2' => [$e4['a2'][0], $e4['a2'][1], $e4['a2'][2], $e4['a2'][3], $e4['a2'][4], $e4['a2'][5]],
+                'C3' => [$e4['a3'][0], $e4['a3'][1], $e4['a3'][2], $e4['a3'][3], $e4['a3'][4], $e4['a3'][5]],
+                'C4' => [$e4['a4'][0], $e4['a4'][1], $e4['a4'][2], $e4['a4'][3], $e4['a4'][4], $e4['a4'][5]],
+                'C5' => [$e4['a5'][0], $e4['a5'][1], $e4['a5'][2], $e4['a5'][3], $e4['a5'][4], $e4['a5'][5]],
+                'C6' => [$e4['a6'][0], $e4['a6'][1], $e4['a6'][2], $e4['a6'][3], $e4['a6'][4], $e4['a6'][5]],
             ];
 
             $e5 = [
-                'a1' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][0]],
-                'a2' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][1]],
-                'a3' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][2]],
-                'a4' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][3]],
-                'a5' => [$data['pairwise']['C4'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C4'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C4'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C4'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C4'][3]*$data['pairwise']['C5'][4]],
+                'a1' => [$data['pairwise']['C5'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C5'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C5'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C5'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C5'][3]*$data['pairwise']['C5'][0], $data['pairwise']['C5'][5]*$data['pairwise']['C6'][0]],
+                'a2' => [$data['pairwise']['C5'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C5'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C5'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C5'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C5'][3]*$data['pairwise']['C5'][1], $data['pairwise']['C5'][5]*$data['pairwise']['C6'][1]],
+                'a3' => [$data['pairwise']['C5'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C5'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C5'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C5'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C5'][3]*$data['pairwise']['C5'][2], $data['pairwise']['C5'][5]*$data['pairwise']['C6'][2]],
+                'a4' => [$data['pairwise']['C5'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C5'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C5'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C5'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C5'][3]*$data['pairwise']['C5'][3], $data['pairwise']['C5'][5]*$data['pairwise']['C6'][3]],
+                'a5' => [$data['pairwise']['C5'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C5'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C5'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C5'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C5'][3]*$data['pairwise']['C5'][4], $data['pairwise']['C5'][5]*$data['pairwise']['C6'][4]],
+                'a6' => [$data['pairwise']['C5'][0]*$data['pairwise']['C1'][5], $data['pairwise']['C5'][1]*$data['pairwise']['C2'][5], $data['pairwise']['C5'][2]*$data['pairwise']['C3'][5], $data['pairwise']['C5'][3]*$data['pairwise']['C4'][5], $data['pairwise']['C5'][3]*$data['pairwise']['C5'][5], $data['pairwise']['C5'][5]*$data['pairwise']['C6'][5]],
             ];
             $data['baris-5'] = [
-                'C1' => [$e4['a1'][0], $e4['a1'][1], $e4['a1'][2], $e4['a1'][3], $e4['a1'][4]],
-                'C2' => [$e4['a2'][0], $e4['a2'][1], $e4['a2'][2], $e4['a2'][3], $e4['a2'][4]],
-                'C3' => [$e4['a3'][0], $e4['a3'][1], $e4['a3'][2], $e4['a3'][3], $e4['a3'][4]],
-                'C4' => [$e4['a4'][0], $e4['a4'][1], $e4['a4'][2], $e4['a4'][3], $e4['a4'][4]],
-                'C5' => [$e4['a5'][0], $e4['a5'][1], $e4['a5'][2], $e4['a5'][3], $e4['a5'][4]],
+                'C1' => [$e5['a1'][0], $e5['a1'][1], $e5['a1'][2], $e5['a1'][3], $e5['a1'][4], $e5['a1'][5]],
+                'C2' => [$e5['a2'][0], $e5['a2'][1], $e5['a2'][2], $e5['a2'][3], $e5['a2'][4], $e5['a2'][5]],
+                'C3' => [$e5['a3'][0], $e5['a3'][1], $e5['a3'][2], $e5['a3'][3], $e5['a3'][4], $e5['a3'][5]],
+                'C4' => [$e5['a4'][0], $e5['a4'][1], $e5['a4'][2], $e5['a4'][3], $e5['a4'][4], $e5['a4'][5]],
+                'C5' => [$e5['a5'][0], $e5['a5'][1], $e5['a5'][2], $e5['a5'][3], $e5['a5'][4], $e5['a5'][5]],
+                'C6' => [$e5['a6'][0], $e5['a6'][1], $e5['a6'][2], $e5['a6'][3], $e5['a6'][4], $e5['a6'][5]],
+            ];
+
+            $e6 = [
+                'a1' => [$data['pairwise']['C6'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C6'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C6'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C6'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C6'][3]*$data['pairwise']['C5'][0], $data['pairwise']['C6'][5]*$data['pairwise']['C6'][0]],
+                'a2' => [$data['pairwise']['C6'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C6'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C6'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C6'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C6'][3]*$data['pairwise']['C5'][1], $data['pairwise']['C6'][5]*$data['pairwise']['C6'][1]],
+                'a3' => [$data['pairwise']['C6'][0]*$data['pairwise']['C1'][2], $data['pairwise']['C6'][1]*$data['pairwise']['C2'][2], $data['pairwise']['C6'][2]*$data['pairwise']['C3'][2], $data['pairwise']['C6'][3]*$data['pairwise']['C4'][2], $data['pairwise']['C6'][3]*$data['pairwise']['C5'][2], $data['pairwise']['C6'][5]*$data['pairwise']['C6'][2]],
+                'a4' => [$data['pairwise']['C6'][0]*$data['pairwise']['C1'][3], $data['pairwise']['C6'][1]*$data['pairwise']['C2'][3], $data['pairwise']['C6'][2]*$data['pairwise']['C3'][3], $data['pairwise']['C6'][3]*$data['pairwise']['C4'][3], $data['pairwise']['C6'][3]*$data['pairwise']['C5'][3], $data['pairwise']['C6'][5]*$data['pairwise']['C6'][3]],
+                'a5' => [$data['pairwise']['C6'][0]*$data['pairwise']['C1'][4], $data['pairwise']['C6'][1]*$data['pairwise']['C2'][4], $data['pairwise']['C6'][2]*$data['pairwise']['C3'][4], $data['pairwise']['C6'][3]*$data['pairwise']['C4'][4], $data['pairwise']['C6'][3]*$data['pairwise']['C5'][4], $data['pairwise']['C6'][5]*$data['pairwise']['C6'][4]],
+                'a6' => [$data['pairwise']['C6'][0]*$data['pairwise']['C1'][5], $data['pairwise']['C6'][1]*$data['pairwise']['C2'][5], $data['pairwise']['C6'][2]*$data['pairwise']['C3'][5], $data['pairwise']['C6'][3]*$data['pairwise']['C4'][5], $data['pairwise']['C6'][3]*$data['pairwise']['C5'][5], $data['pairwise']['C6'][5]*$data['pairwise']['C6'][5]],
+            ];
+            $data['baris-6'] = [
+                'C1' => [$e6['a1'][0], $e6['a1'][1], $e6['a1'][2], $e6['a1'][3], $e6['a1'][4], $e6['a1'][5]],
+                'C2' => [$e6['a2'][0], $e6['a2'][1], $e6['a2'][2], $e6['a2'][3], $e6['a2'][4], $e6['a2'][5]],
+                'C3' => [$e6['a3'][0], $e6['a3'][1], $e6['a3'][2], $e6['a3'][3], $e6['a3'][4], $e6['a3'][5]],
+                'C4' => [$e6['a4'][0], $e6['a4'][1], $e6['a4'][2], $e6['a4'][3], $e6['a4'][4], $e6['a4'][5]],
+                'C5' => [$e6['a5'][0], $e6['a5'][1], $e6['a5'][2], $e6['a5'][3], $e6['a5'][4], $e6['a5'][5]],
+                'C6' => [$e6['a6'][0], $e6['a6'][1], $e6['a6'][2], $e6['a6'][3], $e6['a6'][4], $e6['a6'][5]],
             ];
             /////////////////////    Batas Perncarian Eigen Vektor Normalisasi   ///////////////////
 
             ////////////////////////    Eigen Vektor Normalisasi   ////////////////////////////////
 
             $data['evn'] = [
-                'C1' => [array_sum($data['baris-1']['C1']), array_sum($data['baris-1']['C2']), array_sum($data['baris-1']['C3']), array_sum($data['baris-1']['C4']), array_sum($data['baris-1']['C5'])],
-                'C2' => [array_sum($data['baris-2']['C1']), array_sum($data['baris-2']['C2']), array_sum($data['baris-2']['C3']), array_sum($data['baris-2']['C4']), array_sum($data['baris-2']['C5'])],
-                'C3' => [array_sum($data['baris-3']['C1']), array_sum($data['baris-3']['C2']), array_sum($data['baris-3']['C3']), array_sum($data['baris-3']['C4']), array_sum($data['baris-3']['C5'])],
-                'C4' => [array_sum($data['baris-4']['C1']), array_sum($data['baris-4']['C2']), array_sum($data['baris-4']['C3']), array_sum($data['baris-4']['C4']), array_sum($data['baris-4']['C5'])],
-                'C5' => [array_sum($data['baris-5']['C1']), array_sum($data['baris-5']['C2']), array_sum($data['baris-5']['C3']), array_sum($data['baris-5']['C4']), array_sum($data['baris-5']['C5'])],
+                'C1' => [array_sum($data['baris-1']['C1']), array_sum($data['baris-1']['C2']), array_sum($data['baris-1']['C3']), array_sum($data['baris-1']['C4']), array_sum($data['baris-1']['C5']), array_sum($data['baris-1']['C6'])],
+                'C2' => [array_sum($data['baris-2']['C1']), array_sum($data['baris-2']['C2']), array_sum($data['baris-2']['C3']), array_sum($data['baris-2']['C4']), array_sum($data['baris-2']['C5']), array_sum($data['baris-2']['C6'])],
+                'C3' => [array_sum($data['baris-3']['C1']), array_sum($data['baris-3']['C2']), array_sum($data['baris-3']['C3']), array_sum($data['baris-3']['C4']), array_sum($data['baris-3']['C5']), array_sum($data['baris-3']['C6'])],
+                'C4' => [array_sum($data['baris-4']['C1']), array_sum($data['baris-4']['C2']), array_sum($data['baris-4']['C3']), array_sum($data['baris-4']['C4']), array_sum($data['baris-4']['C5']), array_sum($data['baris-4']['C6'])],
+                'C5' => [array_sum($data['baris-5']['C1']), array_sum($data['baris-5']['C2']), array_sum($data['baris-5']['C3']), array_sum($data['baris-5']['C4']), array_sum($data['baris-5']['C5']), array_sum($data['baris-5']['C6'])],
+                'C6' => [array_sum($data['baris-6']['C1']), array_sum($data['baris-6']['C2']), array_sum($data['baris-6']['C3']), array_sum($data['baris-6']['C4']), array_sum($data['baris-6']['C5']), array_sum($data['baris-6']['C6'])],
             ];
-            $sumEvn = (array_sum($data['evn']['C1'])+array_sum($data['evn']['C2'])+array_sum($data['evn']['C3'])+array_sum($data['evn']['C4'])+array_sum($data['evn']['C5']));
+            $sumEvn = (array_sum($data['evn']['C1'])+array_sum($data['evn']['C2'])+array_sum($data['evn']['C3'])+array_sum($data['evn']['C4'])+array_sum($data['evn']['C5'])+array_sum($data['evn']['C6']));
             $data['evnTotal'] = [
                 'C1'=> [array_sum($data['evn']['C1']), array_sum($data['evn']['C1'])/$sumEvn],
                 'C2'=> [array_sum($data['evn']['C2']), array_sum($data['evn']['C2'])/$sumEvn],
                 'C3'=> [array_sum($data['evn']['C3']), array_sum($data['evn']['C3'])/$sumEvn],
                 'C4'=> [array_sum($data['evn']['C4']), array_sum($data['evn']['C4'])/$sumEvn],
                 'C5'=> [array_sum($data['evn']['C5']), array_sum($data['evn']['C5'])/$sumEvn],
+                'C6'=> [array_sum($data['evn']['C6']), array_sum($data['evn']['C6'])/$sumEvn],
             ];
             ///////////////////////  Batas Eigen Vektor Normalisasi  /////////////////////////////
 
@@ -536,6 +560,7 @@ class KuesionerController extends Controller
                 'C3' => $data['pairwise_total']['C3']*$data['evnTotal']['C3'][1],
                 'C4' => $data['pairwise_total']['C4']*$data['evnTotal']['C4'][1],
                 'C5' => $data['pairwise_total']['C5']*$data['evnTotal']['C5'][1],
+                'C6' => $data['pairwise_total']['C6']*$data['evnTotal']['C6'][1],
             ];
             $n = KriteriaSub::where('kriteria_id', $request->kriteria_id)->count();
 
@@ -561,28 +586,32 @@ class KuesionerController extends Controller
 
             ///////////////////////  Batas Rasio Konsistensi  /////////////////////////////
 
-            $c1 = $data['evnTotal']['C1'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C5'][1];
-            $c2 = $data['evnTotal']['C2'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C5'][1];
-            $c3 = $data['evnTotal']['C3'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C5'][1];
-            $c4 = $data['evnTotal']['C4'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C5'][1];
-            $c5 = $data['evnTotal']['C5'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C5'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C5'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C5'][1] > $data['evnTotal']['C4'][1];
+            $c1 = $data['evnTotal']['C1'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C5'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C6'][1];
+            $c2 = $data['evnTotal']['C2'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C5'][1] && $data['evnTotal']['C2'][1] > $data['evnTotal']['C6'][1];
+            $c3 = $data['evnTotal']['C3'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C5'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C6'][1];
+            $c4 = $data['evnTotal']['C4'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C5'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C6'][1];
+            $c5 = $data['evnTotal']['C5'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C5'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C5'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C5'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C5'][1] > $data['evnTotal']['C6'][1];
+            $c6 = $data['evnTotal']['C6'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C6'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C6'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C6'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C6'][1] > $data['evnTotal']['C5'][1];
 
 
             $nilaiTertinggi = '';
             if ($c1) {
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mendefinisikan Informasi')->first();
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Belajar dan Adaptasi')->first();
                 $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c2) {
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengakses Informasi')->first();
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Berkomunikasi')->first();
                 $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c3) {
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengelola Informasi')->first();
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Pemecahan Masalah')->first();
                 $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c4){
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengintegrasikan Informasi')->first();
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Keterampilan Teknologi')->first();
                 $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c5){
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengkomunikasikan Informasi')->first();
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Keterampilan Berpikir Kreatif')->first();
+                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+            } elseif ($c6){
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan bekerja dalam tim')->first();
                 $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             }
 
@@ -593,10 +622,6 @@ class KuesionerController extends Controller
                 'kesimpulan' => $nilaiTertinggi,
             ]);
         }
-
-
-        
-
         return redirect(route('isi-kuesioner.index'));
     }
 
