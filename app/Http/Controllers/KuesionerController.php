@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Analisis;
+use App\Models\Detail;
 use App\Models\Hasil;
 use App\Models\Jawaban;
 use App\Models\Kriteria;
@@ -41,41 +42,41 @@ class KuesionerController extends Controller
      */
     public function store(Request $request)
     {
-        foreach ($request->jawaban as $perbandingan => $jawabanFase) {
-            foreach ($jawabanFase as $pertanyaan_id => $jawaban) {
-                // Menghitung sum jawaban
-                Jawaban::create([
-                    'user_id' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
-                    'kriteria_id' => $request->kriteria_id,
-                    'pertanyaan_id' => $pertanyaan_id,
-                    'perbandingan_code' => $perbandingan,
-                    'jawaban' => $jawaban,
-                ]);
-            }
-        }
-        $jawaban = Jawaban::where('user_id', Auth::user()->id)->where('kriteria_id', $request->kriteria_id)->groupBy('perbandingan_code')->selectRaw('*, sum(jawaban) as skor')->get();
-        foreach($jawaban as $row){
-             // Mapping skala
-            $skalaMapping = [
-                0 => 0.14,
-                1 => 1,
-                2 => 3,
-                3 => 5,
-                4 => 7,
-            ];
+        // foreach ($request->jawaban as $perbandingan => $jawabanFase) {
+        //     foreach ($jawabanFase as $pertanyaan_id => $jawaban) {
+        //         // Menghitung sum jawaban
+        //         Jawaban::create([
+        //             'user_id' => Auth::user()->id, // Sesuaikan dengan model dan kolom yang sesuai
+        //             'kriteria_id' => $request->kriteria_id,
+        //             'pertanyaan_id' => $pertanyaan_id,
+        //             'perbandingan_code' => $perbandingan,
+        //             'jawaban' => $jawaban,
+        //         ]);
+        //     }
+        // }
+        // $jawaban = Jawaban::where('user_id', Auth::user()->id)->where('kriteria_id', $request->kriteria_id)->groupBy('perbandingan_code')->selectRaw('*, sum(jawaban) as skor')->get();
+        // foreach($jawaban as $row){
+        //      // Mapping skala
+        //     $skalaMapping = [
+        //         0 => 0.14,
+        //         1 => 1,
+        //         2 => 3,
+        //         3 => 5,
+        //         4 => 7,
+        //     ];
 
-            // Mendapatkan skala berdasarkan skor
-            $skala = $skalaMapping[$row->skor];
+        //     // Mendapatkan skala berdasarkan skor
+        //     $skala = $skalaMapping[$row->skor];
 
-            // Membuat record di tabel Analisis
-            Analisis::create([
-                'kriteria_id' => $row->kriteria_id,
-                'perbandingan_code' => $row->perbandingan_code,
-                'user_id' => $row->user_id,
-                'skala' => $skala,
-            ]);
-        }
-        $data['analisis'] = Analisis::with('User')->where('user_id', Auth::user()->id)->where('kriteria_id', $request->kriteria_id  )->get();
+        //     // Membuat record di tabel Analisis
+        //     Analisis::create([
+        //         'kriteria_id' => $row->kriteria_id,
+        //         'perbandingan_code' => $row->perbandingan_code,
+        //         'user_id' => $row->user_id,
+        //         'skala' => $skala,
+        //     ]);
+        // }
+        $data['analisis'] = Analisis::with('User')->where('user_id', Auth::user()->id)->where('kriteria_id', $request->kriteria_id)->get();
         if($request->kriteria_id == 3){
             $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
             $data['kolomLabels'] = ['C1', 'C2', 'C3', 'C4'];
@@ -220,11 +221,16 @@ class KuesionerController extends Controller
                 $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             }
 
-            $data['detail-analisis'] = Hasil::create([
-                'user_id' => Auth::user()->id,
-                'kriteria_id' => $request->kriteria_id,
-                'nim' => Auth::user()->nim,
-                'kesimpulan' => $nilaiTertinggi,
+            // $data['hasil'] = Hasil::create([
+            //     'user_id' => Auth::user()->id,
+            //     'kriteria_id' => $request->kriteria_id,
+            //     'nim' => Auth::user()->nim,
+            //     'kesimpulan' => $nilaiTertinggi,
+            // ]);
+            
+            dd(round($data['evnTotal']['C1'][1], 2), round($data['evnTotal']['C2'][1], 2), round($data['evnTotal']['C3'][1], 2), round($data['evnTotal']['C4'][1], 2));
+            $data['detail'] = Detail::create([
+                
             ]);
         }elseif ($request->kriteria_id == 2){
             $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
