@@ -11,90 +11,65 @@
             <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis</h6>
         </div>
         <div class="card-body">
-            <h6 class="text-center">Hasil Analisis belum ditampilkan.</h6>
+            {{-- <h6 class="text-center">Hasil Analisis belum ditampilkan.</h6> --}}
             <div id="chart">
             </div>
-            {{-- <div class="table-responsive">
-                    <table id="datatable-v" class="table table-nowrap">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Pertanyaan</th>
-                            <th>Dibuat</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data['pertanyaan'] as $row)
-                            <tr>
-                                <td>{{ $loop->iteration }}.</td>
-                                <td>{{ $row->soal }}</td>
-                                <td>{{ $row->created_at->diffForHumans() }}</td>
-                                <td><button class="btn btn-info btn-sm">Aksi</button></td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div> --}}
         </div>
     </div>
-    @include('apps.hasil-analisis.components.modal-add')
 @stop
 @push('js')
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-    var options = {
-          series: [{
-          name: 'Net Profit',
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        }, {
-          name: 'Revenue',
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        }, {
-          name: 'Free Cash Flow',
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-        }],
-          chart: {
+  // Data untuk diagram
+  var options = {
+      series: [{
+          name: 'Total',
+          data: [0.9, 0.2, 0.4, 0.5]
+      }],
+      chart: {
           type: 'bar',
           height: 350
-        },
-        plotOptions: {
+      },
+      plotOptions: {
           bar: {
-            horizontal: false,
-            columnWidth: '55%',
-            endingShape: 'rounded'
+              horizontal: false,
+              columnWidth: '55%',
+              endingShape: 'rounded',
+              distributed: true
           },
-        },
-        dataLabels: {
+      },
+      colors: ['#1E90FF', '#FF6347', '#32CD32', '#FFD700'],
+      dataLabels: {
           enabled: false
-        },
-        stroke: {
+      },
+      stroke: {
           show: true,
           width: 2,
           colors: ['transparent']
-        },
-        xaxis: {
-          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        },
-        yaxis: {
+      },
+      xaxis: {
+          categories: ['C1', 'C2', 'C3', 'C4'],
+      },
+      yaxis: {
           title: {
-            text: '$ (thousands)'
+              text: 'Total'
           }
-        },
-        fill: {
+      },
+      fill: {
           opacity: 1
-        },
-        tooltip: {
+      },
+      tooltip: {
           y: {
-            formatter: function (val) {
-              return "$ " + val + " thousands"
-            }
+              formatter: function (val) {
+                  return val
+              }
           }
-        }
-        };
+      }
+  };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+  // Inisialisasi dan render diagram
+  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  chart.render();
 </script>
     <script>
         $(document).ready(function () {

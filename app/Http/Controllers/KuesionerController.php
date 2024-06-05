@@ -228,10 +228,16 @@ class KuesionerController extends Controller
             //     'kesimpulan' => $nilaiTertinggi,
             // ]);
             
-            dd(round($data['evnTotal']['C1'][1], 2), round($data['evnTotal']['C2'][1], 2), round($data['evnTotal']['C3'][1], 2), round($data['evnTotal']['C4'][1], 2));
-            $data['detail'] = Detail::create([
-                
-            ]);
+            // foreach ($data['evnTotal'] as $item) {
+            //     dd($item);
+            //     $data['detail'] = Detail::create([
+            //         'user_id' => Auth::user()->id,
+            //         'kriteria_id' => $request->kriteria_id,
+            //         'perbandingan_code' => $item,
+            //         'totalEvn' => $item
+            //     ]);
+            // }
+            
         }elseif ($request->kriteria_id == 2){
             $data['skalaValues'] = $data['analisis']->pluck('skala')->values()->all();
             $data['kolomLabels'] = ['C1', 'C2', 'C3', 'C4', 'C5'];
