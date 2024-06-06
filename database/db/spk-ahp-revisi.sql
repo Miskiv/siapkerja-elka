@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 29/05/2024 08:44:18
+ Date: 06/06/2024 09:59:26
 */
 
 SET NAMES utf8mb4;
@@ -35,187 +35,13 @@ CREATE TABLE `activity_log`  (
   `batch_uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `activity_log_log_name_index`(`log_name` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 177 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of activity_log
 -- ----------------------------
-INSERT INTO `activity_log` VALUES (1, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-07 16:25:19', '2024-01-07 16:25:19', NULL);
-INSERT INTO `activity_log` VALUES (2, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-07 17:15:46', '2024-01-07 17:15:46', NULL);
-INSERT INTO `activity_log` VALUES (3, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-07 17:15:55', '2024-01-07 17:15:55', NULL);
-INSERT INTO `activity_log` VALUES (4, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-07 17:16:16', '2024-01-07 17:16:16', NULL);
-INSERT INTO `activity_log` VALUES (5, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-07 17:16:21', '2024-01-07 17:16:21', NULL);
-INSERT INTO `activity_log` VALUES (6, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-07 17:18:58', '2024-01-07 17:18:58', NULL);
-INSERT INTO `activity_log` VALUES (7, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-07 17:19:04', '2024-01-07 17:19:04', NULL);
-INSERT INTO `activity_log` VALUES (8, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-07 17:22:45', '2024-01-07 17:22:45', NULL);
-INSERT INTO `activity_log` VALUES (9, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-07 17:22:49', '2024-01-07 17:22:49', NULL);
-INSERT INTO `activity_log` VALUES (10, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-07 17:53:27', '2024-01-07 17:53:27', NULL);
-INSERT INTO `activity_log` VALUES (11, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-07 17:53:33', '2024-01-07 17:53:33', NULL);
-INSERT INTO `activity_log` VALUES (12, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 09:14:11', '2024-01-09 09:14:11', NULL);
-INSERT INTO `activity_log` VALUES (13, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 10 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 13:41:23', '2024-01-09 13:41:23', NULL);
-INSERT INTO `activity_log` VALUES (14, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 10 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 13:45:50', '2024-01-09 13:45:50', NULL);
-INSERT INTO `activity_log` VALUES (15, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 11 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 13:47:41', '2024-01-09 13:47:41', NULL);
-INSERT INTO `activity_log` VALUES (16, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 12 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 13:50:33', '2024-01-09 13:50:33', NULL);
-INSERT INTO `activity_log` VALUES (17, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 18:19:16', '2024-01-09 18:19:16', NULL);
-INSERT INTO `activity_log` VALUES (18, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 18:24:08', '2024-01-09 18:24:08', NULL);
-INSERT INTO `activity_log` VALUES (19, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-09 18:24:15', '2024-01-09 18:24:15', NULL);
-INSERT INTO `activity_log` VALUES (20, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-09 21:14:46', '2024-01-09 21:14:46', NULL);
-INSERT INTO `activity_log` VALUES (21, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 21:14:53', '2024-01-09 21:14:53', NULL);
-INSERT INTO `activity_log` VALUES (22, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 21:17:32', '2024-01-09 21:17:32', NULL);
-INSERT INTO `activity_log` VALUES (23, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-09 21:17:40', '2024-01-09 21:17:40', NULL);
-INSERT INTO `activity_log` VALUES (24, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-09 23:11:58', '2024-01-09 23:11:58', NULL);
-INSERT INTO `activity_log` VALUES (25, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 23:12:08', '2024-01-09 23:12:08', NULL);
-INSERT INTO `activity_log` VALUES (26, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 23:12:55', '2024-01-09 23:12:55', NULL);
-INSERT INTO `activity_log` VALUES (27, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-09 23:13:10', '2024-01-09 23:13:10', NULL);
-INSERT INTO `activity_log` VALUES (28, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-09 23:42:24', '2024-01-09 23:42:24', NULL);
-INSERT INTO `activity_log` VALUES (29, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-09 23:42:31', '2024-01-09 23:42:31', NULL);
-INSERT INTO `activity_log` VALUES (30, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-10 06:32:55', '2024-01-10 06:32:55', NULL);
-INSERT INTO `activity_log` VALUES (31, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-10 09:50:43', '2024-01-10 09:50:43', NULL);
-INSERT INTO `activity_log` VALUES (32, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-10 09:50:49', '2024-01-10 09:50:49', NULL);
-INSERT INTO `activity_log` VALUES (33, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-10 09:50:57', '2024-01-10 09:50:57', NULL);
-INSERT INTO `activity_log` VALUES (34, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-11 17:20:57', '2024-01-11 17:20:57', NULL);
-INSERT INTO `activity_log` VALUES (35, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-12 06:49:32', '2024-01-12 06:49:32', NULL);
-INSERT INTO `activity_log` VALUES (36, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-12 20:16:59', '2024-01-12 20:16:59', NULL);
-INSERT INTO `activity_log` VALUES (37, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-13 08:03:26', '2024-01-13 08:03:26', NULL);
-INSERT INTO `activity_log` VALUES (38, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-13 12:25:57', '2024-01-13 12:25:57', NULL);
-INSERT INTO `activity_log` VALUES (39, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 09:06:10', '2024-01-14 09:06:10', NULL);
-INSERT INTO `activity_log` VALUES (40, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 10:59:04', '2024-01-14 10:59:04', NULL);
-INSERT INTO `activity_log` VALUES (41, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 13:10:29', '2024-01-14 13:10:29', NULL);
-INSERT INTO `activity_log` VALUES (42, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 13:21:22', '2024-01-14 13:21:22', NULL);
-INSERT INTO `activity_log` VALUES (43, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 13:21:36', '2024-01-14 13:21:36', NULL);
-INSERT INTO `activity_log` VALUES (44, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 13:22:51', '2024-01-14 13:22:51', NULL);
-INSERT INTO `activity_log` VALUES (45, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 13:23:34', '2024-01-14 13:23:34', NULL);
-INSERT INTO `activity_log` VALUES (46, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 15:04:07', '2024-01-14 15:04:07', NULL);
-INSERT INTO `activity_log` VALUES (47, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 15:04:11', '2024-01-14 15:04:11', NULL);
-INSERT INTO `activity_log` VALUES (48, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 15:49:37', '2024-01-14 15:49:37', NULL);
-INSERT INTO `activity_log` VALUES (49, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 15:49:45', '2024-01-14 15:49:45', NULL);
-INSERT INTO `activity_log` VALUES (50, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 15:58:13', '2024-01-14 15:58:13', NULL);
-INSERT INTO `activity_log` VALUES (51, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 15:58:16', '2024-01-14 15:58:16', NULL);
-INSERT INTO `activity_log` VALUES (52, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 15:58:33', '2024-01-14 15:58:33', NULL);
-INSERT INTO `activity_log` VALUES (53, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 15:58:37', '2024-01-14 15:58:37', NULL);
-INSERT INTO `activity_log` VALUES (54, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 15:58:44', '2024-01-14 15:58:44', NULL);
-INSERT INTO `activity_log` VALUES (55, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 15:58:50', '2024-01-14 15:58:50', NULL);
-INSERT INTO `activity_log` VALUES (56, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 16:00:23', '2024-01-14 16:00:23', NULL);
-INSERT INTO `activity_log` VALUES (57, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 16:00:25', '2024-01-14 16:00:25', NULL);
-INSERT INTO `activity_log` VALUES (58, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 16:00:47', '2024-01-14 16:00:47', NULL);
-INSERT INTO `activity_log` VALUES (59, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 16:00:54', '2024-01-14 16:00:54', NULL);
-INSERT INTO `activity_log` VALUES (60, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 17:28:38', '2024-01-14 17:28:38', NULL);
-INSERT INTO `activity_log` VALUES (61, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 17:28:41', '2024-01-14 17:28:41', NULL);
-INSERT INTO `activity_log` VALUES (62, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 17:29:02', '2024-01-14 17:29:02', NULL);
-INSERT INTO `activity_log` VALUES (63, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-01-14 17:29:46', '2024-01-14 17:29:46', NULL);
-INSERT INTO `activity_log` VALUES (64, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 17:29:49', '2024-01-14 17:29:49', NULL);
-INSERT INTO `activity_log` VALUES (65, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 17:38:54', '2024-01-14 17:38:54', NULL);
-INSERT INTO `activity_log` VALUES (66, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 17:39:00', '2024-01-14 17:39:00', NULL);
-INSERT INTO `activity_log` VALUES (67, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 18:12:32', '2024-01-14 18:12:32', NULL);
-INSERT INTO `activity_log` VALUES (68, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:16:40', '2024-01-14 21:16:40', NULL);
-INSERT INTO `activity_log` VALUES (69, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:17:49', '2024-01-14 21:17:49', NULL);
-INSERT INTO `activity_log` VALUES (70, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:18:16', '2024-01-14 21:18:16', NULL);
-INSERT INTO `activity_log` VALUES (71, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:18:23', '2024-01-14 21:18:23', NULL);
-INSERT INTO `activity_log` VALUES (72, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:18:40', '2024-01-14 21:18:40', NULL);
-INSERT INTO `activity_log` VALUES (73, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:18:45', '2024-01-14 21:18:45', NULL);
-INSERT INTO `activity_log` VALUES (74, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:18:52', '2024-01-14 21:18:52', NULL);
-INSERT INTO `activity_log` VALUES (75, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:18:58', '2024-01-14 21:18:58', NULL);
-INSERT INTO `activity_log` VALUES (76, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:22:03', '2024-01-14 21:22:03', NULL);
-INSERT INTO `activity_log` VALUES (77, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:22:08', '2024-01-14 21:22:08', NULL);
-INSERT INTO `activity_log` VALUES (78, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:23:51', '2024-01-14 21:23:51', NULL);
-INSERT INTO `activity_log` VALUES (79, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:23:57', '2024-01-14 21:23:57', NULL);
-INSERT INTO `activity_log` VALUES (80, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:25:14', '2024-01-14 21:25:14', NULL);
-INSERT INTO `activity_log` VALUES (81, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:26:25', '2024-01-14 21:26:25', NULL);
-INSERT INTO `activity_log` VALUES (82, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:33:27', '2024-01-14 21:33:27', NULL);
-INSERT INTO `activity_log` VALUES (83, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:33:31', '2024-01-14 21:33:31', NULL);
-INSERT INTO `activity_log` VALUES (84, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 21:34:06', '2024-01-14 21:34:06', NULL);
-INSERT INTO `activity_log` VALUES (85, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 21:34:11', '2024-01-14 21:34:11', NULL);
-INSERT INTO `activity_log` VALUES (86, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-14 22:41:14', '2024-01-14 22:41:14', NULL);
-INSERT INTO `activity_log` VALUES (87, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-01-14 22:42:02', '2024-01-14 22:42:02', NULL);
-INSERT INTO `activity_log` VALUES (88, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-01-14 22:42:18', '2024-01-14 22:42:18', NULL);
-INSERT INTO `activity_log` VALUES (89, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-14 22:42:26', '2024-01-14 22:42:26', NULL);
-INSERT INTO `activity_log` VALUES (90, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 03:37:21', '2024-01-15 03:37:21', NULL);
-INSERT INTO `activity_log` VALUES (91, 'default', 'ADMIN Delete User: 3 - ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 04:52:18', '2024-01-15 04:52:18', NULL);
-INSERT INTO `activity_log` VALUES (92, 'default', 'Mengedit User Luther Y Worabay', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 05:16:37', '2024-01-15 05:16:37', NULL);
-INSERT INTO `activity_log` VALUES (93, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 05:17:05', '2024-01-15 05:17:05', NULL);
-INSERT INTO `activity_log` VALUES (94, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 05:17:36', '2024-01-15 05:17:36', NULL);
-INSERT INTO `activity_log` VALUES (95, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 05:37:28', '2024-01-15 05:37:28', NULL);
-INSERT INTO `activity_log` VALUES (96, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 05:37:32', '2024-01-15 05:37:32', NULL);
-INSERT INTO `activity_log` VALUES (97, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 05:39:53', '2024-01-15 05:39:53', NULL);
-INSERT INTO `activity_log` VALUES (98, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-15 05:40:05', '2024-01-15 05:40:05', NULL);
-INSERT INTO `activity_log` VALUES (99, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-15 05:59:26', '2024-01-15 05:59:26', NULL);
-INSERT INTO `activity_log` VALUES (100, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 05:59:28', '2024-01-15 05:59:28', NULL);
-INSERT INTO `activity_log` VALUES (101, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 10:44:53', '2024-01-15 10:44:53', NULL);
-INSERT INTO `activity_log` VALUES (102, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 10:45:34', '2024-01-15 10:45:34', NULL);
-INSERT INTO `activity_log` VALUES (103, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-15 10:45:42', '2024-01-15 10:45:42', NULL);
-INSERT INTO `activity_log` VALUES (104, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-01-15 10:46:44', '2024-01-15 10:46:44', NULL);
-INSERT INTO `activity_log` VALUES (105, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 16:18:04', '2024-01-15 16:18:04', NULL);
-INSERT INTO `activity_log` VALUES (106, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-15 16:18:19', '2024-01-15 16:18:19', NULL);
-INSERT INTO `activity_log` VALUES (107, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-16 11:37:54', '2024-01-16 11:37:54', NULL);
-INSERT INTO `activity_log` VALUES (108, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-16 11:38:56', '2024-01-16 11:38:56', NULL);
-INSERT INTO `activity_log` VALUES (109, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-01-20 00:13:46', '2024-01-20 00:13:46', NULL);
-INSERT INTO `activity_log` VALUES (110, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-02-24 23:06:13', '2024-02-24 23:06:13', NULL);
-INSERT INTO `activity_log` VALUES (111, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-05 13:52:52', '2024-05-05 13:52:52', NULL);
-INSERT INTO `activity_log` VALUES (112, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-05 13:53:15', '2024-05-05 13:53:15', NULL);
-INSERT INTO `activity_log` VALUES (113, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-05 13:53:34', '2024-05-05 13:53:34', NULL);
-INSERT INTO `activity_log` VALUES (114, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-05 14:09:44', '2024-05-05 14:09:44', NULL);
-INSERT INTO `activity_log` VALUES (115, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-05 14:09:50', '2024-05-05 14:09:50', NULL);
-INSERT INTO `activity_log` VALUES (116, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-05 14:10:09', '2024-05-05 14:10:09', NULL);
-INSERT INTO `activity_log` VALUES (117, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-05 14:10:16', '2024-05-05 14:10:16', NULL);
-INSERT INTO `activity_log` VALUES (118, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-05 14:35:04', '2024-05-05 14:35:04', NULL);
-INSERT INTO `activity_log` VALUES (119, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-05 14:35:10', '2024-05-05 14:35:10', NULL);
-INSERT INTO `activity_log` VALUES (120, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-05 15:29:36', '2024-05-05 15:29:36', NULL);
-INSERT INTO `activity_log` VALUES (121, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-05-05 15:29:46', '2024-05-05 15:29:46', NULL);
-INSERT INTO `activity_log` VALUES (122, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-05-05 16:17:55', '2024-05-05 16:17:55', NULL);
-INSERT INTO `activity_log` VALUES (123, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-05 16:18:08', '2024-05-05 16:18:08', NULL);
-INSERT INTO `activity_log` VALUES (124, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-09 19:36:37', '2024-05-09 19:36:37', NULL);
-INSERT INTO `activity_log` VALUES (125, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-10 17:52:14', '2024-05-10 17:52:14', NULL);
-INSERT INTO `activity_log` VALUES (126, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-10 19:29:59', '2024-05-10 19:29:59', NULL);
-INSERT INTO `activity_log` VALUES (127, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-10 20:51:59', '2024-05-10 20:51:59', NULL);
-INSERT INTO `activity_log` VALUES (128, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-11 10:02:55', '2024-05-11 10:02:55', NULL);
-INSERT INTO `activity_log` VALUES (129, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-15 08:44:12', '2024-05-15 08:44:12', NULL);
-INSERT INTO `activity_log` VALUES (130, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-15 15:27:01', '2024-05-15 15:27:01', NULL);
-INSERT INTO `activity_log` VALUES (131, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 00:30:43', '2024-05-18 00:30:43', NULL);
-INSERT INTO `activity_log` VALUES (132, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 07:40:13', '2024-05-18 07:40:13', NULL);
-INSERT INTO `activity_log` VALUES (133, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 14:54:17', '2024-05-18 14:54:17', NULL);
-INSERT INTO `activity_log` VALUES (134, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 1 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:02:07', '2024-05-18 15:02:07', NULL);
-INSERT INTO `activity_log` VALUES (135, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 2 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:03:46', '2024-05-18 15:03:46', NULL);
-INSERT INTO `activity_log` VALUES (136, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 3 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:03:53', '2024-05-18 15:03:53', NULL);
-INSERT INTO `activity_log` VALUES (137, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 4 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:02', '2024-05-18 15:04:02', NULL);
-INSERT INTO `activity_log` VALUES (138, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 5 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:11', '2024-05-18 15:04:11', NULL);
-INSERT INTO `activity_log` VALUES (139, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 6 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:17', '2024-05-18 15:04:17', NULL);
-INSERT INTO `activity_log` VALUES (140, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 7 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:04:26', '2024-05-18 15:04:26', NULL);
-INSERT INTO `activity_log` VALUES (141, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 8 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:05:11', '2024-05-18 15:05:11', NULL);
-INSERT INTO `activity_log` VALUES (142, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 9 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:05:18', '2024-05-18 15:05:18', NULL);
-INSERT INTO `activity_log` VALUES (143, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 124 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:42:56', '2024-05-18 15:42:56', NULL);
-INSERT INTO `activity_log` VALUES (144, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 124 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:44:10', '2024-05-18 15:44:10', NULL);
-INSERT INTO `activity_log` VALUES (145, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-18 15:56:52', '2024-05-18 15:56:52', NULL);
-INSERT INTO `activity_log` VALUES (146, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-18 15:56:57', '2024-05-18 15:56:57', NULL);
-INSERT INTO `activity_log` VALUES (147, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-24 16:53:05', '2024-05-24 16:53:05', NULL);
-INSERT INTO `activity_log` VALUES (148, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-24 16:54:12', '2024-05-24 16:54:12', NULL);
-INSERT INTO `activity_log` VALUES (149, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-24 16:54:19', '2024-05-24 16:54:19', NULL);
-INSERT INTO `activity_log` VALUES (150, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-25 12:52:52', '2024-05-25 12:52:52', NULL);
-INSERT INTO `activity_log` VALUES (151, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-25 12:53:44', '2024-05-25 12:53:44', NULL);
-INSERT INTO `activity_log` VALUES (152, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-25 12:57:17', '2024-05-25 12:57:17', NULL);
-INSERT INTO `activity_log` VALUES (153, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-25 12:57:24', '2024-05-25 12:57:24', NULL);
-INSERT INTO `activity_log` VALUES (154, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:19:01', '2024-05-27 14:19:01', NULL);
-INSERT INTO `activity_log` VALUES (155, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:19:11', '2024-05-27 14:19:11', NULL);
-INSERT INTO `activity_log` VALUES (156, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:30:36', '2024-05-27 14:30:36', NULL);
-INSERT INTO `activity_log` VALUES (157, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:45:31', '2024-05-27 14:45:31', NULL);
-INSERT INTO `activity_log` VALUES (158, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 14:45:41', '2024-05-27 14:45:41', NULL);
-INSERT INTO `activity_log` VALUES (159, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 102 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:31:04', '2024-05-27 15:31:04', NULL);
-INSERT INTO `activity_log` VALUES (160, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 1 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:09', '2024-05-27 15:33:09', NULL);
-INSERT INTO `activity_log` VALUES (161, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 101 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:23', '2024-05-27 15:33:23', NULL);
-INSERT INTO `activity_log` VALUES (162, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 103 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:29', '2024-05-27 15:33:29', NULL);
-INSERT INTO `activity_log` VALUES (163, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 104 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:36', '2024-05-27 15:33:36', NULL);
-INSERT INTO `activity_log` VALUES (164, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 105 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:33:44', '2024-05-27 15:33:44', NULL);
-INSERT INTO `activity_log` VALUES (165, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 124 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:34:31', '2024-05-27 15:34:31', NULL);
-INSERT INTO `activity_log` VALUES (166, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 15:51:55', '2024-05-27 15:51:55', NULL);
-INSERT INTO `activity_log` VALUES (167, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 15:52:03', '2024-05-27 15:52:03', NULL);
-INSERT INTO `activity_log` VALUES (168, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 16:14:30', '2024-05-27 16:14:30', NULL);
-INSERT INTO `activity_log` VALUES (169, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 16:14:35', '2024-05-27 16:14:35', NULL);
-INSERT INTO `activity_log` VALUES (170, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 16:20:10', '2024-05-27 16:20:10', NULL);
-INSERT INTO `activity_log` VALUES (171, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 16:20:17', '2024-05-27 16:20:17', NULL);
-INSERT INTO `activity_log` VALUES (172, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 21:33:24', '2024-05-27 21:33:24', NULL);
-INSERT INTO `activity_log` VALUES (173, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-05-27 21:33:37', '2024-05-27 21:33:37', NULL);
-INSERT INTO `activity_log` VALUES (174, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-27 21:33:59', '2024-05-27 21:33:59', NULL);
-INSERT INTO `activity_log` VALUES (175, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-28 19:20:59', '2024-05-28 19:20:59', NULL);
-INSERT INTO `activity_log` VALUES (176, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-05-28 22:12:41', '2024-05-28 22:12:41', NULL);
+INSERT INTO `activity_log` VALUES (1, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-06 09:58:09', '2024-06-06 09:58:09', NULL);
+INSERT INTO `activity_log` VALUES (2, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-06-06 09:58:33', '2024-06-06 09:58:33', NULL);
 
 -- ----------------------------
 -- Table structure for analisis
@@ -231,29 +57,23 @@ CREATE TABLE `analisis`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of analisis
 -- ----------------------------
-INSERT INTO `analisis` VALUES (1, 3, 2, 'p1', '0.14', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `analisis` VALUES (2, 3, 2, 'p2', '1', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `analisis` VALUES (3, 3, 2, 'p3', '3', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `analisis` VALUES (4, 3, 2, 'p4', '7', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `analisis` VALUES (5, 3, 2, 'p5', '7', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `analisis` VALUES (6, 3, 2, 'p6', '7', NULL, '2024-05-28 19:29:47', '2024-05-28 19:29:47');
 
 -- ----------------------------
 -- Table structure for detail
 -- ----------------------------
 DROP TABLE IF EXISTS `detail`;
 CREATE TABLE `detail`  (
-  `id` int NOT NULL,
-  `id_hasil` int NULL DEFAULT NULL,
-  `id_analisis` int NULL DEFAULT NULL,
-  `nim` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `pertanyaan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `jawaban` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `hasil_id` int NULL DEFAULT NULL,
+  `perbandingan_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `totalEvn` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
@@ -274,12 +94,11 @@ CREATE TABLE `hasil`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of hasil
 -- ----------------------------
-INSERT INTO `hasil` VALUES (1, 2, 3, '12345678', 'Unggul di Kemampuan Menjelaskan Informasi', '2024-05-28 22:22:11', '2024-05-28 22:22:11');
 
 -- ----------------------------
 -- Table structure for jawaban
@@ -295,35 +114,11 @@ CREATE TABLE `jawaban`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 125 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jawaban
 -- ----------------------------
-INSERT INTO `jawaban` VALUES (1, 2, 3, 101, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (2, 2, 3, 102, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (3, 2, 3, 103, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (4, 2, 3, 104, 'p1', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (5, 2, 3, 105, 'p2', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (6, 2, 3, 106, 'p2', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (7, 2, 3, 107, 'p2', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (8, 2, 3, 108, 'p2', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (9, 2, 3, 109, 'p3', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (10, 2, 3, 110, 'p3', '0', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (11, 2, 3, 111, 'p3', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (12, 2, 3, 112, 'p3', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (13, 2, 3, 113, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (14, 2, 3, 114, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (15, 2, 3, 115, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (16, 2, 3, 116, 'p4', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (17, 2, 3, 117, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (18, 2, 3, 118, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (19, 2, 3, 119, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (20, 2, 3, 120, 'p5', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (21, 2, 3, 121, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (22, 2, 3, 122, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (23, 2, 3, 123, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
-INSERT INTO `jawaban` VALUES (24, 2, 3, 124, 'p6', '1', '2024-05-28 19:29:47', '2024-05-28 19:29:47');
 
 -- ----------------------------
 -- Table structure for jurusan

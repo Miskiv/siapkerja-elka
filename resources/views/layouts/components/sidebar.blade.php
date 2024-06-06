@@ -67,11 +67,11 @@
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Isi Kuesioner</span></a>
     </li>
-    <li class="nav-item @if(isset($title) && $title === 'Hasil Analisis') active @endif">
+    {{-- <li class="nav-item @if(isset($title) && $title === 'Hasil Analisis') active @endif">
         <a class="nav-link" href="{{ route('hasil-analisis.index') }}">
             <i class="fas fa-fw fa-chart-line"></i>
             <span>Hasil Analisis</span></a>
-    </li>
+    </li> --}}
     @endrole
 
 </ul>
