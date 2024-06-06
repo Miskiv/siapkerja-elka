@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Analisis;
 use App\Models\Hasil;
+use App\Models\KriteriaSub;
 use App\Models\TipeKriteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,19 @@ class HasilAnalisisController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $title = 'Hasil Analitic';
+        $hasil = Hasil::with('Detail')->where('kriteria_id', $id)->where('user_id', Auth::user()->id)->first();
+        $kriteria_sub = KriteriaSub::where('kriteria_id', $id)->get();
+        $totalEvn = $hasil->Detail->pluck('totalEvn')->map(function($value) {
+            return (float) $value;
+        });
+        
+        $perbandinganCode = $hasil->Detail->pluck('perbandingan_code');
+        
+        $jsonTotalEvn = $totalEvn->toJson();
+        $jsonPerbandinganCode = $perbandinganCode->toJson();
+        
+        return view('apps.hasil-analisis.index', compact('title', 'hasil', 'jsonTotalEvn', 'jsonPerbandinganCode', 'kriteria_sub'));
     }
 
     /**

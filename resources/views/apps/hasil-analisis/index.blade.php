@@ -8,23 +8,30 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis {{ $hasil->Kriteria->kriteria_name }}</h6>
         </div>
         <div class="card-body">
-            {{-- <h6 class="text-center">Hasil Analisis belum ditampilkan.</h6> --}}
+            <h6 class="text-center">Kesimpulan : {{ $hasil->kesimpulan }}</h6>
             <div id="chart">
             </div>
+            <div id="legend" class="text-center">
+                @foreach ($kriteria_sub as $row)
+                <p><strong>C{{ $loop->iteration }}:</strong> {{ $row->nama }}</p>
+                @endforeach
+            </div>
+            
         </div>
     </div>
 @stop
 @push('js')
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-  // Data untuk diagram
+  var totalEvn = {!! $jsonTotalEvn !!};
+  var perbandinganCode = {!! $jsonPerbandinganCode !!};
   var options = {
       series: [{
-          name: 'Total',
-          data: [0.9, 0.2, 0.4, 0.5]
+          name: 'Total Evn',
+          data: totalEvn
       }],
       chart: {
           type: 'bar',
@@ -48,11 +55,11 @@
           colors: ['transparent']
       },
       xaxis: {
-          categories: ['C1', 'C2', 'C3', 'C4'],
+          categories: perbandinganCode,
       },
       yaxis: {
           title: {
-              text: 'Total'
+              text: 'Total Evn'
           }
       },
       fill: {

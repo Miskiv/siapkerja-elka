@@ -18,7 +18,8 @@
                     @if (!($data['exist']->where('kriteria_id', $row->id)->first()))
                         <button class="btn btn-primary perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Mulai Tes →</button>
                     @else
-                    <button class="btn btn-warning perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Lihat Hasil Tes →</button>
+                    {{-- <button class="btn btn-warning perhatian" data-toggle="modal" data-target="#hasilModal{{ $row->id }}" data-id="{{ $row->id }}">Lihat Hasil Tes →</button> --}}
+                    <button class="btn btn-warning perhatian" onclick="redirectToHasil({{ $row->id }})">Lihat Hasil Tes →</button>
                     <button class="btn btn-info perhatian" data-toggle="modal" data-target="#perhatianModal{{ $row->id }}" data-id="{{ $row->id }}">Tes Ulang →</button>
                     @endif
                     @include('apps.kuesioner.components.modal-perhatian')
@@ -29,6 +30,15 @@
 </div>
 @stop
 @push('js')
+<script>
+    function redirectToHasil(id) {
+        // Gunakan blade untuk mengenerate base URL dari route
+        var url = '{{ route("hasil-analisis.show", ":id") }}';
+        url = url.replace(':id', id);
+        window.location.href = url;
+    }
+</script>
+    
 <script>
     $(document).ready(function() {
         $('.perhatian').on('click', function (event) {
