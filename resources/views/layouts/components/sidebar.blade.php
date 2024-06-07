@@ -13,27 +13,19 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
-    @role('User')
-
     <!-- Nav Item - Dashboard -->
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item">
+        <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li> --}}
-    @endrole
+            <span>Home</span></a>
+    </li>
 
     <!-- Heading -->
     <div class="sidebar-heading">Navigasi Utama</div>
     <!-- Akses Admin -->
-    @role('Admin')
-    {{-- <li class="nav-item @if(isset($title) && $title === 'Jurusan') active @endif">
-        <a class="nav-link" href="{{ route('jurusan.index') }}">
-            <i class="fas fa-fw fa-landmark"></i>
-            <span>Jurusan</span></a>
-    </li> --}}
+    @role('Admin|Staff Departemen|TIM UHI')
     <li class="nav-item @if(isset($title) && $title === 'Daftar Mahasiswa') active @endif">
-        <a class="nav-link" href="{{ route('daftar-mahasiswa.index') }}">
+        <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>Daftar Mahasiswa</span></a>
     </li>

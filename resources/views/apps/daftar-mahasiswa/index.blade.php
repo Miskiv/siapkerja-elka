@@ -1,14 +1,17 @@
 @extends('layouts.app')
 @section('title', $title)
 @section('content')
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tabel Daftar Mahasiswa</h1>
-    <p class="mb-4">Tabel ini berisi tentang mahasiswa yang sudah membuat akun di aplikasi ini.</p>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-2 text-gray-800">Daftar Mahasiswa</h1>
+    <a href="{{ route('users.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Back</a>
+</div>
+<p class="mb-4">Tabel ini berisi tentang mahasiswa yang sudah membuat akun di aplikasi ini.</p>
+<!-- Page Heading -->
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tabel Mahasiswa</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Mahasiswa {{ $prodi }}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,9 +37,9 @@
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td>{{ $row->updated_at->diffForHumans() }}</td>
                                 <td>
-                                    <button index="{{$i}}" type="button" class="btn btn-primary btn-sm edit_button">
+                                    {{-- <button index="{{$i}}" type="button" class="btn btn-primary btn-sm edit_button">
                                         <i class="fas fa-edit"></i> Edit
-                                    </button>
+                                    </button> --}}
 
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $row->id }}">
                                         <i class="fas fa-trash"></i> Delete
@@ -52,7 +55,7 @@
         </div>
     </div>
     @include('apps.daftar-mahasiswa.components.modal-add')
-    @include('apps.daftar-mahasiswa.components.modal-edit')
+    {{-- @include('apps.daftar-mahasiswa.components.modal-edit') --}}
 @stop
 @push('js')
     <script>

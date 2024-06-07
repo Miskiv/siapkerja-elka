@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurusan;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,6 +18,8 @@ class DaftarMahasiswaController extends Controller
     {
         $data['mahasiswa'] = User::role('User')->with('roles')->get();
         $title = 'Daftar Mahasiswa';
+        $data['jurusan'] = Jurusan::get();
+        $data['role'] = Role::get();
         return view('apps.daftar-mahasiswa.index', compact('title', 'data'));
     }
 

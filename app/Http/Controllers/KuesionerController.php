@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KuesionerController extends Controller
 {
@@ -662,7 +663,7 @@ class KuesionerController extends Controller
                 ]);
             }
         }
-        
+        Alert::success('Berhasil', 'Test telah selesai');
         return redirect(route('isi-kuesioner.index'));
     }
 

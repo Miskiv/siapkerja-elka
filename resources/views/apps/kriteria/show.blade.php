@@ -4,7 +4,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">{{ $data['kriteria']->kriteria_name }}</h1>
     <a href="{{ route('kriteria.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Back</a>
-    <a href="{{ url('comparison', $data['kriteria']->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm ml-2"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Generate</a>
+    {{-- <a href="{{ url('comparison', $data['kriteria']->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm ml-2"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Generate</a> --}}
 </div>
     <p class="mb-4">{{ $data['kriteria']->description }}.</p>
 

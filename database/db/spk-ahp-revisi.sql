@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Local Saya
+ Source Server         : Local
  Source Server Type    : MySQL
  Source Server Version : 80030 (8.0.30)
  Source Host           : localhost:3306
- Source Schema         : spk-ahp
+ Source Schema         : spk-ahp-new
 
  Target Server Type    : MySQL
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 06/06/2024 09:59:26
+ Date: 07/06/2024 20:16:47
 */
 
 SET NAMES utf8mb4;
@@ -35,13 +35,37 @@ CREATE TABLE `activity_log`  (
   `batch_uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `activity_log_log_name_index`(`log_name` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of activity_log
 -- ----------------------------
 INSERT INTO `activity_log` VALUES (1, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-06 09:58:09', '2024-06-06 09:58:09', NULL);
 INSERT INTO `activity_log` VALUES (2, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-06-06 09:58:33', '2024-06-06 09:58:33', NULL);
+INSERT INTO `activity_log` VALUES (3, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 16:16:09', '2024-06-07 16:16:09', NULL);
+INSERT INTO `activity_log` VALUES (4, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-06-07 16:16:14', '2024-06-07 16:16:14', NULL);
+INSERT INTO `activity_log` VALUES (5, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-06-07 16:16:38', '2024-06-07 16:16:38', NULL);
+INSERT INTO `activity_log` VALUES (6, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 16:16:44', '2024-06-07 16:16:44', NULL);
+INSERT INTO `activity_log` VALUES (7, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-06-07 16:17:09', '2024-06-07 16:17:09', NULL);
+INSERT INTO `activity_log` VALUES (8, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 1 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 16:26:18', '2024-06-07 16:26:18', NULL);
+INSERT INTO `activity_log` VALUES (9, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 1 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 16:26:37', '2024-06-07 16:26:37', NULL);
+INSERT INTO `activity_log` VALUES (10, 'default', 'ADMIN Menambahkan pertanyaan dengan id = 1 ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 16:37:34', '2024-06-07 16:37:34', NULL);
+INSERT INTO `activity_log` VALUES (11, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 17:12:32', '2024-06-07 17:12:32', NULL);
+INSERT INTO `activity_log` VALUES (12, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-06-07 17:13:07', '2024-06-07 17:13:07', NULL);
+INSERT INTO `activity_log` VALUES (13, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-06-07 17:13:43', '2024-06-07 17:13:43', NULL);
+INSERT INTO `activity_log` VALUES (14, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-06-07 17:13:49', '2024-06-07 17:13:49', NULL);
+INSERT INTO `activity_log` VALUES (15, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 3, 'App\\Models\\User', '[]', '2024-06-07 18:02:38', '2024-06-07 18:02:38', NULL);
+INSERT INTO `activity_log` VALUES (16, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 18:02:46', '2024-06-07 18:02:46', NULL);
+INSERT INTO `activity_log` VALUES (17, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 2, 'App\\Models\\User', '[]', '2024-06-07 18:53:29', '2024-06-07 18:53:29', NULL);
+INSERT INTO `activity_log` VALUES (18, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 18:56:08', '2024-06-07 18:56:08', NULL);
+INSERT INTO `activity_log` VALUES (19, 'default', 'Melakukan Logout Aplikasi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 18:57:47', '2024-06-07 18:57:47', NULL);
+INSERT INTO `activity_log` VALUES (20, 'default', 'Menambahkan UserAlbert', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 19:03:56', '2024-06-07 19:03:56', NULL);
+INSERT INTO `activity_log` VALUES (21, 'default', 'Melakukan Login Aplikasi', NULL, NULL, 4, 'App\\Models\\User', '[]', '2024-06-07 19:05:06', '2024-06-07 19:05:06', NULL);
+INSERT INTO `activity_log` VALUES (22, 'default', 'Menambahkan UserLuther', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 20:03:34', '2024-06-07 20:03:34', NULL);
+INSERT INTO `activity_log` VALUES (23, 'default', 'Menambahkan UserDani Ali Cahyadi', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 20:13:46', '2024-06-07 20:13:46', NULL);
+INSERT INTO `activity_log` VALUES (24, 'default', 'ADMIN Delete User: 6 - ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 20:14:54', '2024-06-07 20:14:54', NULL);
+INSERT INTO `activity_log` VALUES (25, 'default', 'ADMIN Delete User: 4 - ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 20:15:24', '2024-06-07 20:15:24', NULL);
+INSERT INTO `activity_log` VALUES (26, 'default', 'ADMIN Delete User: 5 - ', NULL, NULL, 1, 'App\\Models\\User', '[]', '2024-06-07 20:15:40', '2024-06-07 20:15:40', NULL);
 
 -- ----------------------------
 -- Table structure for analisis
@@ -57,11 +81,54 @@ CREATE TABLE `analisis`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of analisis
 -- ----------------------------
+INSERT INTO `analisis` VALUES (1, 3, 2, 'p1', '7', NULL, '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `analisis` VALUES (2, 3, 2, 'p2', '7', NULL, '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `analisis` VALUES (3, 3, 2, 'p3', '7', NULL, '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `analisis` VALUES (4, 3, 2, 'p4', '7', NULL, '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `analisis` VALUES (5, 3, 2, 'p5', '7', NULL, '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `analisis` VALUES (6, 3, 2, 'p6', '7', NULL, '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `analisis` VALUES (7, 2, 2, 'p1', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (8, 2, 2, 'p2', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (9, 2, 2, 'p3', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (10, 2, 2, 'p4', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (11, 2, 2, 'p5', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (12, 2, 2, 'p6', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (13, 2, 2, 'p7', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (14, 2, 2, 'p8', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (15, 2, 2, 'p9', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (16, 2, 2, 'p10', '7', NULL, '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `analisis` VALUES (17, 1, 2, 'p1', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (18, 1, 2, 'p2', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (19, 1, 2, 'p3', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (20, 1, 2, 'p4', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (21, 1, 2, 'p5', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (22, 1, 2, 'p6', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (23, 1, 2, 'p7', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (24, 1, 2, 'p8', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (25, 1, 2, 'p9', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (26, 1, 2, 'p10', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (27, 1, 2, 'p11', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (28, 1, 2, 'p12', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (29, 1, 2, 'p13', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (30, 1, 2, 'p14', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (31, 1, 2, 'p15', '7', NULL, '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `analisis` VALUES (32, 3, 3, 'p1', '7', NULL, '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `analisis` VALUES (33, 3, 3, 'p2', '7', NULL, '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `analisis` VALUES (34, 3, 3, 'p3', '7', NULL, '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `analisis` VALUES (35, 3, 3, 'p4', '7', NULL, '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `analisis` VALUES (36, 3, 3, 'p5', '0.14', NULL, '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `analisis` VALUES (37, 3, 3, 'p6', '7', NULL, '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `analisis` VALUES (38, 3, 4, 'p1', '7', NULL, '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `analisis` VALUES (39, 3, 4, 'p2', '7', NULL, '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `analisis` VALUES (40, 3, 4, 'p3', '7', NULL, '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `analisis` VALUES (41, 3, 4, 'p4', '7', NULL, '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `analisis` VALUES (42, 3, 4, 'p5', '7', NULL, '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `analisis` VALUES (43, 3, 4, 'p6', '7', NULL, '2024-06-07 19:05:30', '2024-06-07 19:05:30');
 
 -- ----------------------------
 -- Table structure for detail
@@ -75,11 +142,34 @@ CREATE TABLE `detail`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of detail
 -- ----------------------------
+INSERT INTO `detail` VALUES (1, 1, 'C1', '0.63', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `detail` VALUES (2, 1, 'C2', '0.27', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `detail` VALUES (3, 1, 'C3', '0.07', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `detail` VALUES (4, 1, 'C4', '0.02', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `detail` VALUES (5, 2, 'C1', '0.51', '2024-06-07 16:17:29', '2024-06-07 16:17:29');
+INSERT INTO `detail` VALUES (6, 2, 'C2', '0.28', '2024-06-07 16:17:29', '2024-06-07 16:17:29');
+INSERT INTO `detail` VALUES (7, 2, 'C3', '0.13', '2024-06-07 16:17:29', '2024-06-07 16:17:29');
+INSERT INTO `detail` VALUES (8, 2, 'C4', '0.04', '2024-06-07 16:17:29', '2024-06-07 16:17:29');
+INSERT INTO `detail` VALUES (9, 2, 'C5', '0.04', '2024-06-07 16:17:29', '2024-06-07 16:17:29');
+INSERT INTO `detail` VALUES (10, 3, 'C1', '0.44', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `detail` VALUES (11, 3, 'C2', '0.28', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `detail` VALUES (12, 3, 'C3', '0.16', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `detail` VALUES (13, 3, 'C4', '0.08', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `detail` VALUES (14, 3, 'C5', '0.02', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `detail` VALUES (15, 3, 'C6', '0.01', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `detail` VALUES (16, 4, 'C1', '0.48', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `detail` VALUES (17, 4, 'C2', '0.17', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `detail` VALUES (18, 4, 'C3', '0.17', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `detail` VALUES (19, 4, 'C4', '0.17', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `detail` VALUES (20, 5, 'C1', '0.63', '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `detail` VALUES (21, 5, 'C2', '0.27', '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `detail` VALUES (22, 5, 'C3', '0.07', '2024-06-07 19:05:30', '2024-06-07 19:05:30');
+INSERT INTO `detail` VALUES (23, 5, 'C4', '0.02', '2024-06-07 19:05:30', '2024-06-07 19:05:30');
 
 -- ----------------------------
 -- Table structure for hasil
@@ -94,11 +184,16 @@ CREATE TABLE `hasil`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of hasil
 -- ----------------------------
+INSERT INTO `hasil` VALUES (1, 2, 3, '12345678', 'Unggul di Kemampuan Menguasai Konsep', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `hasil` VALUES (2, 2, 2, '12345678', 'Unggul di Kemampuan Mendefinisikan Informasi', '2024-06-07 16:17:29', '2024-06-07 16:17:29');
+INSERT INTO `hasil` VALUES (3, 2, 1, '12345678', 'Unggul di Kemampuan Belajar dan Adaptasi', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `hasil` VALUES (4, 3, 3, '12345678', 'Unggul di Kemampuan Menguasai Konsep', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `hasil` VALUES (5, 4, 3, NULL, 'Unggul di Kemampuan Menguasai Konsep', '2024-06-07 19:05:30', '2024-06-07 19:05:30');
 
 -- ----------------------------
 -- Table structure for jawaban
@@ -114,45 +209,206 @@ CREATE TABLE `jawaban`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 125 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 173 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jawaban
 -- ----------------------------
+INSERT INTO `jawaban` VALUES (1, 2, 3, 101, 'p1', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (2, 2, 3, 102, 'p1', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (3, 2, 3, 103, 'p1', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (4, 2, 3, 104, 'p1', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (5, 2, 3, 105, 'p2', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (6, 2, 3, 106, 'p2', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (7, 2, 3, 107, 'p2', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (8, 2, 3, 108, 'p2', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (9, 2, 3, 109, 'p3', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (10, 2, 3, 110, 'p3', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (11, 2, 3, 111, 'p3', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (12, 2, 3, 112, 'p3', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (13, 2, 3, 113, 'p4', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (14, 2, 3, 114, 'p4', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (15, 2, 3, 115, 'p4', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (16, 2, 3, 116, 'p4', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (17, 2, 3, 117, 'p5', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (18, 2, 3, 118, 'p5', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (19, 2, 3, 119, 'p5', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (20, 2, 3, 120, 'p5', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (21, 2, 3, 121, 'p6', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (22, 2, 3, 122, 'p6', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (23, 2, 3, 123, 'p6', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (24, 2, 3, 124, 'p6', '1', '2024-06-07 16:16:32', '2024-06-07 16:16:32');
+INSERT INTO `jawaban` VALUES (25, 2, 2, 61, 'p1', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (26, 2, 2, 62, 'p1', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (27, 2, 2, 63, 'p1', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (28, 2, 2, 64, 'p1', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (29, 2, 2, 65, 'p2', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (30, 2, 2, 66, 'p2', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (31, 2, 2, 67, 'p2', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (32, 2, 2, 68, 'p2', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (33, 2, 2, 69, 'p3', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (34, 2, 2, 70, 'p3', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (35, 2, 2, 71, 'p3', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (36, 2, 2, 72, 'p3', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (37, 2, 2, 73, 'p4', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (38, 2, 2, 74, 'p4', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (39, 2, 2, 75, 'p4', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (40, 2, 2, 76, 'p4', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (41, 2, 2, 77, 'p5', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (42, 2, 2, 78, 'p5', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (43, 2, 2, 79, 'p5', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (44, 2, 2, 80, 'p5', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (45, 2, 2, 81, 'p6', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (46, 2, 2, 82, 'p6', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (47, 2, 2, 83, 'p6', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (48, 2, 2, 84, 'p6', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (49, 2, 2, 85, 'p7', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (50, 2, 2, 86, 'p7', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (51, 2, 2, 87, 'p7', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (52, 2, 2, 88, 'p7', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (53, 2, 2, 89, 'p8', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (54, 2, 2, 90, 'p8', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (55, 2, 2, 91, 'p8', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (56, 2, 2, 92, 'p8', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (57, 2, 2, 93, 'p9', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (58, 2, 2, 94, 'p9', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (59, 2, 2, 95, 'p9', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (60, 2, 2, 96, 'p9', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (61, 2, 2, 97, 'p10', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (62, 2, 2, 98, 'p10', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (63, 2, 2, 99, 'p10', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (64, 2, 2, 100, 'p10', '1', '2024-06-07 16:17:28', '2024-06-07 16:17:28');
+INSERT INTO `jawaban` VALUES (65, 2, 1, 1, 'p1', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (66, 2, 1, 2, 'p1', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (67, 2, 1, 3, 'p1', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (68, 2, 1, 4, 'p1', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (69, 2, 1, 5, 'p2', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (70, 2, 1, 6, 'p2', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (71, 2, 1, 7, 'p2', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (72, 2, 1, 8, 'p2', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (73, 2, 1, 9, 'p3', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (74, 2, 1, 10, 'p3', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (75, 2, 1, 11, 'p3', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (76, 2, 1, 12, 'p3', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (77, 2, 1, 13, 'p4', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (78, 2, 1, 14, 'p4', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (79, 2, 1, 15, 'p4', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (80, 2, 1, 16, 'p4', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (81, 2, 1, 17, 'p5', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (82, 2, 1, 18, 'p5', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (83, 2, 1, 19, 'p5', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (84, 2, 1, 20, 'p5', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (85, 2, 1, 21, 'p6', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (86, 2, 1, 22, 'p6', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (87, 2, 1, 23, 'p6', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (88, 2, 1, 24, 'p6', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (89, 2, 1, 25, 'p7', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (90, 2, 1, 26, 'p7', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (91, 2, 1, 27, 'p7', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (92, 2, 1, 28, 'p7', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (93, 2, 1, 29, 'p8', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (94, 2, 1, 30, 'p8', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (95, 2, 1, 31, 'p8', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (96, 2, 1, 32, 'p8', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (97, 2, 1, 33, 'p9', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (98, 2, 1, 34, 'p9', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (99, 2, 1, 35, 'p9', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (100, 2, 1, 36, 'p9', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (101, 2, 1, 37, 'p10', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (102, 2, 1, 38, 'p10', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (103, 2, 1, 39, 'p10', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (104, 2, 1, 40, 'p10', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (105, 2, 1, 41, 'p11', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (106, 2, 1, 42, 'p11', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (107, 2, 1, 43, 'p11', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (108, 2, 1, 44, 'p11', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (109, 2, 1, 45, 'p12', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (110, 2, 1, 46, 'p12', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (111, 2, 1, 47, 'p12', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (112, 2, 1, 48, 'p12', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (113, 2, 1, 49, 'p13', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (114, 2, 1, 50, 'p13', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (115, 2, 1, 51, 'p13', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (116, 2, 1, 52, 'p13', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (117, 2, 1, 53, 'p14', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (118, 2, 1, 54, 'p14', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (119, 2, 1, 55, 'p14', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (120, 2, 1, 56, 'p14', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (121, 2, 1, 57, 'p15', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (122, 2, 1, 58, 'p15', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (123, 2, 1, 59, 'p15', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (124, 2, 1, 60, 'p15', '1', '2024-06-07 16:18:07', '2024-06-07 16:18:07');
+INSERT INTO `jawaban` VALUES (125, 3, 3, 101, 'p1', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (126, 3, 3, 102, 'p1', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (127, 3, 3, 103, 'p1', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (128, 3, 3, 104, 'p1', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (129, 3, 3, 105, 'p2', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (130, 3, 3, 106, 'p2', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (131, 3, 3, 107, 'p2', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (132, 3, 3, 108, 'p2', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (133, 3, 3, 109, 'p3', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (134, 3, 3, 110, 'p3', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (135, 3, 3, 111, 'p3', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (136, 3, 3, 112, 'p3', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (137, 3, 3, 113, 'p4', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (138, 3, 3, 114, 'p4', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (139, 3, 3, 115, 'p4', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (140, 3, 3, 116, 'p4', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (141, 3, 3, 117, 'p5', '0', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (142, 3, 3, 118, 'p5', '0', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (143, 3, 3, 119, 'p5', '0', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (144, 3, 3, 120, 'p5', '0', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (145, 3, 3, 121, 'p6', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (146, 3, 3, 122, 'p6', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (147, 3, 3, 123, 'p6', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (148, 3, 3, 124, 'p6', '1', '2024-06-07 17:13:31', '2024-06-07 17:13:31');
+INSERT INTO `jawaban` VALUES (149, 4, 3, 101, 'p1', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (150, 4, 3, 102, 'p1', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (151, 4, 3, 103, 'p1', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (152, 4, 3, 104, 'p1', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (153, 4, 3, 105, 'p2', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (154, 4, 3, 106, 'p2', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (155, 4, 3, 107, 'p2', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (156, 4, 3, 108, 'p2', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (157, 4, 3, 109, 'p3', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (158, 4, 3, 110, 'p3', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (159, 4, 3, 111, 'p3', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (160, 4, 3, 112, 'p3', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (161, 4, 3, 113, 'p4', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (162, 4, 3, 114, 'p4', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (163, 4, 3, 115, 'p4', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (164, 4, 3, 116, 'p4', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (165, 4, 3, 117, 'p5', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (166, 4, 3, 118, 'p5', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (167, 4, 3, 119, 'p5', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (168, 4, 3, 120, 'p5', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (169, 4, 3, 121, 'p6', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (170, 4, 3, 122, 'p6', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (171, 4, 3, 123, 'p6', '1', '2024-06-07 19:05:29', '2024-06-07 19:05:29');
+INSERT INTO `jawaban` VALUES (172, 4, 3, 124, 'p6', '1', '2024-06-07 19:05:30', '2024-06-07 19:05:30');
 
 -- ----------------------------
 -- Table structure for jurusan
 -- ----------------------------
 DROP TABLE IF EXISTS `jurusan`;
 CREATE TABLE `jurusan`  (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `prodi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `fakultas` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `kode_fakultas` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of jurusan
 -- ----------------------------
-
--- ----------------------------
--- Table structure for mahasiswa
--- ----------------------------
-DROP TABLE IF EXISTS `mahasiswa`;
-CREATE TABLE `mahasiswa`  (
-  `id` int NOT NULL,
-  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `nim` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `prodi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of mahasiswa
--- ----------------------------
+INSERT INTO `jurusan` VALUES (1, 'Pendidikan Teknik Elektronika', 'Fakultas Teknik', '1', '2024-06-07 19:16:11', '2024-06-07 19:16:11');
+INSERT INTO `jurusan` VALUES (2, 'Teknik Elektronika', 'Fakultas Teknik', '1', '2024-06-07 19:16:11', '2024-06-07 19:16:11');
+INSERT INTO `jurusan` VALUES (3, 'Pendidikan Teknik Informatika', 'Fakultas Teknik', '1', '2024-06-07 19:16:11', '2024-06-07 19:16:11');
+INSERT INTO `jurusan` VALUES (4, 'Animasi', 'Fakultas Teknik', '1', '2024-06-07 19:16:11', '2024-06-07 19:16:11');
+INSERT INTO `jurusan` VALUES (5, 'Informatika', 'Fakultas Teknik', '1', '2024-06-07 19:16:11', '2024-06-07 19:16:11');
 
 -- ----------------------------
 -- Table structure for master_kriteria
@@ -165,7 +421,7 @@ CREATE TABLE `master_kriteria`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of master_kriteria
@@ -294,7 +550,7 @@ CREATE TABLE `master_perbandingan`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of master_perbandingan
@@ -319,7 +575,7 @@ CREATE TABLE `master_pertanyaan`  (
 -- ----------------------------
 -- Records of master_pertanyaan
 -- ----------------------------
-INSERT INTO `master_pertanyaan` VALUES (1, 'Rasa ingin tahu : Kemampuan menyampaikan ide secara jelas', 'Rasa ingin tahu : Kemampuan menyampaikan ide secara jelas', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-27 15:33:09');
+INSERT INTO `master_pertanyaan` VALUES (1, 'Rasa ingin tahu saya lebih tinggi dibanding kemampuan menyampaikan ide secara jelas', 'Rasa ingin tahu : Kemampuan menyampaikan ide secara jelas', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-06-07 16:41:45');
 INSERT INTO `master_pertanyaan` VALUES (2, 'Kemampuan penyesuaian : Nyaman berbicara di depan umum', 'Kemampuan penyesuaian : Nyaman berbicara di depan umum', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-18 15:03:46');
 INSERT INTO `master_pertanyaan` VALUES (3, 'Daya tahan : Kemampuan berkomunikasi dalam tim', 'Daya tahan : Kemampuan berkomunikasi dalam tim', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-18 15:03:53');
 INSERT INTO `master_pertanyaan` VALUES (4, 'Evaluasi terus menerus : Dapat membaca dan merespon emosi orang lain', 'Evaluasi terus menerus : Dapat membaca dan merespon emosi orang lain', 1, '1 : 2', 'p1', '2024-05-18 01:07:44', '2024-05-18 15:04:02');
@@ -580,6 +836,8 @@ CREATE TABLE `roles`  (
 -- ----------------------------
 INSERT INTO `roles` VALUES (1, 'Admin', 'web', '2022-06-01 19:37:52', '2022-06-01 19:37:55');
 INSERT INTO `roles` VALUES (2, 'User', 'web', '2022-06-01 19:37:57', '2022-06-01 19:37:59');
+INSERT INTO `roles` VALUES (3, 'Staff Departemen', 'web', '2022-06-01 19:37:57', '2022-06-01 19:37:57');
+INSERT INTO `roles` VALUES (4, 'TIM UHI', 'web', '2022-06-01 19:37:57', '2022-06-01 19:37:57');
 
 -- ----------------------------
 -- Table structure for users
@@ -589,22 +847,20 @@ CREATE TABLE `users`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `nim` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `prodi_id` int NULL DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `email_verified_at` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `no_telp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `prodi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'ADMIN', '12345678', 'admin@spk-ahp.co.id', NULL, '$2y$10$2WLgz.6eW.FGbsgnFxsRgukFynfw.6qMIlmilZjnNyhjIOWLok8nW', NULL, '123456789012', NULL, '2022-06-06 08:38:47', '2022-07-08 10:53:38');
-INSERT INTO `users` VALUES (2, 'LUTHER Y WORABAY', '12345678', 'luther@gmail.com', NULL, '$2y$10$gxfqmdubC9KAfLABdWqqteJNfFEJdFAS5kbWhTn6PnVTjAk.ECN1.', NULL, NULL, NULL, '2024-01-07 16:18:40', '2024-01-15 05:16:37');
-INSERT INTO `users` VALUES (3, 'DANI ALI CAHYADI', '12345678', 'dani@gmail.com', NULL, '$2y$10$gxfqmdubC9KAfLABdWqqteJNfFEJdFAS5kbWhTn6PnVTjAk.ECN1.', NULL, NULL, NULL, '2024-01-07 16:18:40', '2024-01-15 05:16:37');
+INSERT INTO `users` VALUES (1, 'ADMIN', '12345678', 2, 'admin@spk-ahp.co.id', NULL, '$2y$10$2WLgz.6eW.FGbsgnFxsRgukFynfw.6qMIlmilZjnNyhjIOWLok8nW', '2022-06-06 08:38:47', '2022-07-08 10:53:38');
+INSERT INTO `users` VALUES (2, 'LUTHER Y WORABAY', '12345678', 1, 'luther@gmail.com', NULL, '$2y$10$gxfqmdubC9KAfLABdWqqteJNfFEJdFAS5kbWhTn6PnVTjAk.ECN1.', '2024-01-07 16:18:40', '2024-01-15 05:16:37');
+INSERT INTO `users` VALUES (3, 'DANI ALI CAHYADI', '12345678', 2, 'dani@gmail.com', NULL, '$2y$10$gxfqmdubC9KAfLABdWqqteJNfFEJdFAS5kbWhTn6PnVTjAk.ECN1.', '2024-01-07 16:18:40', '2024-01-15 05:16:37');
 
 SET FOREIGN_KEY_CHECKS = 1;

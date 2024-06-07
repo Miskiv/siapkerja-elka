@@ -24,8 +24,8 @@
 <div class="row justify-content-lg-center">
     <div class="col-md-10">
         <div class="card shadow mb-2">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">{{ $data['kriteria']->kriteria_name }}</h6>
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">{{ $data['kriteria']->kriteria_name }}</h6><small class="text-warning">Jawablah perbandingan berikut dengan memilih setuju atau tidak setuju sesuai dengan keadaan anda yang sebenarnya!</small>
             </div>
             <div class="card-body" style="max-height: 500px; overflow-y: auto;">
                 <form id="answer-form" action="{{ route('isi-kuesioner.store') }}" method="POST">

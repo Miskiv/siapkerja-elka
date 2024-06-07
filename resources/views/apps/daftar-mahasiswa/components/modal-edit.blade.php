@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
             </div>
-            <form action="{{ url('daftar-mahasiswa', $row->id) }}" method="POST" id="formeditModal" enctype="multipart/form-data">
+            <form action="#" method="POST" id="formeditModal" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">

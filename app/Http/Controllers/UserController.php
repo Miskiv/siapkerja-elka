@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurusan;
 use App\Models\MasterDivisi;
+use App\Models\Prodi;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -19,17 +22,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'ASC')->get();
-        $master_entitas = null;
-        $master_divisi = null;
-        $roles = Role::orderBy('id', 'ASC')->get();
-
-        $data['users'] = json_encode($users);
-        $data['entitas'] = json_encode($master_entitas);
-        $data['divisi'] = json_encode($master_divisi);
-        $data['roles'] = json_encode($roles);
-
-        return view('apps.users.index', compact('users', 'master_entitas', 'master_divisi', 'data', 'roles'));
+        $title = 'Daftar Mahasiswa';
+        $data['mahasiswa'] = User::role('User')->with('roles')->get();
+        $data['prodi'] = Prodi::get();
+        $data['role'] = Role::get();
+        return view('apps.daftar-mahasiswa.index_prodi', compact('title', 'data'));
     }
 
     public function store(Request $request)
@@ -37,21 +34,31 @@ class UserController extends Controller
         $request->validate([
             'email' => 'unique:users,email',
         ]);
-
+        
         $user = User::create([
             'name' => strtoupper($request->name),
             'email' => $request->email,
-            'kode_entitas' => $request->kode_entitas,
-            'job_title' => $request->job_title,
+            'nim' => $request->nim,
+            'prodi_id' => $request->prodi,
             'password' => Hash::make($request->password),
         ]);
 
         $user->assignRole($request->role);
 
         activity()->log('Menambahkan User'.$request->name);
-        Alert::success('Berhasil', 'Data berhasil ditambah');
+        Alert::success('Berhasil', 'Berhasil menambahkan user');
 
         return back();
+    }
+
+    public function show($id)
+    {
+        $data['mahasiswa'] = User::with('roles')->where('prodi_id', Crypt::decryptString($id))->get();
+        $data['prodi'] = Prodi::find(Crypt::decryptString($id));
+        $prodi = $data['prodi']->prodi;
+        $data['role'] = Role::get();
+        $title = 'Daftar Mahasiswa '. $data['prodi']->prodi;
+        return view('apps.daftar-mahasiswa.index', compact('data', 'title', 'prodi'));
     }
 
     /**
@@ -146,25 +153,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::find($id);
         activity()->log(Auth::User()->name.' Delete User: '.$id.' - '.$user->title);
         $user->delete();
 
-        Alert::success('Berhasil', 'Data berhasil didelete');
+        Alert::success('Berhasil', 'User berhasil didelete');
 
         return back();
-    }
-
-    /**
-     * Get divisi by ajax.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function get_divisi($kode_divisi)
-    {
-        $divisi = MasterDivisi::where('kode_entitas', $kode_divisi)->get();
-
-        return response()->json($divisi);
     }
 }
