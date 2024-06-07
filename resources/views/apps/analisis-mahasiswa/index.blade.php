@@ -17,6 +17,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
+                            <th>Kriteria</th>
                             <th>Keunggulan</th>
                             <th>Dibuat</th>
                             <th>Action</th>
@@ -27,7 +28,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->User->name }}</td>
-                                <td>{{ $row->User->Hasil->kesimpulan }}</td>
+                                <td>{{ $row->Kriteria->kriteria_name }}</td>
+                                <td>{{ $row->kesimpulan }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td>
                                     <div class="dropdown mb-4">
@@ -38,8 +40,8 @@
                                         </button>
                                         <div class="dropdown-menu animated--fade-in"
                                             aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="{{ route('analisis-mahasiswa.show', $row->id) }}"><span class="fas fa-eye"> Show</span></a>
-                                            <form method="POST" action="{{ route('analisis-mahasiswa.destroy', $row->id_user) }}">
+                                            <a class="dropdown-item" href="{{ url('analisis-mahasiswa', ['id' => $row->user_id, 'kriteria_id' => $row->kriteria_id]) }}"><span class="fas fa-eye"> Show</span></a>
+                                            <form method="POST" action="{{ route('analisis-mahasiswa.destroy', $row->user_id) }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="dropdown-item"><span class="fas fa-trash"> Delete</span></button>

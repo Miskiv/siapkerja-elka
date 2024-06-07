@@ -20,4 +20,9 @@ class Hasil extends Model
     {
         return $this->belongsTo(Kriteria::class, 'kriteria_id', 'id');
     }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

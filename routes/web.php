@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('jawaban', JawabanController::class);
         Route::resource('jurusan', JurusanController::class);
         Route::resource('daftar-mahasiswa', DaftarMahasiswaController::class);
+        Route::get('/analisis-mahasiswa/{id}/{kriteria_id}', [AnalisisMahasiswaController::class, 'showAnalisis']);
         Route::resource('analisis-mahasiswa', AnalisisMahasiswaController::class);
         Route::get('comparison/{criteria}', [PertanyaanController::class, 'generateComparisons']);
         Route::resource('kriteria', KriteriaController::class);

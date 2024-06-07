@@ -10861,7 +10861,7 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/Dwu85P9SOIk/600x800");
+  background: url('/assets/bootstrap/img/logo univ.png');
   background-position: center;
   background-size: cover;
 }

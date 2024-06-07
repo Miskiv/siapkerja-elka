@@ -29,7 +29,25 @@
                                 <td>{{ $row->soal }}</td>
                                 <td>{{ $row->Kriteria->kriteria_name }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
-                                <td><button class="btn btn-info btn-sm">Aksi</button></td>
+                                <td>
+                                    <div class="dropdown mb-4">
+                                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Aksi
+                                        </button>
+                                        <div class="dropdown-menu animated--fade-in"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{ route('pertanyaan.edit', $row->id) }}"><span class="fas fa-eye"> Edit</span></a>
+                                            <form method="POST" action="{{ route('pertanyaan.destroy', $row->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="dropdown-item"><span class="fas fa-trash"> Delete</span></button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

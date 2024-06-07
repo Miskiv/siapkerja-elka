@@ -62,7 +62,7 @@ class PertanyaanController extends Controller
      */
     public function edit(Pertanyaan $pertanyaan)
     {
-        //
+        return view('apps.pertanyaan.edit', compact('pertanyaan'));
     }
 
     /**
@@ -70,7 +70,11 @@ class PertanyaanController extends Controller
      */
     public function update(Request $request, Pertanyaan $pertanyaan)
     {
-        //
+        $pertanyaan->update([
+            'soal' => $request->soal
+        ]);
+
+        return redirect(url('pertanyaan'));
     }
 
     /**
@@ -78,7 +82,10 @@ class PertanyaanController extends Controller
      */
     public function destroy(Pertanyaan $pertanyaan)
     {
-        //
+        $pertanyaan->update([
+            'soal' => null
+        ]);
+        return back();
     }
 
     public function generateComparisons($id) {
