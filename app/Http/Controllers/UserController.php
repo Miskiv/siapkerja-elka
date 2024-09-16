@@ -53,7 +53,12 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $data['mahasiswa'] = User::with('roles')->where('prodi_id', Crypt::decryptString($id))->get();
+        $data['mahasiswa'] = User::with('roles')
+            ->where('prodi_id', Crypt::decryptString($id))
+            ->whereDoesntHave('roles', function ($query) {
+                $query->where('name', 'Admin');
+            })
+            ->get();
         $data['prodi'] = Prodi::find(Crypt::decryptString($id));
         $prodi = $data['prodi']->prodi;
         $data['role'] = Role::get();

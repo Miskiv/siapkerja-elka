@@ -864,3 +864,4 @@ INSERT INTO `users` VALUES (2, 'LUTHER Y WORABAY', '12345678', 1, 'luther@gmail.
 INSERT INTO `users` VALUES (3, 'DANI ALI CAHYADI', '12345678', 2, 'dani@gmail.com', NULL, '$2y$10$gxfqmdubC9KAfLABdWqqteJNfFEJdFAS5kbWhTn6PnVTjAk.ECN1.', '2024-01-07 16:18:40', '2024-01-15 05:16:37');
 
 SET FOREIGN_KEY_CHECKS = 1;
+master_pertanyaananalisisspk_ahp_revisihasil

@@ -619,36 +619,18 @@
           data: totalEvn
       }],
       chart: {
-          type: 'bar',
-          height: 350
+          type: 'radar',
+          height: 400
       },
-      plotOptions: {
-          bar: {
-              horizontal: false,
-              columnWidth: '55%',
-              endingShape: 'rounded',
-              distributed: true
-          },
-      },
-      colors: ['#1E90FF', '#FF6347', '#32CD32', '#FFD700'],
+      colors: ['#1E90FF'],
       dataLabels: {
           enabled: false
-      },
-      stroke: {
-          show: true,
-          width: 2,
-          colors: ['transparent']
       },
       xaxis: {
           categories: perbandinganCode,
       },
       yaxis: {
-          title: {
-              text: 'Total Evn'
-          }
-      },
-      fill: {
-          opacity: 1
+              stepSize: 0.1
       },
       tooltip: {
           y: {

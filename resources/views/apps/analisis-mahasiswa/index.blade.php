@@ -27,7 +27,7 @@
                         @foreach ($data['analisis'] as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
-                                <td>{{ $row->User->name }}</td>
+                                <td>{{ $row->User->name ?? ''}}</td>
                                 <td>{{ $row->Kriteria->kriteria_name }}</td>
                                 <td>{{ $row->kesimpulan }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>

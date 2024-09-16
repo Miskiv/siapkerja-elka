@@ -24,14 +24,13 @@
                 <div class="text-center">
                     <img class="img-fluid px-3 px-sm-4 mt-2 mb-4" style="width: 20rem;"
                         src="{{ asset('assets/bootstrap/img/logo univ.png') }}" alt="...">
+                        <div><p style="width: 50rem;" class="text-center px-3 px-sm-4 mb-5">Selamat Datang di Sistem Analis Kesiapan Kerja Mahasiswa Tingkat Akhir Departemen Teknik Elektronika FT UNP Menggunakan Metode AHP</p></div>
                     </div>
-                    <p style="width: 50rem;" class="text-center px-3 px-sm-4 mb-5">Selamat Datang di Sistem Analis Kesiapan Kerja Mahasiswa Tingkat Akhir Departemen Teknik Elektronika FT UNP Menggunakan Metode AHP</p>
                 @role('User')
                 <a rel="nofollow" href="{{ route('isi-kuesioner.index') }}">Browse for more &rarr;</a>
                 @endrole
             </div>
         </div>
-
     </div>
 </div>
 @stop

@@ -10864,6 +10864,8 @@ a:focus {
   background: url('../../bootstrap/img/logo\ univ.png');
   background-position: center;
   background-size: cover;
+  height: 50px;
+  width: 50px;
 }
 
 .bg-register-image {

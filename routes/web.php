@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index']);
 
     //role admin
-    Route::group(['middleware' => ['role:Super Admin|Admin']], function () {
+    Route::group(['middleware' => ['role:Super Admin|Admin|Staff Departemen|TIM UHI']], function () {
         Route::resource('users', UserController::class);
 
         Route::get('getPerbandinganKriteria/{param}', [PertanyaanController::class, 'getperbandingan']);

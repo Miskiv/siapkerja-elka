@@ -23,7 +23,7 @@
     <!-- Heading -->
     <div class="sidebar-heading">Navigasi Utama</div>
     <!-- Akses Admin -->
-    @role('Admin|Staff Departemen|TIM UHI')
+    @role('Admin')
     <li class="nav-item @if(isset($title) && $title === 'Daftar Mahasiswa') active @endif">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-user-graduate"></i>
@@ -51,6 +51,24 @@
         <a class="nav-link" href="{{ route('pertanyaan.index') }}">
             <i class="fas fa-fw fa-question"></i>
             <span>Master Pertanyaan</span></a>
+    </li>
+    @endrole
+
+    @role('Staff Departemen|TIM UHI')
+    <li class="nav-item @if(isset($title) && $title === 'Daftar Mahasiswa') active @endif">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Daftar Mahasiswa</span></a>
+    </li>
+    {{-- <li class="nav-item @if(isset($title) && $title === 'Jawaban') active @endif">
+        <a class="nav-link" href="{{ route('jawaban.index') }}">
+            <i class="fas fa-fw fa-comment"></i>
+            <span>Jawaban</span></a>
+    </li> --}}
+    <li class="nav-item @if(isset($title) && $title === 'Analisis Mahasiswa') active @endif">
+        <a class="nav-link" href="{{ route('analisis-mahasiswa.index') }}">
+            <i class="fas fa-fw fa-chart-line"></i>
+            <span>Analisis Mahasiswa</span></a>
     </li>
     @endrole
     @role('User')

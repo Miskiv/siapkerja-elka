@@ -53,7 +53,7 @@ class KuesionerController extends Controller
                 foreach ($hasil->Detail as $detail) {
                     $detail->delete();
                 }
-                
+
                 // Hapus data utama Hasil
                 $hasil->delete();
             }
@@ -125,7 +125,7 @@ class KuesionerController extends Controller
                 'C3' => [$e1['a3'][0], $e1['a3'][1], $e1['a3'][2], $e1['a3'][3]],
                 'C4' => [$e1['a4'][0], $e1['a4'][1], $e1['a4'][2], $e1['a4'][3]],
             ];
-    
+
             $e2 = [
                 'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0]],
                 'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1]],
@@ -138,7 +138,7 @@ class KuesionerController extends Controller
                 'C3' => [$e2['a3'][0], $e2['a3'][1], $e2['a3'][2], $e2['a3'][3]],
                 'C4' => [$e2['a4'][0], $e2['a4'][1], $e2['a4'][2], $e2['a4'][3]],
             ];
-    
+
             $e3 = [
                 'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0]],
                 'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1]],
@@ -165,7 +165,7 @@ class KuesionerController extends Controller
                 'C4' => [$e4['a4'][0], $e4['a4'][1], $e4['a4'][2], $e4['a4'][3]],
             ];
             /////////////////////    Batas Perncarian Eigen Vektor Normalisasi   ///////////////////
-            
+
             ////////////////////////    Eigen Vektor Normalisasi   ////////////////////////////////
 
             $data['evn'] = [
@@ -213,7 +213,6 @@ class KuesionerController extends Controller
                 'CI' => (array_sum($eMaks)-$n)/($n-1),
                 'CR' => ((array_sum($eMaks)-$n)/($n-1))/$randomIndexConsistency,
             ];
-
             ///////////////////////  Batas Rasio Konsistensi  /////////////////////////////
 
             $c1 = $data['evnTotal']['C1'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C4'][1];
@@ -221,21 +220,53 @@ class KuesionerController extends Controller
             $c3 = $data['evnTotal']['C3'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C4'][1];
             $c4 = $data['evnTotal']['C4'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C3'][1];
 
+            // revisi
+            // uasort($data['evnTotal'], function($a, $b) {
+            //     return $b[1] <=> $a[1]; // Mengurutkan berdasarkan nilai indeks 1
+            // });
+
+            // Tampilkan hasilnya
+            // $nilaiTertinggi = reset($data['evnTotal'])[1];
+            // array_shift($data['evnTotal']);
+
+            // Sisa nilai setelah elemen tertinggi dihapus
+            // $nilaiSisa = array_map(function($item) {
+            //     return $item[1];
+            // }, $data['evnTotal']);
+
 
             $nilaiTertinggi = '';
             if ($c1) {
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Menguasai Konsep')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+                $nama = 'Kemampuan Menguasai Konsep';
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
+                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
+                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
+                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
+                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
             } elseif ($c2) {
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Menjelaskan Informasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+                $nama = 'Kemampuan Menjelaskan Informasi';
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
+                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
+                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
+                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
+                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
             } elseif ($c3) {
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Menyampaikan Fakta')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+                $nama = 'Kemampuan Menyampaikan Fakta';
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
+                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
+                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
+                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
+                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
             } elseif ($c4){
-                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengutarakan Ide dan Gagasan')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
+                $nama = 'Kemampuan Mengutarakan Ide dan Gagasan';
+                $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
+                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
+                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
+                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
+                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
+
             }
+            // dd($nilaiTertinggi);
 
             $data['hasil'] = Hasil::create([
                 'user_id' => Auth::user()->id,
@@ -243,7 +274,7 @@ class KuesionerController extends Controller
                 'nim' => Auth::user()->nim,
                 'kesimpulan' => $nilaiTertinggi,
             ]);
-            
+
             foreach ($data['evnTotal'] as $item => $row) {
                 $data['detail'] = Detail::create([
                     'hasil_id' => $data['hasil']->id,
@@ -287,7 +318,7 @@ class KuesionerController extends Controller
                 'C4' => [$e1['a4'][0], $e1['a4'][1], $e1['a4'][2], $e1['a4'][3], $e1['a4'][4]],
                 'C5' => [$e1['a5'][0], $e1['a5'][1], $e1['a5'][2], $e1['a5'][3], $e1['a5'][4]],
             ];
-    
+
             $e2 = [
                 'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][0]],
                 'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][1]],
@@ -302,7 +333,7 @@ class KuesionerController extends Controller
                 'C4' => [$e2['a4'][0], $e2['a4'][1], $e2['a4'][2], $e2['a4'][3], $e2['a4'][4]],
                 'C5' => [$e2['a5'][0], $e2['a5'][1], $e2['a5'][2], $e2['a5'][3], $e2['a5'][4]],
             ];
-    
+
             $e3 = [
                 'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][0]],
                 'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][1]],
@@ -397,7 +428,6 @@ class KuesionerController extends Controller
                 'CI' => (array_sum($eMaks)-$n)/($n-1),
                 'CR' => ((array_sum($eMaks)-$n)/($n-1))/$randomIndexConsistency,
             ];
-
             ///////////////////////  Batas Rasio Konsistensi  /////////////////////////////
 
             $c1 = $data['evnTotal']['C1'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C3'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C4'][1] && $data['evnTotal']['C1'][1] > $data['evnTotal']['C5'][1];
@@ -431,7 +461,7 @@ class KuesionerController extends Controller
                 'nim' => Auth::user()->nim,
                 'kesimpulan' => $nilaiTertinggi,
             ]);
-            
+
             foreach ($data['evnTotal'] as $item => $row) {
                 $data['detail'] = Detail::create([
                     'hasil_id' => $data['hasil']->id,
@@ -479,7 +509,7 @@ class KuesionerController extends Controller
                 'C5' => [$e1['a5'][0], $e1['a5'][1], $e1['a5'][2], $e1['a5'][3], $e1['a5'][4], $e1['a5'][5]],
                 'C6' => [$e1['a6'][0], $e1['a6'][1], $e1['a6'][2], $e1['a6'][3], $e1['a6'][4], $e1['a6'][5]],
             ];
-    
+
             $e2 = [
                 'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][0], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][0]],
                 'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][1], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][1]],
@@ -654,7 +684,7 @@ class KuesionerController extends Controller
                 'nim' => Auth::user()->nim,
                 'kesimpulan' => $nilaiTertinggi,
             ]);
-            
+
             foreach ($data['evnTotal'] as $item => $row) {
                 $data['detail'] = Detail::create([
                     'hasil_id' => $data['hasil']->id,

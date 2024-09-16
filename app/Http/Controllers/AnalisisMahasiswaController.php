@@ -19,6 +19,7 @@ class AnalisisMahasiswaController extends Controller
     {
         $title = 'Analisis Mahasiswa';
         $data['analisis'] = Hasil::get();
+        
 
         return view('apps.analisis-mahasiswa.index',compact('data', 'title'));
     }
