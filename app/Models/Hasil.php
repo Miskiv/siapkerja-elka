@@ -25,4 +25,9 @@ class Hasil extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function KriteriaSub()
+    {
+        return $this->belongsTo(KriteriaSub::class, 'kriteria_unggul', 'id');
+    }
 }

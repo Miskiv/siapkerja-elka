@@ -11,7 +11,13 @@
             <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis {{ $hasil->Kriteria->kriteria_name }}</h6>
         </div>
         <div class="card-body">
-            <h6 class="text-center">Kesimpulan : Kamu {{ $hasil->kesimpulan }}</h6>
+            <h6 class="text-center">Kesimpulan : </h6>
+            <div class="card bg-success text-white mx-auto" style="width: 50%;" id="responsive-card">
+                <div class="card-body text-center p-2">
+                    <span class="fs-6">Unggul di <b>{{ $hasil->KriteriaSub->nama }}</b>.</span>
+                    <span class="fs-12" style="background-color: orange">Lemah pada {{ $namaKriteriaRendahString }}.</span>
+                </div>
+            </div>
             <div id="chart">
             </div>
             <div id="legend" class="text-center">
@@ -20,6 +26,7 @@
                 @endforeach
             </div>
         </div>
+        @role('Admin')
         <div class="card-body">
             <div class="table-container">
                 <div class="table-block" style="margin: 0 auto;">
@@ -52,7 +59,7 @@
                 <p class="text-center">Pencarian Eigen Vektor Normalisasi</p>
                 <div class="table-container">
                     <div class="table-block">
-                        
+
                         <table border="1">
                             <thead>
                                 <tr>
@@ -75,7 +82,7 @@
                         </table>
                         <p class="text-center">Baris ke 1</p>
                     </div>
-            
+
                     <div class="table-block">
                         <table border="1">
                             <thead>
@@ -99,7 +106,7 @@
                         </table>
                         <p class="text-center">Baris ke 2</p>
                     </div>
-            
+
                     <div class="table-block">
                         <table border="1">
                             <thead>
@@ -183,7 +190,7 @@
             </div>
             <div class="card-body mb-5">
                 <div class="table-container">
-            
+
                     <div class="table-block" style="margin: 0 auto;">
                     <p>Rasio Konsistensi</p>
 
@@ -211,7 +218,7 @@
                 <p class="text-center">Pencarian Eigen Vektor Normalisasi</p>
                 <div class="table-container">
                     <div class="table-block">
-                        
+
                         <table border="1">
                             <thead>
                                 <tr>
@@ -234,7 +241,7 @@
                         </table>
                         <p class="text-center">Baris ke 1</p>
                     </div>
-            
+
                     <div class="table-block">
                         <table border="1">
                             <thead>
@@ -258,7 +265,7 @@
                         </table>
                         <p class="text-center">Baris ke 2</p>
                     </div>
-            
+
                     <div class="table-block">
                         <table border="1">
                             <thead>
@@ -333,7 +340,7 @@
                         </table>
                         <p class="text-center">Baris ke 5</p>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="card-body">
@@ -370,8 +377,8 @@
             </div>
             <div class="card-body mb-5">
                 <div class="table-container">
-                    
-            
+
+
                     <div class="table-block">
                     <p>Rasio Konsistensi</p>
 
@@ -399,7 +406,7 @@
                 <p class="text-center">Pencarian Eigen Vektor Normalisasi</p>
                 <div class="table-container">
                     <div class="table-block">
-                        
+
                         <table border="1">
                             <thead>
                                 <tr>
@@ -422,7 +429,7 @@
                         </table>
                         <p class="text-center">Baris ke 1</p>
                     </div>
-            
+
                     <div class="table-block">
                         <table border="1">
                             <thead>
@@ -446,7 +453,7 @@
                         </table>
                         <p class="text-center">Baris ke 2</p>
                     </div>
-            
+
                     <div class="table-block">
                         <table border="1">
                             <thead>
@@ -544,7 +551,7 @@
                         </table>
                         <p class="text-center">Baris ke 6</p>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="card-body">
@@ -581,8 +588,8 @@
             </div>
             <div class="card-body mb-5">
                 <div class="table-container">
-                    
-            
+
+
                     <div class="table-block">
                     <p>Rasio Konsistensi</p>
 
@@ -606,6 +613,7 @@
                 </div>
             </div>
         @endif
+        @endrole
     </div>
 @stop
 @push('js')

@@ -44,18 +44,21 @@ class HasilAnalisisController extends Controller
     public function show(string $id)
     {
         $title = 'Hasil Analitic';
-        $hasil = Hasil::with('Detail')->where('kriteria_id', $id)->where('user_id', Auth::user()->id)->first();
+        $hasil = Hasil::with('Detail', 'KriteriaSub')->where('kriteria_id', $id)->where('user_id', Auth::user()->id)->first();
+        $kriteriaRendah = KriteriaSub::where('kriteria_id', $id)->whereNot('id', $hasil->kriteria_unggul)->get();
+        $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
+        $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
         $kriteria_sub = KriteriaSub::where('kriteria_id', $id)->get();
         $totalEvn = $hasil->Detail->pluck('totalEvn')->map(function($value) {
             return (float) $value;
         });
-        
+
         $perbandinganCode = $hasil->Detail->pluck('perbandingan_code');
-        
+
         $jsonTotalEvn = $totalEvn->toJson();
         $jsonPerbandinganCode = $perbandinganCode->toJson();
-        
-        return view('apps.hasil-analisis.index', compact('title', 'hasil', 'jsonTotalEvn', 'jsonPerbandinganCode', 'kriteria_sub'));
+
+        return view('apps.hasil-analisis.index', compact('title', 'hasil', 'jsonTotalEvn', 'jsonPerbandinganCode', 'kriteria_sub', 'namaKriteriaRendahString'));
     }
 
     /**

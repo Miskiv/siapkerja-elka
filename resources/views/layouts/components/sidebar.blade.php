@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
@@ -14,27 +14,23 @@
     </div>
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
         <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Home</span></a>
+            <span>Dashboard</span></a>
     </li>
 
     <!-- Heading -->
     <div class="sidebar-heading">Navigasi Utama</div>
+
     <!-- Akses Admin -->
     @role('Admin')
-    <li class="nav-item @if(isset($title) && $title === 'Daftar Mahasiswa') active @endif">
+    <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>Daftar Mahasiswa</span></a>
     </li>
-    {{-- <li class="nav-item @if(isset($title) && $title === 'Jawaban') active @endif">
-        <a class="nav-link" href="{{ route('jawaban.index') }}">
-            <i class="fas fa-fw fa-comment"></i>
-            <span>Jawaban</span></a>
-    </li> --}}
-    <li class="nav-item @if(isset($title) && $title === 'Analisis Mahasiswa') active @endif">
+    <li class="nav-item {{ request()->is('analisis-mahasiswa*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('analisis-mahasiswa.index') }}">
             <i class="fas fa-fw fa-chart-line"></i>
             <span>Analisis Mahasiswa</span></a>
@@ -42,12 +38,12 @@
 
     <div class="sidebar-heading">Data Master</div>
 
-    <li class="nav-item @if(isset($title) && $title === 'Master Kriteria') active @endif">
+    <li class="nav-item {{ request()->is('kriteria*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('kriteria.index') }}">
             <i class="fas fa-fw fa-database"></i>
             <span>Master Kriteria</span></a>
     </li>
-    <li class="nav-item @if(isset($title) && $title === 'Pertanyaan') active @endif">
+    <li class="nav-item {{ request()->is('pertanyaan*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('pertanyaan.index') }}">
             <i class="fas fa-fw fa-question"></i>
             <span>Master Pertanyaan</span></a>
@@ -55,33 +51,23 @@
     @endrole
 
     @role('Staff Departemen|TIM UHI')
-    <li class="nav-item @if(isset($title) && $title === 'Daftar Mahasiswa') active @endif">
+    <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>Daftar Mahasiswa</span></a>
     </li>
-    {{-- <li class="nav-item @if(isset($title) && $title === 'Jawaban') active @endif">
-        <a class="nav-link" href="{{ route('jawaban.index') }}">
-            <i class="fas fa-fw fa-comment"></i>
-            <span>Jawaban</span></a>
-    </li> --}}
-    <li class="nav-item @if(isset($title) && $title === 'Analisis Mahasiswa') active @endif">
+    <li class="nav-item {{ request()->is('analisis-mahasiswa*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('analisis-mahasiswa.index') }}">
             <i class="fas fa-fw fa-chart-line"></i>
             <span>Analisis Mahasiswa</span></a>
     </li>
     @endrole
     @role('User')
-    <li class="nav-item @if(isset($title) && $title === 'Kuesioner') active @endif">
+    <li class="nav-item {{ request()->is('isi-kuesioner*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('isi-kuesioner.index') }}">
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Isi Kuesioner</span></a>
     </li>
-    {{-- <li class="nav-item @if(isset($title) && $title === 'Hasil Analisis') active @endif">
-        <a class="nav-link" href="{{ route('hasil-analisis.index') }}">
-            <i class="fas fa-fw fa-chart-line"></i>
-            <span>Hasil Analisis</span></a>
-    </li> --}}
     @endrole
 
 </ul>

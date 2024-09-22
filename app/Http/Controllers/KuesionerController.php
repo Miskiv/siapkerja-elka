@@ -220,59 +220,26 @@ class KuesionerController extends Controller
             $c3 = $data['evnTotal']['C3'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C3'][1] > $data['evnTotal']['C4'][1];
             $c4 = $data['evnTotal']['C4'][1] > $data['evnTotal']['C1'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C2'][1] && $data['evnTotal']['C4'][1] > $data['evnTotal']['C3'][1];
 
-            // revisi
-            // uasort($data['evnTotal'], function($a, $b) {
-            //     return $b[1] <=> $a[1]; // Mengurutkan berdasarkan nilai indeks 1
-            // });
-
-            // Tampilkan hasilnya
-            // $nilaiTertinggi = reset($data['evnTotal'])[1];
-            // array_shift($data['evnTotal']);
-
-            // Sisa nilai setelah elemen tertinggi dihapus
-            // $nilaiSisa = array_map(function($item) {
-            //     return $item[1];
-            // }, $data['evnTotal']);
-
-
             $nilaiTertinggi = '';
             if ($c1) {
                 $nama = 'Kemampuan Menguasai Konsep';
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
-                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
-                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
-                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
-                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
             } elseif ($c2) {
                 $nama = 'Kemampuan Menjelaskan Informasi';
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
-                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
-                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
-                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
-                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
             } elseif ($c3) {
                 $nama = 'Kemampuan Menyampaikan Fakta';
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
-                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
-                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
-                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
-                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
             } elseif ($c4){
                 $nama = 'Kemampuan Mengutarakan Ide dan Gagasan';
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', $nama)->first();
-                $kriteriaRendah = KriteriaSub::where('kriteria_id', $request->kriteria_id)->whereNot('nama', $nama)->get();
-                $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
-                $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
-                $nilaiTertinggi = 'Kamu unggul di ' . $tipekriteria->nama . '. Tingkatkan lagi diri kamu pada ' . $namaKriteriaRendahString . ' untuk mempersiapkan dirimu masuk dalam dunia kerja.';
-
             }
-            // dd($nilaiTertinggi);
 
             $data['hasil'] = Hasil::create([
                 'user_id' => Auth::user()->id,
                 'kriteria_id' => $request->kriteria_id,
+                'kriteria_unggul' => $tipekriteria->id,
                 'nim' => Auth::user()->nim,
-                'kesimpulan' => $nilaiTertinggi,
             ]);
 
             foreach ($data['evnTotal'] as $item => $row) {
@@ -440,26 +407,21 @@ class KuesionerController extends Controller
             $nilaiTertinggi = '';
             if ($c1) {
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mendefinisikan Informasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c2) {
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengakses Informasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c3) {
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengelola Informasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c4){
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengintegrasikan Informasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c5){
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Mengkomunikasikan Informasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             }
 
             $data['hasil'] = Hasil::create([
                 'user_id' => Auth::user()->id,
                 'kriteria_id' => $request->kriteria_id,
+                'kriteria_unggul' => $tipekriteria->id,
                 'nim' => Auth::user()->nim,
-                'kesimpulan' => $nilaiTertinggi,
             ]);
 
             foreach ($data['evnTotal'] as $item => $row) {
@@ -660,29 +622,23 @@ class KuesionerController extends Controller
             $nilaiTertinggi = '';
             if ($c1) {
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Belajar dan Adaptasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c2) {
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Berkomunikasi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c3) {
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan Pemecahan Masalah')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c4){
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Keterampilan Teknologi')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c5){
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Keterampilan Berpikir Kreatif')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             } elseif ($c6){
                 $tipekriteria = KriteriaSub::where('kriteria_id', $request->kriteria_id)->where('nama', 'Kemampuan bekerja dalam tim')->first();
-                $nilaiTertinggi = 'Unggul di '.$tipekriteria->nama;
             }
 
             $data['hasil'] = Hasil::create([
                 'user_id' => Auth::user()->id,
                 'kriteria_id' => $request->kriteria_id,
+                'kriteria_unggul' => $tipekriteria->id,
                 'nim' => Auth::user()->nim,
-                'kesimpulan' => $nilaiTertinggi,
             ]);
 
             foreach ($data['evnTotal'] as $item => $row) {

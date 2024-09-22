@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\HasilExport;
 use App\Models\Analisis;
 use App\Models\Hasil;
 use App\Models\Jawaban;
 use App\Models\KriteriaSub;
-use App\Models\TipeKriteria;
-use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AnalisisMahasiswaController extends Controller
 {
@@ -19,7 +20,7 @@ class AnalisisMahasiswaController extends Controller
     {
         $title = 'Analisis Mahasiswa';
         $data['analisis'] = Hasil::get();
-        
+
 
         return view('apps.analisis-mahasiswa.index',compact('data', 'title'));
     }
@@ -47,7 +48,7 @@ class AnalisisMahasiswaController extends Controller
     {
         $title = 'Analisis Mahasiswa';
         $data['hasil'] = Hasil::where('user_id', $id)->first();
-   
+
         return view('apps.analisis-mahasiswa.show',compact('data', 'title'));
 
     }
@@ -58,14 +59,17 @@ class AnalisisMahasiswaController extends Controller
     public function showAnalisis(string $id, $kriteria_id)
     {
         $title = 'Analisis Mahasiswa';
-        $hasil = Hasil::with('Detail')->where('kriteria_id', $kriteria_id)->where('user_id', $id)->first();
+        $hasil = Hasil::with('Detail', 'KriteriaSub')->where('kriteria_id', $kriteria_id)->where('user_id', $id)->first();
+        $kriteriaRendah = KriteriaSub::where('kriteria_id', $id)->whereNot('id', $hasil->kriteria_unggul)->get();
+        $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
+        $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
         $kriteria_sub = KriteriaSub::where('kriteria_id', $kriteria_id)->get();
         $totalEvn = $hasil->Detail->pluck('totalEvn')->map(function($value) {
             return (float) $value;
         });
-        
+
         $perbandinganCode = $hasil->Detail->pluck('perbandingan_code');
-        
+
         $jsonTotalEvn = $totalEvn->toJson();
         $jsonPerbandinganCode = $perbandinganCode->toJson();
         $data['analisis'] = Analisis::where('kriteria_id', $kriteria_id)->where('user_id', $id)->get();
@@ -101,7 +105,7 @@ class AnalisisMahasiswaController extends Controller
                 'C3' => [$e1['a3'][0], $e1['a3'][1], $e1['a3'][2], $e1['a3'][3]],
                 'C4' => [$e1['a4'][0], $e1['a4'][1], $e1['a4'][2], $e1['a4'][3]],
             ];
-    
+
             $e2 = [
                 'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0]],
                 'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1]],
@@ -114,7 +118,7 @@ class AnalisisMahasiswaController extends Controller
                 'C3' => [$e2['a3'][0], $e2['a3'][1], $e2['a3'][2], $e2['a3'][3]],
                 'C4' => [$e2['a4'][0], $e2['a4'][1], $e2['a4'][2], $e2['a4'][3]],
             ];
-    
+
             $e3 = [
                 'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0]],
                 'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1]],
@@ -141,7 +145,7 @@ class AnalisisMahasiswaController extends Controller
                 'C4' => [$e4['a4'][0], $e4['a4'][1], $e4['a4'][2], $e4['a4'][3]],
             ];
             /////////////////////    Batas Perncarian Eigen Vektor Normalisasi   ///////////////////
-            
+
             ////////////////////////    Eigen Vektor Normalisasi   ////////////////////////////////
 
             $data['evn'] = [
@@ -204,7 +208,7 @@ class AnalisisMahasiswaController extends Controller
                 'C4' => [$e1['a4'][0], $e1['a4'][1], $e1['a4'][2], $e1['a4'][3], $e1['a4'][4]],
                 'C5' => [$e1['a5'][0], $e1['a5'][1], $e1['a5'][2], $e1['a5'][3], $e1['a5'][4]],
             ];
-    
+
             $e2 = [
                 'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][0]],
                 'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][1]],
@@ -219,7 +223,7 @@ class AnalisisMahasiswaController extends Controller
                 'C4' => [$e2['a4'][0], $e2['a4'][1], $e2['a4'][2], $e2['a4'][3], $e2['a4'][4]],
                 'C5' => [$e2['a5'][0], $e2['a5'][1], $e2['a5'][2], $e2['a5'][3], $e2['a5'][4]],
             ];
-    
+
             $e3 = [
                 'a1' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][0]],
                 'a2' => [$data['pairwise']['C3'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C3'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C3'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C3'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C3'][4]*$data['pairwise']['C5'][1]],
@@ -333,7 +337,7 @@ class AnalisisMahasiswaController extends Controller
                 'C5' => [$e1['a5'][0], $e1['a5'][1], $e1['a5'][2], $e1['a5'][3], $e1['a5'][4], $e1['a5'][5]],
                 'C6' => [$e1['a6'][0], $e1['a6'][1], $e1['a6'][2], $e1['a6'][3], $e1['a6'][4], $e1['a6'][5]],
             ];
-    
+
             $e2 = [
                 'a1' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][0], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][0], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][0], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][0], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][0], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][0]],
                 'a2' => [$data['pairwise']['C2'][0]*$data['pairwise']['C1'][1], $data['pairwise']['C2'][1]*$data['pairwise']['C2'][1], $data['pairwise']['C2'][2]*$data['pairwise']['C3'][1], $data['pairwise']['C2'][3]*$data['pairwise']['C4'][1], $data['pairwise']['C2'][4]*$data['pairwise']['C5'][1], $data['pairwise']['C2'][5]*$data['pairwise']['C6'][1]],
@@ -471,8 +475,8 @@ class AnalisisMahasiswaController extends Controller
                 'CI' => (array_sum($eMaks)-$n)/($n-1),
                 'CR' => ((array_sum($eMaks)-$n)/($n-1))/$randomIndexConsistency,
             ];
-        
-        return view('apps.analisis-mahasiswa.show',compact('title', 'hasil', 'jsonTotalEvn', 'jsonPerbandinganCode', 'kriteria_sub', 'data', 'kriteria_id'));
+
+        return view('apps.analisis-mahasiswa.show',compact('title', 'hasil', 'jsonTotalEvn', 'jsonPerbandinganCode', 'kriteria_sub', 'data', 'kriteria_id', 'namaKriteriaRendahString'));
 
     }
 
@@ -501,5 +505,17 @@ class AnalisisMahasiswaController extends Controller
         Jawaban::where('id_user', $id)->delete();
 
         return back();
+    }
+
+    public function print()
+    {
+        $data = Hasil::get();
+        $pdf = Pdf::loadView('export.pdf', ['data' => $data]);
+        return $pdf->stream('hasil_analisis.pdf');
+    }
+
+    public function export()
+    {
+        return Excel::download(new HasilExport, 'Rekap.xlsx');
     }
 }

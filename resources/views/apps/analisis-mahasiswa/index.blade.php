@@ -47,7 +47,7 @@
                                                 <button type="submit" class="dropdown-item"><span class="fas fa-trash"> Delete</span></button>
                                             </form>
                                         </div>
-                                        
+
                                     </div>
                                 </td>
                             </tr>
@@ -69,7 +69,7 @@
                 pageLength: 7,
                 dom: '<"toolbar">frtip'
             });
-           // document.querySelector('div.toolbar').innerHTML = '<button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Tambah</button>';
+            document.querySelector('div.toolbar').innerHTML = '<a class="btn btn-warning" href="/print" target="_blank"><span class="fas fa-print"></span> Print</a><a class="btn btn-success ms-1" href="/excel"><span class="fas fa-file-excel"></span> Excel</a>';
         });
     </script>
 @endpush

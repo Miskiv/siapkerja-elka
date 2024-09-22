@@ -11,15 +11,19 @@
             <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis {{ $hasil->Kriteria->kriteria_name }}</h6>
         </div>
         <div class="card-body">
-            <h6 class="text-center">Kesimpulan dan Saran : {{ $hasil->kesimpulan }}</h6>
-            <div id="chart">
+            <h6 class="text-center">Kesimpulan dan Saran :</h6>
+            <div class="card bg-success text-white mx-auto" style="width: 50%;" id="responsive-card">
+                <div class="card-body text-center p-2">
+                    <span class="fs-6">Kamu unggul di <b>{{ $hasil->KriteriaSub->nama }}</b>.</span>
+                    <span class="fs-12" style="background-color: orange">Tingkatkan lagi diri kamu pada {{ $namaKriteriaRendahString }} untuk mempersiapkan dirimu masuk dalam dunia kerja.</span>
+                </div>
             </div>
+            <div id="chart"></div>
             <div id="legend" class="text-center">
                 @foreach ($kriteria_sub as $row)
                 <p><strong>C{{ $loop->iteration }}:</strong> {{ $row->nama }}</p>
                 @endforeach
             </div>
-
         </div>
     </div>
 @stop

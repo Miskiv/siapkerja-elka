@@ -41,9 +41,9 @@ class User extends Authenticatable
     /**
      * Get the entitas.
      */
-    public function entitas()
+    public function Prodi()
     {
-        return $this->belongsTo(Entitas::class, 'kode_entitas', 'kode_entitas')->withDefault('-');
+        return $this->belongsTo(Prodi::class, 'prodi_id', 'id')->withDefault('-');
     }
 
     /**

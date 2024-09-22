@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/home', [DashboardController::class, 'index']);
+    Route::get('print', [AnalisisMahasiswaController::class, 'print']);
+    Route::get('excel', [AnalisisMahasiswaController::class, 'export']);
 
     //role admin
     Route::group(['middleware' => ['role:Super Admin|Admin|Staff Departemen|TIM UHI']], function () {
@@ -43,8 +45,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('analisis-mahasiswa', AnalisisMahasiswaController::class);
         Route::get('comparison/{criteria}', [PertanyaanController::class, 'generateComparisons']);
         Route::resource('kriteria', KriteriaController::class);
-
-
 
     });
     Route::group(['middleware' => ['role:User']], function () {

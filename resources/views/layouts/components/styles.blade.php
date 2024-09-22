@@ -14,5 +14,16 @@
     .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
       font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
     .tg .tg-0lax{text-align:left;vertical-align:top}
+    @media (max-width: 576px) {
+        #responsive-card {
+            width: 100%; /* Buat kartu lebar penuh di layar kecil */
+        }
+    }
+
+    @media (min-width: 577px) {
+        #responsive-card {
+            width: 100%; /* Lebar kartu 50% pada layar lebih besar */
+        }
+    }
     </style>
 @stack('css')
