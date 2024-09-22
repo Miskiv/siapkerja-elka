@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
+use App\Models\Prodi;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class DaftarMahasiswaController extends Controller
     {
         $data['mahasiswa'] = User::role('User')->with('roles')->get();
         $title = 'Daftar Mahasiswa';
-        $data['jurusan'] = Jurusan::get();
+        $data['jurusan'] = Prodi::get();
         $data['role'] = Role::get();
         return view('apps.daftar-mahasiswa.index', compact('title', 'data'));
     }

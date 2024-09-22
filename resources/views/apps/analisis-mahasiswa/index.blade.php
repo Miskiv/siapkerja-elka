@@ -25,11 +25,16 @@
                     </thead>
                     <tbody>
                         @foreach ($data['analisis'] as $row)
+                                @php
+                                    $kriteriaRendah = App\Models\KriteriaSub::where('kriteria_id', $row->kriteria_id)->whereNot('id', $row->kriteria_unggul)->get();
+                                    $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
+                                    $namaKriteriaRendahString = implode(', ', $namaKriteriaRendah);
+                                @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->User->name ?? ''}}</td>
                                 <td>{{ $row->Kriteria->kriteria_name }}</td>
-                                <td>{{ $row->kesimpulan }}</td>
+                                <td>Unggul di {{ $row->KriteriaSub->nama }}, Lemah pada {{ $namaKriteriaRendahString }}</td>
                                 <td>{{ $row->created_at->diffForHumans() }}</td>
                                 <td>
                                     <div class="dropdown mb-4">

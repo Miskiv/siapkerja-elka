@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Home')
+@section('title', 'Dashboard')
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -14,11 +14,11 @@
     <!-- Earnings (Monthly) Card Example -->
     @foreach ($prodi as $row)
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card border-left-{{ $row->color }} shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="text-xs font-weight-bold text-{{ $row->color }} text-uppercase mb-1">
                                 {{ $row->prodi }}</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $row->user_count }} orang</div>
                         </div>
@@ -89,7 +89,7 @@
                 labels: labels1,
                 datasets: [{
                     data: data1,
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    backgroundColor: ['#6256CA', '#86D293', '#C1E2A4'],
                     hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
@@ -125,7 +125,7 @@
                 labels: labels2,
                 datasets: [{
                     data: data2,
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    backgroundColor: ['#640D5F', '#D91656', '#EE66A6'],
                     hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
@@ -161,7 +161,7 @@
                 labels: labels3,
                 datasets: [{
                     data: data3,
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    backgroundColor: ['#4379F2', '#FFEB00', '#6EC207'],
                     hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],

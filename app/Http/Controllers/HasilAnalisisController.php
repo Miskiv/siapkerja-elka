@@ -54,6 +54,8 @@ class HasilAnalisisController extends Controller
         });
 
         $perbandinganCode = $hasil->Detail->pluck('perbandingan_code');
+        $perbandinganCode = KriteriaSub::where('kriteria_id', $id)->get();
+        $perbandinganCode = $perbandinganCode->pluck('nama');
 
         $jsonTotalEvn = $totalEvn->toJson();
         $jsonPerbandinganCode = $perbandinganCode->toJson();

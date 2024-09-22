@@ -7,6 +7,7 @@ use App\Models\Analisis;
 use App\Models\Hasil;
 use App\Models\Jawaban;
 use App\Models\KriteriaSub;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,7 +20,7 @@ class AnalisisMahasiswaController extends Controller
     public function index()
     {
         $title = 'Analisis Mahasiswa';
-        $data['analisis'] = Hasil::get();
+        $data['analisis'] = Hasil::orderBy('user_id', 'asc')->get();
 
 
         return view('apps.analisis-mahasiswa.index',compact('data', 'title'));
@@ -59,6 +60,7 @@ class AnalisisMahasiswaController extends Controller
     public function showAnalisis(string $id, $kriteria_id)
     {
         $title = 'Analisis Mahasiswa';
+        $user = User::find($id);
         $hasil = Hasil::with('Detail', 'KriteriaSub')->where('kriteria_id', $kriteria_id)->where('user_id', $id)->first();
         $kriteriaRendah = KriteriaSub::where('kriteria_id', $id)->whereNot('id', $hasil->kriteria_unggul)->get();
         $namaKriteriaRendah = $kriteriaRendah->pluck('nama')->toArray();
@@ -69,6 +71,8 @@ class AnalisisMahasiswaController extends Controller
         });
 
         $perbandinganCode = $hasil->Detail->pluck('perbandingan_code');
+        $perbandinganCode = KriteriaSub::where('kriteria_id', $id)->get();
+        $perbandinganCode = $perbandinganCode->pluck('nama');
 
         $jsonTotalEvn = $totalEvn->toJson();
         $jsonPerbandinganCode = $perbandinganCode->toJson();
@@ -476,7 +480,7 @@ class AnalisisMahasiswaController extends Controller
                 'CR' => ((array_sum($eMaks)-$n)/($n-1))/$randomIndexConsistency,
             ];
 
-        return view('apps.analisis-mahasiswa.show',compact('title', 'hasil', 'jsonTotalEvn', 'jsonPerbandinganCode', 'kriteria_sub', 'data', 'kriteria_id', 'namaKriteriaRendahString'));
+        return view('apps.analisis-mahasiswa.show',compact('title', 'hasil', 'jsonTotalEvn', 'jsonPerbandinganCode', 'kriteria_sub', 'data', 'kriteria_id', 'namaKriteriaRendahString', 'user'));
 
     }
 

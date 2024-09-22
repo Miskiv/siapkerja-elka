@@ -12,18 +12,18 @@
         </div>
         <div class="card-body">
             <h6 class="text-center">Kesimpulan dan Saran :</h6>
-            <div class="card bg-success text-white mx-auto" style="width: 50%;" id="responsive-card">
+            <div class="card bg-info text-white mx-auto" style="width: 50%;" id="responsive-card">
                 <div class="card-body text-center p-2">
                     <span class="fs-6">Kamu unggul di <b>{{ $hasil->KriteriaSub->nama }}</b>.</span>
                     <span class="fs-12" style="background-color: orange">Tingkatkan lagi diri kamu pada {{ $namaKriteriaRendahString }} untuk mempersiapkan dirimu masuk dalam dunia kerja.</span>
                 </div>
             </div>
             <div id="chart"></div>
-            <div id="legend" class="text-center">
+            {{-- <div id="legend" class="text-center">
                 @foreach ($kriteria_sub as $row)
                 <p><strong>C{{ $loop->iteration }}:</strong> {{ $row->nama }}</p>
                 @endforeach
-            </div>
+            </div> --}}
         </div>
     </div>
 @stop
@@ -32,6 +32,7 @@
 <script>
   var totalEvn = {!! $jsonTotalEvn !!};
   var perbandinganCode = {!! $jsonPerbandinganCode !!};
+  console.log(perbandinganCode);
   var options = {
       series: [{
           name: 'Total Evn',
@@ -39,7 +40,7 @@
       }],
       chart: {
           type: 'radar',
-          height: 400
+          height: 700,
       },
       colors: ['#1E90FF', '#FF6347', '#32CD32', '#FFD700'],
       dataLabels: {

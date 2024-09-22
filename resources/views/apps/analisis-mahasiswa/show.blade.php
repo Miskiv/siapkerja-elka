@@ -8,11 +8,11 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis {{ $hasil->Kriteria->kriteria_name }}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Hasil Analisis {{ $hasil->Kriteria->kriteria_name }} {{ ucwords(strtolower($user->name)) }}</h6>
         </div>
         <div class="card-body">
             <h6 class="text-center">Kesimpulan : </h6>
-            <div class="card bg-success text-white mx-auto" style="width: 50%;" id="responsive-card">
+            <div class="card bg-info text-white mx-auto" style="width: 50%;" id="responsive-card">
                 <div class="card-body text-center p-2">
                     <span class="fs-6">Unggul di <b>{{ $hasil->KriteriaSub->nama }}</b>.</span>
                     <span class="fs-12" style="background-color: orange">Lemah pada {{ $namaKriteriaRendahString }}.</span>
@@ -20,11 +20,11 @@
             </div>
             <div id="chart">
             </div>
-            <div id="legend" class="text-center">
+            {{-- <div id="legend" class="text-center">
                 @foreach ($kriteria_sub as $row)
                 <p class="mb-0"><strong>C{{ $loop->iteration }}:</strong> {{ $row->nama }}</p>
                 @endforeach
-            </div>
+            </div> --}}
         </div>
         @role('Admin')
         <div class="card-body">
@@ -628,7 +628,7 @@
       }],
       chart: {
           type: 'radar',
-          height: 400
+          height: 700
       },
       colors: ['#1E90FF'],
       dataLabels: {

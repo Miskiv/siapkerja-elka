@@ -10,7 +10,7 @@
         <div class="col-lg-4 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">{{ $row->prodi }}</h6>
+                    <h6 class="m-0 font-weight-bold text-{{ $row->color }}">{{ $row->prodi }}</h6>
                 </div>
                 <div class="card-body">
                     <div class="text-center">
@@ -37,7 +37,7 @@
                 dom: '<"toolbar">frtip'
             });
             document.querySelector('div.toolbar').innerHTML = '<button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Tambah</button>';
-            
+
             //form edit
             $('#datatable-v tbody').on('click', '.edit_button', function () {
                 let users = {!! json_encode($data['mahasiswa']) !!};

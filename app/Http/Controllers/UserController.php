@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index()
     {
         $title = 'Daftar Mahasiswa';
-        $data['mahasiswa'] = User::role('User')->with('roles')->get();
+        $data['mahasiswa'] = User::role('User')->with('roles')->orderBy('name')->get();
         $data['prodi'] = Prodi::get();
         $data['role'] = Role::get();
         return view('apps.daftar-mahasiswa.index_prodi', compact('title', 'data'));
@@ -34,7 +34,7 @@ class UserController extends Controller
         $request->validate([
             'email' => 'unique:users,email',
         ]);
-        
+
         $user = User::create([
             'name' => strtoupper($request->name),
             'email' => $request->email,

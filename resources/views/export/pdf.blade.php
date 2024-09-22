@@ -53,7 +53,7 @@
                 <td>{{ $item->user->name ?? 'N/A' }}</td>
                 <td>{{ $item->kriteria->kriteria_name }}</td>
                 <td>{{ $item->nim }}</td>
-                <td>Kamu unggul di <b>{{ $item->KriteriaSub->nama }}</b>.</td>
+                <td>Kamu unggul di <b>{{ $item->KriteriaSub->nama }}</b>. Lemah di <b>{{ $namaKriteriaRendahString }}</b></td>
                 <td>{{ $item->created_at->format('d-m-Y H:i') }}</td>
             </tr>
             @endforeach

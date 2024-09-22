@@ -21,7 +21,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->roles()->first()->name == 'Admin'){
+        $rolesToCheck = ['Admin', 'TIM UHI', 'Staff Departemen'];
+        if(Auth::user()->roles()->whereIn('name', $rolesToCheck)->exists()){
             $kriteria = Kriteria::get();
             $persentase = [];
             $kriteriaIds = [];

@@ -17,13 +17,13 @@
             </div>
         </div>
         <!-- end page title -->
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <div id="customerList">
                             <div class="table-responsive table-card mt-3 mb-1">
-                                <table class="table table-nowrap">
+                                <table class="table table-nowrap" id="myTable">
                                     <thead>
                                     <tr>
                                         <th scope="col">No.</th>
@@ -63,4 +63,9 @@
 @stop
 @push('js')
     <!-- listjs init -->
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 @endpush
