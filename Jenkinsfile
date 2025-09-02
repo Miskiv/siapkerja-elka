@@ -2,47 +2,64 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_REPO = "miskiv/laravel-app"
+        DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials') 
         DEPLOY_SERVER = "ubuntu@192.168.8.110"
-        DEPLOY_PATH = "/var/www/laravel-app"
+        APP_NAME = "siapkerja-elka"
+        DOCKER_IMAGE = "miskiv/siapkerja-elka"
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/username/laravel-project.git'
+                git branch: 'main', url: 'https://github.com/Miskiv/siapkerja-elka.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_HUB_REPO:$BUILD_NUMBER .'
-            }
-        }
-
-        stage('Push Docker Image') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker push $DOCKER_HUB_REPO:$BUILD_NUMBER'
+                script {
+                    sh "docker build -t ${DOCKER_IMAGE}:${BUILD_NUMBER} ."
                 }
             }
         }
 
-        stage('Deploy to Server') {
+        stage('Push to Docker Hub') {
             steps {
-                sshagent (credentials: ['server-ssh-key']) {
-                    sh '''
-                        ssh -o StrictHostKeyChecking=no $DEPLOY_SERVER "
-                            docker pull $DOCKER_HUB_REPO:$BUILD_NUMBER &&
-                            docker stop laravel-app || true &&
-                            docker rm laravel-app || true &&
-                            docker run -d --name laravel-app -p 9000:9000 $DOCKER_HUB_REPO:$BUILD_NUMBER
-                        "
-                    '''
+                script {
+                    sh """
+                        echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin
+                        docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}
+                        docker tag ${DOCKER_IMAGE}:${BUILD_NUMBER} ${DOCKER_IMAGE}:latest
+                        docker push ${DOCKER_IMAGE}:latest
+                    """
+                }
+            }
+        }
+
+        stage('Deploy to Remote Server') {
+            steps {
+                script {
+                    sshagent(['deploy-server-ssh']) {
+                        sh """
+                            ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} \\
+                                'docker pull ${DOCKER_IMAGE}:latest && \\
+                                 docker stop ${APP_NAME} || true && \\
+                                 docker rm ${APP_NAME} || true && \\
+                                 docker run -d --name ${APP_NAME} -p 8080:8080 ${DOCKER_IMAGE}:latest'
+                        """
+                    }
                 }
             }
         }
     }
+
+    post {
+        success {
+            echo "Deployment sukses ke ${DEPLOY_SERVER}"
+        }
+        failure {
+            echo "Deployment gagal, cek log!"
+        }
+    }
 }
+
