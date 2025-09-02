@@ -1,24 +1,21 @@
-FROM php:8.2-fpm
-
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    libpng-dev libjpeg-dev libfreetype6-dev \
-    libonig-dev libxml2-dev zip unzip git curl \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-# Install Composer
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+# Gunakan Node.js image
+FROM node:18-alpine
 
 # Set working directory
-WORKDIR /var/www/html
+WORKDIR /app
 
-# Copy source code
+# Copy package.json dan package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy semua source code
 COPY . .
 
-# Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Expose port aplikasi
+EXPOSE 8080
 
-# Expose port 9000
-EXPOSE 9000
+# Jalankan aplikasi
+CMD ["npm", "start"]
 
-CMD ["php-fpm"]
