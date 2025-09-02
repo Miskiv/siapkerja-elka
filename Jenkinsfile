@@ -2,52 +2,49 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials') 
-        DEPLOY_SERVER = "ubuntu@192.168.8.110"
-        APP_NAME = "siapkerja-elka"
-        DOCKER_IMAGE = "miskiv/siapkerja-elka"
+        DOCKER_IMAGE = "miskiv/siapkerja-elka"   // Ganti sesuai repo DockerHub kamu
+        DOCKER_TAG = "latest"
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Miskiv/siapkerja-elka.git'
+                git branch: 'main',
+                    url: 'https://github.com/Miskiv/siapkerja-elka.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE}:${BUILD_NUMBER} ."
+                    dockerImage = docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
                 }
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                script {
+                withCredentials([usernamePassword(credentialsId: 'DockerLogin', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh """
-                        echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin
-                        docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}
-                        docker tag ${DOCKER_IMAGE}:${BUILD_NUMBER} ${DOCKER_IMAGE}:latest
-                        docker push ${DOCKER_IMAGE}:latest
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                    docker logout
                     """
                 }
             }
         }
 
-        stage('Deploy to Remote Server') {
+        stage('Deploy to Server 192.168.8.110') {
             steps {
-                script {
-                    sshagent(['deploy-server-ssh']) {
-                        sh """
-                            ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} \\
-                                'docker pull ${DOCKER_IMAGE}:latest && \\
-                                 docker stop ${APP_NAME} || true && \\
-                                 docker rm ${APP_NAME} || true && \\
-                                 docker run -d --name ${APP_NAME} -p 8080:8080 ${DOCKER_IMAGE}:latest'
-                        """
-                    }
+                sshagent(['DeploymentSSHKey']) {
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ubuntu@192.168.8.110 '
+                        docker pull ${DOCKER_IMAGE}:${DOCKER_TAG} &&
+                        docker stop siapkerja || true &&
+                        docker rm siapkerja || true &&
+                        docker run -d --name siapkerja --env-file /home/ubuntu/siapkerja/.env -p 3000:3000 ${DOCKER_IMAGE}:${DOCKER_TAG}
+                    '
+                    """
                 }
             }
         }
@@ -55,11 +52,10 @@ pipeline {
 
     post {
         success {
-            echo "Deployment sukses ke ${DEPLOY_SERVER}"
+            echo '✅ Deployment berhasil!'
         }
         failure {
-            echo "Deployment gagal, cek log!"
+            echo '❌ Deployment gagal!'
         }
     }
 }
-
